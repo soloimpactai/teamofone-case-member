@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vera 케이스 : 말 한 줄에서 판정까지</title>
+<link rel="canonical" href="https://soloimpactai.github.io/teamofone-case-member/vera/">
+<meta name="description" content=""쿠팡은 팔수록 손해라던데" 한 줄에서 시작해 되묻기, 조사 설계, 잠정 판정, 대조를 거쳐 결론에 이르는 전 과정. 검색 결과를 요약하지 않고 의심하는 방식을 공개합니다.">
+<meta name="theme-color" content="#10192E">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Team of One · Vera">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="말 한 줄에서 판정까지 | Vera 케이스">
+<meta property="og:description" content=""쿠팡은 팔수록 손해라던데" 한 줄에서 시작해 되묻기, 조사 설계, 잠정 판정, 대조를 거쳐 결론에 이르는 전 과정. 검색 결과를 요약하지 않고 의심하는 방식을 공개합니다.">
+<meta property="og:url" content="https://soloimpactai.github.io/teamofone-case-member/vera/">
+<meta property="og:image" content="https://soloimpactai.github.io/teamofone-case-member/vera/card_vera_1600x900.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="og:image:alt" content="Vera 케이스 스터디 : 자사몰 진입 판정">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="말 한 줄에서 판정까지 | Vera 케이스">
+<meta name="twitter:description" content=""쿠팡은 팔수록 손해라던데" 한 줄에서 시작해 되묻기, 조사 설계, 잠정 판정, 대조를 거쳐 결론에 이르는 전 과정. 검색 결과를 요약하지 않고 의심하는 방식을 공개합니다.">
+<meta name="twitter:image" content="https://soloimpactai.github.io/teamofone-case-member/vera/card_vera_1600x900.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+<style>
+:root{
+  --ink:#10192E; --ink-2:#22334F; --ink-3:#3C4A66;
+  --paper:#F6F3EC; --card:#FFFFFF; --paper-3:#EDE8DD;
+  --rule:#D8D0C0; --rule-soft:#E6E0D3;
+  --amber:#B87A16; --amber-bg:#FBF2DF;
+  --brick:#9E3B2C; --brick-bg:#F9EAE6;
+  --sage:#417A5B;  --sage-bg:#E9F1EB;
+  --muted:#6E7484;
+  --kr:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,
+       'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic','맑은 고딕',sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,'Pretendard Variable',Pretendard,monospace;
+  --disp:'Oswald','Pretendard Variable',Pretendard,'Apple SD Gothic Neo',sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--paper);color:var(--ink);font-family:var(--kr);
+  font-size:15.5px;line-height:1.74;-webkit-font-smoothing:antialiased;letter-spacing:-0.01em;
+  word-break:keep-all;overflow-wrap:break-word;line-break:strict;
+}
+p,li,td,th,h1,h2,h3,h4,h5,span,div,b,strong,em,small,label{word-break:keep-all;overflow-wrap:break-word}
+h1,h2,h3,h4{margin:0;font-weight:600;letter-spacing:-0.025em;line-height:1.28;text-wrap:balance}
+p,li{text-wrap:pretty}
+a{color:inherit}
+.wrap{max-width:1140px;margin:0 auto;padding:0 32px}
+
+.eyebrow{font-family:var(--disp);font-weight:400;font-size:11.5px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.eyebrow::after{content:"";flex:1;height:1px;background:var(--rule-soft)}
+.sec{padding:70px 0 10px;border-top:1px solid var(--rule);margin-top:14px}
+.sec > h2{font-size:30px;letter-spacing:-0.035em;margin-bottom:10px}
+.sec > .lede{color:var(--ink-3);font-size:16px;max-width:72ch;margin-bottom:38px}
+
+/* ── hero ── */
+.hero{background:var(--ink);color:#EDE9DF;padding:56px 0 0;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto 0 0 0;height:1px;
+  background:linear-gradient(90deg,var(--amber),var(--brick),var(--sage))}
+.hero .tag{font-family:var(--mono);font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#8E97AB}
+.hero h1{font-size:clamp(32px,5.2vw,58px);line-height:1.08;letter-spacing:-0.035em;margin:22px 0 16px;color:#fff;max-width:19ch}
+.hero h1 em{font-style:normal;color:#C6A15A}
+.hero .sub{color:#A9B2C4;font-size:17px;max-width:58ch}
+.herostrip{display:grid;grid-template-columns:repeat(4,1fr);margin-top:46px;border-top:1px solid #2C3A5C}
+.herostrip div{padding:20px 22px 30px;border-right:1px solid #2C3A5C}
+.herostrip div:last-child{border-right:none}
+.herostrip div:first-child{padding-left:0}
+.herostrip .n{font-family:var(--disp);font-size:11px;letter-spacing:.2em;color:#7C879E;display:block;margin-bottom:7px}
+.herostrip .t{font-size:14.5px;color:#DDE2EC;line-height:1.5}
+
+/* ── act header ── */
+.act-head{display:flex;align-items:baseline;gap:16px;margin-bottom:6px;flex-wrap:wrap}
+.act-no{font-family:var(--disp);font-size:52px;font-weight:500;line-height:.9;color:var(--rule);letter-spacing:-0.02em}
+
+/* ── scene / annotation split ── */
+.scene{display:grid;grid-template-columns:1fr 316px;gap:28px;align-items:start}
+.stream{min-width:0}
+.rail{position:sticky;top:24px}
+.note{border-left:3px solid var(--amber);background:var(--amber-bg);padding:18px 20px;margin-bottom:14px}
+.note h5{font-family:var(--disp);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--amber);margin-bottom:8px}
+.note p{margin:0;font-size:13.5px;line-height:1.62;color:#5C4310}
+.note.dark{border-left-color:var(--ink);background:var(--paper-3)}
+.note.dark h5{color:var(--ink-3)} .note.dark p{color:var(--ink-2)}
+
+/* ── chat ── */
+.msg{margin-bottom:16px}
+.who{font-family:var(--disp);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:7px;display:flex;align-items:center;gap:9px}
+.who i{width:16px;height:2px;background:var(--rule);display:block;flex:none}
+.bub{border:1px solid var(--rule);background:var(--card);padding:20px 24px}
+.bub.user{background:var(--paper-3);border-style:dashed}
+.bub.vera{border-left:3px solid var(--ink)}
+.bub p{margin:0 0 12px}
+.bub p:last-child{margin-bottom:0}
+.bub .hook{font-size:19px;font-weight:600;letter-spacing:-0.025em;line-height:1.45;margin-bottom:16px}
+.bub .quiet{color:var(--muted);font-size:13.5px}
+.userline{font-size:19px;line-height:1.55;color:var(--ink-2)}
+
+/* ── question list ── */
+.qs{list-style:none;margin:0 0 16px;padding:0;counter-reset:q}
+.qs li{counter-increment:q;display:grid;grid-template-columns:30px 1fr;gap:14px;
+  padding:14px 0;border-bottom:1px dotted var(--rule)}
+.qs li:last-child{border-bottom:none}
+.qs li::before{content:counter(q,decimal-leading-zero);font-family:var(--disp);font-size:13px;
+  color:var(--amber);padding-top:2px;grid-column:1;grid-row:1}
+.qs b{display:block;font-size:15.5px;margin-bottom:3px;grid-column:2;grid-row:1}
+.qs span{display:block;font-size:13.5px;color:var(--muted);line-height:1.55;grid-column:2;grid-row:2}
+
+/* ── profile answer ── */
+.ans{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.ans span{font-family:var(--mono);font-size:12.5px;background:#fff;border:1px solid var(--rule);
+  padding:5px 10px}
+
+/* ── prompt artifact ── */
+.artifact{border:1px solid var(--ink);background:var(--card);margin:6px 0 16px}
+.art-head{background:var(--ink);color:#fff;padding:13px 20px;display:flex;justify-content:space-between;
+  align-items:center;gap:14px;flex-wrap:wrap}
+.art-head b{font-family:var(--disp);font-weight:400;font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.art-head span{font-family:var(--mono);font-size:11px;color:#8E97AB}
+.art-body{max-height:290px;overflow:auto;padding:20px 22px;font-family:var(--mono);font-size:12px;
+  line-height:1.85;white-space:pre-wrap;color:var(--ink-2);background:#FCFBF8}
+.art-body b{color:var(--brick);font-weight:700}
+.art-foot{border-top:1px solid var(--rule);padding:11px 20px;font-size:12.5px;color:var(--muted)}
+
+/* ── verdict cards ── */
+.vcard{border:1px solid var(--rule);background:var(--card);padding:24px 26px;margin-bottom:14px}
+.vcard.prov{border-top:4px solid var(--muted)}
+.vcard.final{border-top:4px solid var(--amber)}
+.vtag{display:inline-block;font-family:var(--disp);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  padding:4px 12px;margin-bottom:14px;color:#fff}
+.vtag.g{background:var(--muted)} .vtag.a{background:var(--amber)}
+.vcard .vl{font-size:19px;font-weight:600;letter-spacing:-0.025em;line-height:1.5;margin-bottom:14px}
+.vmeta{display:flex;gap:24px;flex-wrap:wrap;border-top:1px dotted var(--rule);padding-top:14px;
+  font-size:13px;color:var(--ink-3)}
+.vmeta b{font-family:var(--disp);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);display:block}
+
+/* ── diff ── */
+.diff{border:1px solid var(--rule);background:var(--card)}
+.diffrow{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule-soft)}
+.diffrow:last-child{border-bottom:none}
+.diffrow > div{padding:18px 22px}
+.diffrow .was{background:var(--brick-bg);border-right:1px solid var(--rule-soft)}
+.diffrow .now{background:var(--sage-bg)}
+.difflbl{font-family:var(--disp);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;
+  margin-bottom:7px;display:block}
+.was .difflbl{color:var(--brick)} .now .difflbl{color:var(--sage)}
+.diffrow p{margin:0;font-size:14.5px;line-height:1.6}
+.diffhead{background:var(--ink);color:#fff;padding:14px 22px;font-family:var(--disp);font-size:13px;
+  letter-spacing:.14em;text-transform:uppercase}
+.trigger{border-left:3px solid var(--ink);background:var(--paper-3);padding:16px 20px;margin-top:16px;font-size:14px}
+.trigger b{display:block;font-size:13px;margin-bottom:5px}
+
+/* ── compare table ── */
+.tblwrap{border:1px solid var(--rule);overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px;background:var(--card)}
+thead th{font-family:var(--disp);font-weight:400;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);text-align:left;padding:13px 16px;border-bottom:1.5px solid var(--ink);white-space:nowrap}
+tbody td{padding:15px 16px;border-bottom:1px solid var(--rule-soft);vertical-align:top;line-height:1.62}
+tbody tr:last-child td{border-bottom:none}
+td.gen{color:var(--muted)}
+td.vera{background:var(--sage-bg);font-weight:500}
+
+/* ── CTA ── */
+.cta{border:1.5px solid var(--ink);background:var(--card);display:grid;grid-template-columns:1fr 300px}
+.cta-l{padding:36px 38px}
+.cta-l h3{font-size:24px;letter-spacing:-0.03em;margin-bottom:12px}
+.cta-l p{color:var(--ink-3);font-size:15px;margin:0 0 22px;max-width:52ch}
+.btn{display:inline-block;background:var(--ink);color:#fff;text-decoration:none;padding:14px 26px;
+  font-family:var(--disp);font-size:14px;letter-spacing:.14em;text-transform:uppercase}
+.btn:hover{background:var(--ink-2)}
+.cta-r{border-left:1px solid var(--rule);background:var(--paper-3);padding:30px 30px}
+.cta-r h5{font-family:var(--disp);font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:14px}
+.cta-r ul{margin:0;padding:0;list-style:none}
+.cta-r li{font-size:13.5px;padding:8px 0;border-bottom:1px dotted var(--rule);color:var(--ink-2)}
+.cta-r li:last-child{border-bottom:none}
+
+footer{margin-top:70px;border-top:1px solid var(--rule);padding:28px 0 60px;font-size:12.5px;color:var(--muted);
+  display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+
+@media(max-width:940px){
+  .scene{grid-template-columns:1fr}
+  .rail{position:static}
+  .herostrip{grid-template-columns:1fr 1fr}
+  .herostrip div{padding-left:0;border-right:none;border-bottom:1px solid #2C3A5C}
+  .cta{grid-template-columns:1fr}
+  .cta-r{border-left:none;border-top:1px solid var(--rule)}
+  .diffrow{grid-template-columns:1fr}
+  .diffrow .was{border-right:none;border-bottom:1px solid var(--rule-soft)}
+  .wrap{padding:0 20px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="tag">Case Study · 채널 전략</span>
+    <h1>말 한 줄에서<br><em>판정까지</em></h1>
+    <p class="sub">잘 쓴 프롬프트로 시작하지 않았습니다. 실무자가 실제로 던지는 무성의한 한 줄에서 시작했고, 네 단계를 거쳐 판정이 나왔습니다. 그 과정을 전부 공개합니다.</p>
+    <div class="herostrip">
+      <div><span class="n">1막</span><span class="t">막연한 질문을<br>세 개의 되묻기로 좁힘</span></div>
+      <div><span class="n">2막</span><span class="t">조사 프롬프트와<br>잠정 판정을 동시에</span></div>
+      <div><span class="n">3막</span><span class="t">조사 결과가 들어오자<br>판정이 이동함</span></div>
+      <div><span class="n">결과</span><span class="t">근거 원장이 붙은<br>HTML 판정 리포트</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ══════ 1막 ══════ -->
+<section class="sec" style="border-top:none;padding-top:56px">
+  <div class="act-head"><span class="act-no">01</span><div>
+    <div class="eyebrow" style="margin-bottom:4px">1막 · 투입</div>
+    <h2>무성의한 한 줄이 들어옵니다</h2></div>
+  </div>
+  <p class="lede">실무에서 질문은 이렇게 옵니다. 정리된 브리프가 아니라 회의 끝에 흘리는 한 마디로요.</p>
+
+  <div class="scene">
+    <div class="stream">
+      <div class="msg">
+        <div class="who"><i></i>사용자</div>
+        <div class="bub user"><p class="userline">쿠팡은 팔수록 손해라던데, 우리도 자사몰 준비해야 하나요?</p></div>
+      </div>
+
+      <div class="msg">
+        <div class="who"><i></i>Vera</div>
+        <div class="bub vera">
+          <p class="hook">그 말, 절반만 맞아요. 근데 어느 절반인지는 세 가지만 알면 갈려요.</p>
+          <p>"쿠팡이 손해"라는 말은 수수료를 지목하는데, 자사몰로 옮기면 수수료 대신 광고비가 붙습니다. 둘 중 뭐가 큰지는 회사마다 다르고, 그걸 가르는 변수가 딱 세 개예요.</p>
+          <ul class="qs">
+            <li><b>평균 객단가와, 같은 고객이 다시 사기까지 걸리는 기간</b>
+              <span>이 둘이 자사몰 광고비 회수 가능 여부를 직접 결정합니다. 재구매가 짧고 잦으면 자사몰이 이기고, 길고 뜸하면 집니다.</span></li>
+            <li><b>현재 채널 구성. 특히 가장 큰 채널이 몇 %인지</b>
+              <span>단일 채널 비중이 50%를 넘으면 마진과 별개로 리스크 축이 하나 더 생깁니다. 그 경우 판정 기준 자체가 바뀝니다.</span></li>
+            <li><b>지금 정하려는 게 자사몰을 만들지 말지인가요, 이미 있는 걸 키울지인가요</b>
+              <span>같은 질문처럼 보이지만 계산이 다릅니다. 앞은 진입 판정이고 뒤는 예산 배분 판정이에요.</span></li>
+          </ul>
+          <p class="quiet">모르시는 항목은 비워두셔도 됩니다. 업계 통상치로 가정하고, 어디를 가정으로 채웠는지 리포트에 남겨둘게요.</p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="rail">
+      <div class="note">
+        <h5>여기서 일어난 일</h5>
+        <p>일반 AI는 "어떤 상품을 파시나요?"를 묻습니다. Vera는 <b>손익을 가르는 변수</b>만 묻습니다. 세 질문 모두 답이 달라지면 결론이 뒤집히는 항목이에요.</p>
+      </div>
+      <div class="note dark">
+        <h5>되묻기 규칙</h5>
+        <p>딱 한 번, 최대 세 문항. 그 외 공백은 가정으로 채우고 원장에 적습니다. "정보가 더 필요합니다"로 끝나는 응답은 나오지 않아요.</p>
+      </div>
+      <div class="note dark">
+        <h5>왜 세 번째 질문인가</h5>
+        <p>진입 판정과 예산 배분 판정은 쓰는 계산이 다릅니다. 이걸 안 가르고 답하면 그럴듯하지만 아무 데도 안 맞는 일반론이 나와요.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══════ 2막 ══════ -->
+<section class="sec">
+  <div class="act-head"><span class="act-no">02</span><div>
+    <div class="eyebrow" style="margin-bottom:4px">2막 · 조사 설계와 잠정 판정</div>
+    <h2>프롬프트만 던지고 멈추지 않습니다</h2></div>
+  </div>
+  <p class="lede">조사 프롬프트를 내보내면서, 지금 가진 정보만으로 낸 잠정 판정을 같이 냅니다. 기다리는 시간이 0이 되고, 조사를 돌릴지 말지를 판정을 보고 결정할 수 있습니다.</p>
+
+  <div class="scene">
+    <div class="stream">
+      <div class="msg">
+        <div class="who"><i></i>사용자</div>
+        <div class="bub user">
+          <p class="userline" style="font-size:16px">더마 스킨케어 브랜드고요, 작년 매출 47억이에요. 만들지 말지를 정해야 합니다.</p>
+          <div class="ans">
+            <span>객단가 34,000원</span><span>재구매 주기 74일</span><span>재구매율 29%</span>
+            <span>쿠팡 54%</span><span>네이버 23%</span><span>자사몰 7%</span><span>월 광고비 5,800만</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="msg">
+        <div class="who"><i></i>Vera</div>
+        <div class="bub vera">
+          <p class="hook">조사 프롬프트 먼저 드릴게요. 돌리시는 동안 지금 정보로 낸 잠정 판정도 같이 봐요.</p>
+
+          <div class="artifact">
+            <div class="art-head"><b>심층 리서치 프롬프트</b><span>진입 여부 · 대한민국 · 2026</span></div>
+            <div class="art-body">■ 목적
+연매출 47억 규모 더마 스킨케어 브랜드가 자사몰 구축 여부를
+판정하기 위한 근거 자료입니다.
+개요 설명이 아니라 판정 근거가 필요합니다.
+
+■ 범위
+지역: 대한민국 / 기준 시점: 2026년
+이전 자료 인용 시 연도 병기 + 이후 변화 명시
+
+■ 출처 요건
+- 우선: 정부 통계, 공시·감사보고서, 법령·고시,
+  방법론이 공개된 리서치 보고서, 실제 요율표·가격 페이지
+- 배제: 콘텐츠 마케팅 블로그, 솔루션 벤더 백서,
+  출처 표기 없는 요약 기사
+- 모든 수치에 [출처 / 연도 / 산출 근거] 병기
+- 인용은 원출처까지 추적:
+  "○○ 기사 → ○○리서치 2025 보고서" 형식
+
+<b>■ 반드시 포함할 것
+- 자사몰 전환에 부정적이거나 회의적인 자료 최소 2건
+- 자사몰을 구축했다가 축소·철수한 사례와 그 구조적 원인
+- 상충하는 수치가 있다면 숨기지 말고 양쪽 다 제시할 것
+※ 긍정 자료만 모아 오면 이 조사는 실패로 간주합니다</b>
+
+■ 조사 항목
+1. 국내 온라인 유통 채널별 거래액 구성과 최근 3년 추이
+2. 채널별 실제 수수료·광고비 요율 (요율표 원문 기준)
+3. 자사몰 신규 고객 획득 비용 실측치. 카테고리별로
+4. 최근 3년 내 자사몰을 축소·철수한 브랜드와 그 사유
+5. 자사몰이 자리 잡은 사례가 있다면, 무엇으로 잡았는가
+6. 오픈마켓 의존에서 실제로 발생한 손실 사례
+   (정산 지연, 계정 정지, 분쟁 통계 포함)
+
+■ 출력 규칙
+- 확인 안 된 항목은 추정으로 채우지 말고 "확인 불가"로 표기
+- 추정치는 [추정] 표시 + 근거 명시
+- 항목별로 나누어, 각 항목 끝에 출처 목록</div>
+            <div class="art-foot">Perplexity 같은 심층 리서치 도구에 넣으면 근거가 촘촘해져요. 없으셔도 됩니다. 일반 검색으로 돌리셔도 같은 프롬프트가 작동해요.</div>
+          </div>
+
+          <div class="vcard prov" style="margin-top:20px">
+            <span class="vtag g">현 시점 잠정 판정</span>
+            <p class="vl">조건부. 채널 리스크와 마진 양쪽에서 자사몰이 유력해 보이지만, 아직 확정 못 합니다.</p>
+            <p style="font-size:14.5px;color:var(--ink-2);margin:0 0 4px">쿠팡 54% 의존은 그 자체로 리스크고, 수수료 10.9%를 아끼면 연 2억대가 남습니다. 표면 계산으로는 자사몰을 매출 채널로 키우는 쪽이 맞아 보여요.</p>
+            <div class="vmeta">
+              <div><b>근거 밀도</b>중~하</div>
+              <div><b>이 판정을 뒤집을 변수</b>자사몰 신규 고객 획득 비용</div>
+              <div><b>확인 방법</b>3개월 단독 캠페인 실측</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="rail">
+      <div class="note">
+        <h5>이 프롬프트의 핵심 조항</h5>
+        <p>붉게 표시된 부분입니다. <b>부정적 자료를 최소 2건 강제로 요구</b>합니다. 확증편향은 판정이 아니라 조사에서 시작되거든요. 이 조항이 없으면 조사 도구는 원하는 답만 모아 옵니다.</p>
+      </div>
+      <div class="note dark">
+        <h5>잠정 판정을 왜 같이 내는가</h5>
+        <p>조사 결과가 오면 이 판정이 <b>뒤집히는지</b>를 봅니다. 안 뒤집히면 근거가 두 겹이 되고, 뒤집히면 어디서 왜 갈렸는지가 리포트의 핵심 발견이 됩니다.</p>
+      </div>
+      <div class="note dark">
+        <h5>지금은 틀린 판정입니다</h5>
+        <p>다음 막에서 이 잠정 판정이 이동합니다. 그 이동 자체가 검증이 작동했다는 증거예요.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══════ 3막 ══════ -->
+<section class="sec">
+  <div class="act-head"><span class="act-no">03</span><div>
+    <div class="eyebrow" style="margin-bottom:4px">3막 · 대조와 이동</div>
+    <h2>조사 결과가 들어오자 판정이 이동합니다</h2></div>
+  </div>
+  <p class="lede">조사 결과를 그대로 받지 않습니다. 요약본이 못 보는 접점을 따로 열어보고, 두 결과를 항목별로 부딪칩니다. 이 케이스에서는 세 지점이 갈렸습니다.</p>
+
+  <div class="scene">
+    <div class="stream">
+      <div class="msg">
+        <div class="who"><i></i>Vera</div>
+        <div class="bub vera">
+          <p class="hook">잠정 판정이 이동했어요. 등급은 조건부 그대로인데, <span style="color:var(--brick)">자사몰의 용도가 정반대로 바뀌었습니다.</span></p>
+          <p style="margin-bottom:18px">수수료를 아끼는 쪽으로 계산했는데, 그 절감분보다 새로 드는 획득 비용이 훨씬 컸어요. 대신 리스크 축은 조사에서 오히려 강해졌습니다.</p>
+
+          <div class="diff">
+            <div class="diffhead">무엇이 바뀌었나</div>
+            <div class="diffrow">
+              <div class="was"><span class="difflbl">조사 전 · 잠정</span><p>자사몰을 <b>매출 채널로 육성</b>. 수수료 절감분으로 광고비를 상쇄한다</p></div>
+              <div class="now"><span class="difflbl">조사 후 · 최종</span><p>신규 획득 채널로는 <b>회피</b>. 이미 산 고객의 <b>재구매 회수 장치</b>로만 조건부</p></div>
+            </div>
+            <div class="diffrow">
+              <div class="was"><span class="difflbl">근거로 쓰려 했던 것</span><p>수수료 10.9%. 연 2억대 절감</p></div>
+              <div class="now"><span class="difflbl">실제로 지배하는 것</span><p>신규 획득 비용이 객단가의 <b>165%</b>. 수수료보다 15배 큰 변수</p></div>
+            </div>
+            <div class="diffrow">
+              <div class="was"><span class="difflbl">리스크 축의 위상</span><p>보조 근거</p></div>
+              <div class="now"><span class="difflbl">최종 위상</span><p><b>유일하게 살아남은 근거.</b> 플랫폼 분쟁 접수가 1년 만에 121% 증가</p></div>
+            </div>
+          </div>
+
+          <div class="trigger">
+            <b>판정을 이동시킨 세 가지</b>
+            1. 같은 고객이 10.4회를 사야 자사몰이 이기는데, 이 회사 평균은 1.41회입니다.<br>
+            2. 국내 자사몰 콘텐츠가 인용하는 나이키 사례는 2019~2021년분입니다. 나이키는 2025년 5월 아마존에 복귀했고 그 해 매출이 10% 줄었어요. 같은 사례가 반대 근거가 됩니다.<br>
+            3. 검색 상위 네 건을 추적하니 원출처가 두 개였고, 둘 다 자사몰이 커져야 매출이 느는 주체가 유통시킨 자료였습니다.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <aside class="rail">
+      <div class="note">
+        <h5>이 장면이 파는 것</h5>
+        <p>AI가 <b>자기 답을 바꿨다</b>는 걸 숨기지 않습니다. 어디서 왜 갈렸는지가 기록으로 남아요. 처음부터 맞춘 척하는 리포트보다 이쪽이 검증 가능합니다.</p>
+      </div>
+      <div class="note dark">
+        <h5>왜 다른 접점을 보는가</h5>
+        <p>조사 도구와 같은 자료를 보면 대조가 아니라 반향실입니다. 요율표 원문, 공시, 분쟁 통계처럼 <b>요약되기 전의 접점</b>을 따로 엽니다.</p>
+      </div>
+      <div class="note dark">
+        <h5>기사 네 건 = 출처 하나</h5>
+        <p>서로 다른 글이 같은 뿌리를 인용하면 근거는 한 겹입니다. 인용 사슬을 끝까지 따라가지 않으면 네 겹처럼 보여요.</p>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- ══════ 결과 ══════ -->
+<section class="sec">
+  <div class="eyebrow">결과물</div>
+  <h2>판정 리포트</h2>
+  <p class="lede">본문에 등장하는 모든 숫자가 근거 원장에 행을 갖습니다. 무엇이 1차 자료이고 무엇이 설정값인지 구분되지 않으면, 리포트는 실제보다 단단해 보입니다.</p>
+
+  <div class="cta">
+    <div class="cta-l">
+      <h3>쿠팡을 떠나야 하나, 떠날 수 있나</h3>
+      <p>더마 스킨케어 브랜드의 자사몰 진입 판정. 손익 교차점 계산기, 채널별 마진 귀속, 카테고리 지형도, 크로스체크 로그와 근거 밀도 원장까지 포함된 전체 리포트입니다.</p>
+      <a class="btn" href="vera-d2c-report.html">리포트 전문 보기</a>
+    </div>
+    <div class="cta-r">
+      <h5>리포트 구성</h5>
+      <ul>
+        <li>한 줄 판정과 근거 3</li>
+        <li>조사 범위 지도 (못 본 영역 포함)</li>
+        <li>손익 교차점 계산기</li>
+        <li>채널별 마진 귀속 비교</li>
+        <li>무덤 / 빈자리 / 입주중 지형도</li>
+        <li>크로스체크 로그와 원출처 추적</li>
+        <li>반대 시나리오</li>
+        <li>근거 밀도 원장 15항목</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ══════ 비교 ══════ -->
+<section class="sec">
+  <div class="eyebrow">차이</div>
+  <h2>같은 질문, 다른 산출물</h2>
+  <p class="lede">같은 한 줄을 넣었을 때 무엇이 갈리는지를 단계별로 정리했습니다.</p>
+
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th style="width:19%">단계</th><th style="width:36%">일반적인 AI 응답</th><th>Vera</th></tr></thead>
+    <tbody>
+      <tr><td><b>질문 받기</b></td><td class="gen">어떤 상품을 파시는지, 목표가 무엇인지 되묻습니다</td>
+        <td class="vera">손익을 가르는 변수 세 개만 묻고, 나머지는 가정으로 채운 뒤 어디를 채웠는지 적습니다</td></tr>
+      <tr><td><b>조사</b></td><td class="gen">검색 결과를 정리해 요약합니다</td>
+        <td class="vera">부정적 자료를 강제로 요구하는 프롬프트를 내보내고, 결과가 오는 동안 잠정 판정을 냅니다</td></tr>
+      <tr><td><b>검증</b></td><td class="gen">여러 출처가 같은 말을 하면 신뢰도가 높다고 판단합니다</td>
+        <td class="vera">인용 사슬을 끝까지 추적합니다. 원출처가 같으면 근거는 한 겹입니다</td></tr>
+      <tr><td><b>충돌 처리</b></td><td class="gen">상충하는 정보를 하나로 뭉개거나 양쪽을 나열합니다</td>
+        <td class="vera">어긋난 지점을 별도 섹션으로 드러내고, 못 고르면 그 수치에 결론을 태우지 않습니다</td></tr>
+      <tr><td><b>불확실성</b></td><td class="gen">확신 있는 문장으로 매끄럽게 마무리합니다</td>
+        <td class="vera">판정을 뒤집는 수치의 근거가 약하면 첫 화면에 그 사실을 적습니다</td></tr>
+      <tr><td><b>결론</b></td><td class="gen">선택지를 제시하고 판단은 사용자에게 넘깁니다</td>
+        <td class="vera">추천·조건부·보류·회피 중 하나로 단정하고, 조건부면 무엇을 확정해야 하는지 순서를 지정합니다</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<footer>
+  <span>Vera Case Study · 채널 전략 · 2026.08</span>
+  <span>분석 주체는 시연용 가상 기업. 시장 데이터는 실제 출처를 추적한 것입니다</span>
+</footer>
+
+</div>
+</body>
+</html>
