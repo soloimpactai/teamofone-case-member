@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>가게가 안 팔린다 : 자영업 시장이 닫히는 방식</title>
+<meta name="description" content="폐업은 줄었는데 창업이 사라졌습니다. 이건 회복이 아니라 시장이 닫히는 중이라는 뜻입니다. 국세청 국세통계 10년치를 다시 읽었습니다.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="가게가 안 팔린다 : 자영업 시장이 닫히는 방식">
+<meta property="og:description" content="폐업은 줄었는데 창업이 사라졌습니다. 이건 회복이 아니라 시장이 닫히는 중이라는 뜻입니다.">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css">
+<style>
+:root{
+  --bg:#F4F2F0; --panel:#FAF9F7;
+  --ink:#2B2B2B; --soft:#6E6863; --faint:#9A948E;
+  --line:#DFDAD5; --hair:#E9E5E1;
+  --blue:#0F4C81; --blue-b:#E3EAF1;
+  --terra:#A9553E; --terra-b:#F1E6E1;
+}
+*{margin:0;padding:0;box-sizing:border-box;word-break:keep-all;overflow-wrap:break-word}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+  font-size:16px;line-height:1.75;letter-spacing:-0.012em;-webkit-font-smoothing:antialiased;
+}
+.num{font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+.wrap{max-width:680px;margin:0 auto;padding:0 22px}
+section{padding:56px 0;border-top:1px solid var(--line)}
+.eyebrow{font-size:10.5px;letter-spacing:.18em;color:var(--faint);font-weight:700;margin-bottom:15px;text-transform:uppercase}
+h1{font-size:28px;line-height:1.36;font-weight:700;letter-spacing:-0.037em}
+h2{font-size:21px;line-height:1.44;font-weight:700;letter-spacing:-0.03em;margin-bottom:10px}
+h3{font-size:14.5px;font-weight:700;letter-spacing:-0.02em;margin:30px 0 8px}
+p{font-size:15.5px;color:var(--soft);line-height:1.78}
+p+p{margin-top:14px}
+p b,li b,td b{font-weight:600;color:var(--ink)}
+.dek{color:var(--soft);font-size:15px;margin-bottom:26px}
+.cap{font-size:12px;color:var(--faint);line-height:1.6;margin-top:9px}
+
+/* HERO */
+.hero{padding:52px 0 44px;border-top:0}
+.stamp{font-size:11.5px;color:var(--faint);margin-bottom:24px}
+.hero h1{margin-bottom:18px}
+.thesis{font-size:17px;color:var(--ink);font-weight:600;line-height:1.65;letter-spacing:-0.025em}
+.thesis span{display:block;font-weight:400;font-size:15px;color:var(--soft);margin-top:12px;letter-spacing:-0.012em}
+.origin{border-left:2px solid var(--line);padding:0 0 0 15px;margin:28px 0 0}
+.origin+.origin{margin-top:18px}
+.origin .lab{font-size:10.5px;letter-spacing:.14em;color:var(--faint);font-weight:700;margin-bottom:7px}
+.origin .q{font-size:14.5px;color:var(--ink);font-weight:500;line-height:1.6}
+.origin .src{font-size:12px;color:var(--faint);margin-top:8px}
+.origin .src a{color:var(--soft);text-decoration:none;border-bottom:1px solid var(--line)}
+.meta{display:flex;gap:20px;flex-wrap:wrap;margin-top:26px;padding-top:18px;border-top:1px solid var(--line);font-size:12px;color:var(--faint)}
+.meta b{font-weight:600;color:var(--soft)}
+
+/* 3-beat summary */
+.beats{margin-top:30px;border-top:1px solid var(--ink)}
+.beat{display:flex;gap:14px;padding:15px 0;border-bottom:1px solid var(--hair)}
+.beat .bn{font-size:10.5px;color:var(--faint);font-weight:700;flex:none;width:14px;padding-top:5px;font-variant-numeric:tabular-nums}
+.beat .bt{font-size:15px;font-weight:600;letter-spacing:-0.022em;line-height:1.55;color:var(--ink)}
+.beat .bs{font-size:13px;color:var(--soft);margin-top:3px;line-height:1.6}
+
+/* stat blocks */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line);margin:24px 0}
+.pair>div{background:var(--bg);padding:17px 15px}
+.pair .k{font-size:11.5px;color:var(--faint);line-height:1.45;margin-bottom:6px}
+.pair .v{font-size:23px;font-weight:700;letter-spacing:-0.035em;line-height:1.15}
+.pair .v.b{color:var(--blue)} .pair .v.t{color:var(--terra)}
+.pair .s{font-size:12px;color:var(--soft);margin-top:5px;line-height:1.5}
+
+.figrow{display:flex;align-items:baseline;gap:9px;flex-wrap:wrap;margin:16px 0 6px}
+.figrow .from{font-size:18px;color:var(--faint);font-weight:500}
+.figrow .arw{color:var(--faint);font-size:13px}
+.figrow .to{font-size:31px;font-weight:700;letter-spacing:-0.04em;line-height:1.1}
+.figrow .to.b{color:var(--blue)} .figrow .to.t{color:var(--terra)}
+.figrow .d{font-size:12.5px;font-weight:600}
+.d.b{color:var(--blue)} .d.t{color:var(--terra)}
+
+/* chart */
+.chart{margin-top:16px;width:100%}
+.chart svg{width:100%;height:auto;display:block;overflow:visible}
+.ln{fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:var(--len);stroke-dashoffset:var(--len)}
+.drawn .ln{transition:stroke-dashoffset 1300ms cubic-bezier(.22,.61,.36,1);stroke-dashoffset:0}
+.ln.b{stroke:var(--blue)} .ln.t{stroke:var(--terra)}
+.pt{cursor:pointer}
+.pt .hit{fill:transparent}
+.pt .dot{stroke-width:2;fill:var(--bg);opacity:0;transition:opacity 450ms 900ms}
+.drawn .pt .dot{opacity:1}
+.pt.b .dot{stroke:var(--blue)} .pt.t .dot{stroke:var(--terra)}
+.pt.b.sel .dot{fill:var(--blue)} .pt.t.sel .dot{fill:var(--terra)}
+.ax{font-size:9.5px;fill:var(--faint)}
+.lgd{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:12px;color:var(--soft)}
+.lgd i{display:inline-block;width:14px;height:2px;vertical-align:middle;margin-right:6px}
+.lgd i.b{background:var(--blue)} .lgd i.t{background:var(--terra)}
+.read{margin-top:10px;padding-top:9px;border-top:1px solid var(--hair);font-size:12.5px;color:var(--soft);min-height:20px}
+.read b{color:var(--ink);font-weight:600}
+.read em{font-style:normal;color:var(--faint)}
+
+/* LOOP */
+.loop{margin:26px 0 0}
+.node{border-top:1px solid var(--hair);padding:19px 0 19px 0;position:relative}
+.node:first-child{border-top:0;padding-top:4px}
+.node .nh{display:flex;align-items:baseline;gap:11px}
+.node .nn{font-size:10.5px;color:var(--faint);font-weight:700;flex:none;width:15px;font-variant-numeric:tabular-nums;padding-top:2px}
+.node .nt{font-size:15.5px;font-weight:700;letter-spacing:-0.025em;line-height:1.5;color:var(--ink)}
+.node .nb{font-size:14px;color:var(--soft);margin-top:7px;padding-left:26px;line-height:1.7}
+.node .nf{display:inline-block;margin-top:8px;margin-left:26px;font-size:12.5px;font-weight:600;color:var(--blue);background:var(--blue-b);padding:4px 9px;font-variant-numeric:tabular-nums}
+.node .nf.inf{color:var(--soft);background:var(--hair)}
+.arrowdown{padding-left:26px;color:var(--faint);font-size:14px;line-height:1;margin:2px 0 -6px}
+.loopback{margin-top:22px;padding:18px 20px;background:var(--panel);border:1px solid var(--line);border-left:2px solid var(--terra)}
+.loopback .lt{font-size:15px;font-weight:700;letter-spacing:-0.025em;color:var(--ink);line-height:1.55}
+.loopback p{font-size:14px;margin-top:9px}
+
+/* doors */
+.door{border-top:1px solid var(--hair);padding:20px 0}
+.door:first-of-type{border-top:0;padding-top:4px}
+.door .dh{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.door .dn{font-size:14.5px;font-weight:700;letter-spacing:-0.02em}
+.door .dv{font-size:16px;font-weight:700;letter-spacing:-0.03em;white-space:nowrap}
+.door .dv.b{color:var(--blue)} .door .dv.n{color:var(--faint)}
+.door .ds{font-size:12.5px;color:var(--faint);margin-top:2px}
+.bar{height:5px;background:var(--hair);margin-top:11px;position:relative;overflow:hidden}
+.bar span{position:absolute;left:0;top:0;height:100%;width:0;transition:width 1100ms cubic-bezier(.22,.61,.36,1)}
+.bar span.b{background:var(--blue)} .bar span.n{background:var(--faint);opacity:.5}
+.drawn .bar span{width:var(--w)}
+.door .dd{font-size:13.5px;color:var(--soft);margin-top:11px;line-height:1.68}
+
+/* eq */
+.eq{background:var(--panel);border:1px solid var(--line);padding:24px 16px;text-align:center;margin:22px 0}
+.eq .l{font-size:19px;font-weight:600;letter-spacing:-0.025em;line-height:1.85}
+.eq .l .n{font-size:21px;font-weight:700}
+.eq .l .r{color:var(--blue)}
+.eq .c{font-size:12px;color:var(--faint);margin-top:12px}
+
+table{width:100%;border-collapse:collapse;margin:20px 0 4px;font-size:13.5px}
+th,td{text-align:left;padding:10px 8px 10px 0;border-bottom:1px solid var(--hair)}
+th{font-size:11px;color:var(--faint);font-weight:700;border-bottom:1px solid var(--line);letter-spacing:.03em}
+td.n,th.n{font-variant-numeric:tabular-nums;text-align:right;padding-right:0}
+td.hi{font-weight:700;color:var(--ink)}
+td.dn{color:var(--blue);font-weight:600}
+
+/* who */
+.who{border-top:1px solid var(--hair);padding:20px 0}
+.who:first-of-type{border-top:0;padding-top:4px}
+.who .wk{font-size:10.5px;letter-spacing:.12em;color:var(--faint);font-weight:700;margin-bottom:6px}
+.who .wt{font-size:15.5px;font-weight:700;letter-spacing:-0.025em;line-height:1.5;color:var(--ink)}
+.who p{font-size:14px;margin-top:7px}
+
+/* path */
+.path{border-left:1px solid var(--line);margin-left:5px;padding-left:22px}
+.step{position:relative;padding-bottom:24px}
+.step:last-child{padding-bottom:0}
+.step:before{content:"";position:absolute;left:-27px;top:9px;width:9px;height:9px;border-radius:50%;background:var(--bg);border:2px solid var(--line)}
+.step.on:before{border-color:var(--blue)}
+.step .sl{font-size:10.5px;letter-spacing:.12em;color:var(--faint);font-weight:700;margin-bottom:5px}
+.step .st{font-size:15px;font-weight:700;letter-spacing:-0.025em;line-height:1.5;color:var(--ink)}
+.step p{font-size:13.5px;margin-top:6px}
+
+/* accordion */
+.acc{border-top:1px solid var(--hair)}
+.acc:last-of-type{border-bottom:1px solid var(--hair)}
+.acc button{width:100%;background:none;border:0;padding:15px 0;cursor:pointer;text-align:left;display:flex;align-items:center;gap:11px;font:inherit;color:inherit}
+.acc .i{font-size:11px;color:var(--faint);width:15px;flex:none;font-variant-numeric:tabular-nums}
+.acc .t{flex:1;font-size:13.5px;font-weight:600;letter-spacing:-0.015em;line-height:1.5}
+.acc .t em{display:block;font-style:normal;font-weight:400;font-size:12px;color:var(--faint);margin-top:1px}
+.gr{flex:none;font-size:10.5px;font-weight:700;padding:3px 7px;white-space:nowrap}
+.gr.r{background:var(--blue-b);color:var(--blue)}
+.gr.i{background:var(--terra-b);color:var(--terra)}
+.acc .ch{flex:none;width:8px;height:8px;border-right:1.4px solid var(--faint);border-bottom:1.4px solid var(--faint);transform:rotate(45deg) translate(-2px,-2px);transition:transform 200ms}
+.acc.open .ch{transform:rotate(-135deg) translate(-3px,-3px)}
+.acc .bd{display:none;padding:0 0 18px 26px;font-size:13.5px;color:var(--soft);line-height:1.7}
+.acc.open .bd{display:block}
+.acc .bd p{font-size:13.5px}
+
+.cs{border-top:1px solid var(--hair);padding:18px 0;display:flex;gap:13px}
+.cs:first-of-type{border-top:0;padding-top:4px}
+.cs .no{font-size:11px;color:var(--faint);font-weight:700;flex:none;width:16px;padding-top:4px;font-variant-numeric:tabular-nums}
+.cs .ct{font-size:14.5px;font-weight:700;letter-spacing:-0.02em;line-height:1.5;color:var(--ink);margin-bottom:5px}
+.cs p{font-size:13.5px;margin:0}
+
+.watch{border-top:1px solid var(--hair);padding:17px 0}
+.watch:first-of-type{border-top:0;padding-top:4px}
+.watch .wt{font-size:14.5px;font-weight:700;letter-spacing:-0.02em;color:var(--ink)}
+.watch p{font-size:13.5px;margin-top:5px}
+
+.close{margin-top:26px;padding:22px 20px;background:var(--panel);border:1px solid var(--line)}
+.close .cq{font-size:18px;font-weight:700;letter-spacing:-0.032em;line-height:1.52;color:var(--ink)}
+.close p{margin-top:12px;font-size:14.5px}
+.warn{margin-top:24px;padding:17px 19px;border-left:2px solid var(--terra);background:var(--terra-b);font-size:14px;color:#6C392A;line-height:1.7}
+.warn b{color:#57291C;font-weight:700}
+
+details{border-top:1px solid var(--hair)}
+details:last-of-type{border-bottom:1px solid var(--hair)}
+summary{list-style:none;cursor:pointer;padding:17px 0;display:flex;align-items:center;gap:11px;font-size:14px;font-weight:600;letter-spacing:-0.015em}
+summary::-webkit-details-marker{display:none}
+summary .ch{flex:none;width:8px;height:8px;border-right:1.4px solid var(--faint);border-bottom:1.4px solid var(--faint);transform:rotate(45deg);transition:transform 200ms}
+details[open] summary .ch{transform:rotate(-135deg)}
+summary .c{margin-left:auto;font-size:11px;color:var(--faint);font-weight:500}
+.db{padding:0 0 22px;font-size:13px;color:var(--soft);line-height:1.72}
+.db h4{font-size:12.5px;font-weight:700;color:var(--ink);margin:18px 0 6px}
+.db h4:first-child{margin-top:2px}
+.db ul{list-style:none}
+.db li{padding-left:11px;position:relative;margin-bottom:3px}
+.db li:before{content:"";position:absolute;left:0;top:11px;width:4px;height:1px;background:var(--faint)}
+.db .u{font-size:11px;color:var(--faint);word-break:break-all;margin-top:4px}
+.db p{font-size:13px}
+.gp{border-top:1px solid var(--hair);padding:14px 0}
+.gp:first-of-type{border-top:0}
+.gp .gt{font-size:13px;font-weight:700;color:var(--ink);margin-bottom:4px}
+
+footer{border-top:1px solid var(--line);padding:32px 0 58px}
+footer .n{font-size:13.5px;font-weight:700}
+footer .d{font-size:12px;color:var(--faint);margin-top:6px;line-height:1.65}
+
+@media (min-width:600px){
+  body{font-size:17px}
+  h1{font-size:35px} h2{font-size:24px}
+  .thesis{font-size:19px}
+  .figrow .to{font-size:37px}
+}
+@media print{
+  body{background:#fff}
+  .acc .bd,.db{display:block!important}
+  .ln{stroke-dashoffset:0!important} .pt .dot{opacity:1!important}
+  .bar span{width:var(--w)!important}
+}
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="wrap">
+<section class="hero">
+  <div class="stamp">시장 판정 · 국세청 국세통계 2016-2025</div>
+  <h1>가게가 안 팔린다</h1>
+  <p class="thesis">폐업은 줄었는데 창업이 사라졌습니다. 이건 회복이 아니라 시장이 닫히는 중이라는 뜻입니다.
+    <span>자영업 기사는 해마다 폐업 숫자를 셉니다. 그런데 폐업 숫자로는 이 시장의 상태를 잴 수 없습니다. 국세청이 같은 날 공개한 표를 열 해치 펼쳐서 다시 읽었습니다.</span></p>
+
+  <div class="beats">
+    <div class="beat"><div class="bn">01</div><div>
+      <div class="bt">음식업 폐업은 늘지 않았습니다. 오히려 6.8% 줄었습니다.</div>
+      <div class="bs">폐업률도 15.82%에서 15.14%로 내려갔습니다. 기사가 인용한 같은 자료에 있는 숫자입니다.</div></div></div>
+    <div class="beat"><div class="bn">02</div><div>
+      <div class="bt">대신 가게가 팔리지 않습니다. 팔고 나간 폐업이 4년 만에 31.6% 줄었습니다.</div>
+      <div class="bs">권리금을 받고 나가는 출구가 좁아졌습니다. 폐업 사유 표에 10년치가 실려 있는데 아무도 쓰지 않았습니다.</div></div></div>
+    <div class="beat"><div class="bn">03</div><div>
+      <div class="bt">그래서 새로 들어오는 사람이 사라집니다. 신규 창업 13.6% 감소.</div>
+      <div class="bs">넘기는 사람이 있어야 넘겨받는 창업이 생깁니다. 나가는 문이 닫히면 들어오는 문도 닫힙니다.</div></div></div>
+  </div>
+
+  <div class="origin">
+    <div class="lab">검증 대상</div>
+    <div class="q">“창업은 줄고 오래 버틴 사업자가 폐업하면서 지난해 가동사업자 증가율이 집계 이래 최저 수준을 기록했다.”</div>
+    <div class="src">연합뉴스, 2026년 7월 6일 · 원 출처 국세청 국세통계포털<br>
+      <a href="https://www.fnnews.com/news/202607060551374331" target="_blank" rel="noopener">원문 보기</a></div>
+  </div>
+
+  <div class="meta">
+    <span><b>검증</b> 2026년 8월 11일</span>
+    <span><b>대조</b> 국세청 국세통계포털 · 중소벤처기업부 폐업자 통계</span>
+  </div>
+</section>
+</div>
+
+<!-- 1. 기사 검증 -->
+<div class="wrap">
+<section>
+  <div class="eyebrow">하나 · 기사가 가리킨 곳</div>
+  <h2>“오래 버틴 가게가 무너진다”부터 확인했다</h2>
+  <p class="dek">기사의 대표 사례는 음식업입니다. 5년 이상 존속 음식점 폐업 41,659곳, 20년 이상 2,797곳. 둘 다 역대 최다입니다. 그런데 같은 자료에서 폐업률을 꺼내면 방향이 반대입니다.</p>
+
+  <div class="figrow num">
+    <span class="from">15.82%</span><span class="arw">→</span>
+    <span class="to b">15.14%</span><span class="d b">−0.68%p</span>
+  </div>
+  <p class="cap">음식업 폐업률 · 2024 → 2025 · 국세청 공표 기준. 폐업자 수도 153,017명에서 142,557명으로 줄었습니다.</p>
+
+  <p style="margin-top:20px">“오래된 가게에 폐업이 집중됐다”도 성립하지 않습니다. 이건 모수를 몰라도 판정됩니다. 폐업자를 어떻게 나눠 갖는지, 구성비만 보면 됩니다.</p>
+
+  <div class="pair">
+    <div><div class="k">음식업 폐업자 중 5년 이상</div><div class="v num">29.2%</div><div class="s">41,659 ÷ 142,557</div></div>
+    <div><div class="k">전업종 폐업자 중 5년 이상</div><div class="v t num">32.5%</div><div class="s">317,406 ÷ 975,681</div></div>
+  </div>
+
+  <p>음식업이 전업종 평균보다 <b>3.3%p 낮습니다.</b> 음식업에서 문 닫는 사람 중 장기 존속자의 몫은 평균 이하입니다. 절대수 41,659가 최다인 건 사실이지만, 음식업은 사업자 수가 가장 많은 업종 중 하나입니다. 업종 규모를 지운 절대수 비교는 언제나 큰 업종을 지목합니다.</p>
+  <p><b>기사의 통계는 정확합니다.</b> 인용에도 오류가 없습니다. 갈리는 지점은 어떤 숫자를 골랐는가입니다. 그리고 고르지 않은 숫자 쪽에 이 시장의 진짜 이야기가 있었습니다.</p>
+</section>
+</div>
+
+<!-- 2. 산수 -->
+<div class="wrap">
+<section>
+  <div class="eyebrow">둘 · 질문이 바뀌는 지점</div>
+  <h2>그러면 음식점 12,443곳은 어디로 사라졌나</h2>
+  <p class="dek">기사는 음식업 사업자 순감소 12,443곳을 폐업의 결과로 서술합니다. 이 값은 뺄셈 하나로 분해됩니다.</p>
+
+  <div class="eq">
+    <div class="l num"><span class="n">130,114</span> − <span class="n">142,557</span> = <span class="n r">−12,443</span></div>
+    <div class="c">신규 창업 − 폐업 = 순감소 · 2025년 음식업</div>
+  </div>
+
+  <div class="pair">
+    <div><div class="k">폐업 (전년 대비)</div><div class="v b num">−10,460</div><div class="s">153,017 → 142,557</div></div>
+    <div><div class="k">신규 창업 (전년 대비)</div><div class="v b num">−20,412</div><div class="s">150,526 → 130,114</div></div>
+  </div>
+
+  <p>둘 다 줄었는데, 줄어드는 속도는 창업 쪽이 두 배입니다. 순감소를 만든 건 나가는 사람이 아니라 <b>들어오지 않는 사람</b>입니다.</p>
+  <p>여기서 질문이 바뀝니다. 폐업이 왜 많은가가 아니라, <b>왜 아무도 들어오지 않는가.</b> 이 리포트의 나머지는 그 답입니다.</p>
+</section>
+</div>
+
+<!-- 3. 메커니즘 -->
+<div class="wrap">
+<section>
+  <div class="eyebrow">셋 · 이 리포트의 답</div>
+  <h2>왜 닫히는가, 자영업이 순환을 멈춘 방식</h2>
+  <p class="dek">자영업은 원래 <b>돌아가는 시장</b>이었습니다. 한 사람이 권리금을 받고 나가면, 그 돈을 낸 다른 사람이 들어옵니다. 나가는 사람의 퇴직금이 들어오는 사람의 입장권이었습니다. 이 순환이 끊어졌습니다. 다섯 마디로 이어집니다.</p>
+
+  <div class="loop">
+    <div class="node">
+      <div class="nh"><div class="nn">01</div><div class="nt">가게가 팔리지 않는다</div></div>
+      <div class="nb">인수자를 찾아 넘기고 나간 폐업이 2021년 51,200명에서 2025년 35,013명으로 줄었습니다. 전체 폐업 중 비중은 5.8%에서 3.6%로, 10년 내 최저 수준입니다.</div>
+      <div class="nf num">양도·양수 폐업 −31.6%</div>
+    </div>
+    <div class="arrowdown">↓</div>
+
+    <div class="node">
+      <div class="nh"><div class="nn">02</div><div class="nt">그래서 나가는 것이 손실 사건이 된다</div></div>
+      <div class="nb">가게가 팔리면 권리금이 퇴로 비용을 덮습니다. 안 팔리면 나가는 데만 돈이 듭니다. 폐업 소상공인의 평균 폐업 비용은 1,286만원이었고, 폐업을 결심한 시점에 68.5%가 부채를 갖고 있었으며 평균 8,531만원이었습니다.</div>
+      <div class="nf num">폐업 비용 1,286만원 · 부채 보유 68.5%</div>
+    </div>
+    <div class="arrowdown">↓</div>
+
+    <div class="node">
+      <div class="nh"><div class="nn">03</div><div class="nt">나갈 여력이 없는 사람은 버틴다</div></div>
+      <div class="nb">폐업률 하락의 일부는 상황이 좋아져서가 아니라 <b>정리할 돈이 없어 못 나가는 것</b>일 수 있습니다. 이 마디는 위아래 마디에서 추론한 것이고, 직접 확인된 수치는 아닙니다. 다만 사업부진 폐업은 늘고 양도·양수는 준다는 사실이 이 방향과 맞습니다.</div>
+      <div class="nf inf">확인되지 않은 연결 마디</div>
+    </div>
+    <div class="arrowdown">↓</div>
+
+    <div class="node">
+      <div class="nh"><div class="nn">04</div><div class="nt">시장에 매물이 나오지 않는다</div></div>
+      <div class="nb">자영업 창업의 상당 부분은 맨땅 개업이 아니라 기존 가게 인수입니다. 넘기는 사람이 있어야 넘겨받는 창업이 생깁니다. 매물이 마르면 인수 창업도 같이 마릅니다.</div>
+      <div class="nf num">음식업 신규 창업 −13.6%</div>
+    </div>
+    <div class="arrowdown">↓</div>
+
+    <div class="node">
+      <div class="nh"><div class="nn">05</div><div class="nt">한번 나간 사람은 돌아오지 않는다</div></div>
+      <div class="nb">폐업한 사람 중 재창업(준비 포함)은 26.9%, 취업(준비 포함)은 41.4%였습니다. 나간 사람 넷 중 하나만 돌아옵니다. 자영업 인구 자체가 재순환을 멈추고 있습니다.</div>
+      <div class="nf num">폐업 후 재창업 26.9%</div>
+    </div>
+  </div>
+
+  <div class="loopback">
+    <div class="lt">그래서 폐업률 하락과 창업 감소는 별개 사건이 아닙니다. 같은 원인의 두 얼굴입니다.</div>
+    <p>못 나가니까 매물이 없고, 매물이 없으니까 못 들어옵니다. 그리고 못 들어오니까 나가려는 사람의 가게도 안 팔립니다. 이 고리는 스스로를 강화합니다. 자영업이 <b>사고팔 수 있는 자산</b>에서 <b>한번 들어가면 못 빠져나오는 비용</b>으로 바뀌는 중입니다.</p>
+  </div>
+
+  <h3>이 판정의 밀도</h3>
+  <p>1·2·4·5번 마디는 국세청과 중기부의 공표 수치로 확인됐습니다. <b>3번 마디는 추론입니다.</b> "나갈 돈이 없어 못 나간 사업자"를 직접 세는 통계는 없습니다. 이 마디가 무너지면 순환 고리는 약해지고, 폐업률 하락은 다른 이유로 설명해야 합니다. 뒤의 반대 시나리오에서 그 경우를 다룹니다.</p>
+</section>
+</div>
+
+<!-- 4. 문 네 개 -->
+<div class="wrap">
+<section>
+  <div class="eyebrow">넷 · 확인</div>
+  <h2>이 시장에는 문이 네 개 있다</h2>
+  <p class="dek">사람이 자영업에 드나드는 경로는 넷입니다. 새로 여는 문, 팔고 나가는 문, 돌아오는 문, 접고 나가는 문. 언론이 세는 건 마지막 하나뿐입니다. 2025년에 좁아진 건 나머지 셋이었습니다.</p>
+
+  <div id="doors">
+    <div class="door">
+      <div class="dh"><div><div class="dn">팔고 나가는 문 · 양도·양수 폐업</div><div class="ds">전업종, 2021 정점 → 2025</div></div><div class="dv b">−31.6%</div></div>
+      <div class="bar"><span class="b" style="--w:68%"></span></div>
+      <div class="dd">51,200명 → 35,013명. <b>가장 크게 무너진 문</b>이고, 순환이 끊긴 첫 마디입니다. 이 항목이 실린 표를 기사도, 이 기사를 받아 실은 매체 열 곳도 인용하지 않았습니다.</div>
+    </div>
+    <div class="door">
+      <div class="dh"><div><div class="dn">들어오는 문 · 신규 창업</div><div class="ds">음식업, 2024 → 2025</div></div><div class="dv b">−13.6%</div></div>
+      <div class="bar"><span class="b" style="--w:32%"></span></div>
+      <div class="dd">150,526명 → 130,114명. 비교 가능한 통계가 시작된 2011년 이후 가장 큰 낙폭입니다. 기사에서 가장 단단한 숫자인데 본문 중간에 한 문장으로 지나갑니다.</div>
+    </div>
+    <div class="door">
+      <div class="dh"><div><div class="dn">돌아오는 문 · 폐업 후 재창업</div><div class="ds">폐업 소상공인 실태조사, 2026</div></div><div class="dv n">26.9%</div></div>
+      <div class="bar"><span class="n" style="--w:27%"></span></div>
+      <div class="dd">나간 사람 넷 중 하나만 돌아옵니다. 이건 전년 대비가 아니라 수준값입니다.</div>
+    </div>
+    <div class="door">
+      <div class="dh"><div><div class="dn">접고 나가는 문 · 폐업</div><div class="ds">음식업, 2024 → 2025</div></div><div class="dv b">−6.8%</div></div>
+      <div class="bar"><span class="b" style="--w:16%"></span></div>
+      <div class="dd">유일하게 기사가 센 문이고, 넷 중 가장 적게 움직인 문입니다. 그리고 넓어진 게 아니라 좁아졌습니다.</div>
+    </div>
+  </div>
+
+  <div class="chart" id="c1">
+    <svg viewBox="0 0 300 100" role="img" aria-label="양도양수 폐업 비중이 2021년 5.8퍼센트로 정점을 찍은 뒤 2025년 3.6퍼센트로 하락">
+      <line x1="12" y1="82" x2="288" y2="82" stroke="#E9E5E1" stroke-width="1"/>
+      <path class="ln b" style="--len:420" d="M12,72 L42.7,65 L73.3,55.6 L104,50.9 L134.7,39.1 L165.3,18 L196,36.8 L226.7,58 L257.3,60.3 L288,69.7"/>
+      <g class="pt b" data-y="2016" data-v="3.5% · 31,757명"><circle class="hit" cx="12" cy="72" r="15"/><circle class="dot" cx="12" cy="72" r="3.2"/></g>
+      <g class="pt b" data-y="2017" data-v="3.8% · 34,394명"><circle class="hit" cx="42.7" cy="65" r="15"/><circle class="dot" cx="42.7" cy="65" r="3.2"/></g>
+      <g class="pt b" data-y="2018" data-v="4.2% · 37,984명"><circle class="hit" cx="73.3" cy="55.6" r="15"/><circle class="dot" cx="73.3" cy="55.6" r="3.2"/></g>
+      <g class="pt b" data-y="2019" data-v="4.4% · 40,185명"><circle class="hit" cx="104" cy="50.9" r="15"/><circle class="dot" cx="104" cy="50.9" r="3.2"/></g>
+      <g class="pt b" data-y="2020" data-v="4.9% · 43,538명"><circle class="hit" cx="134.7" cy="39.1" r="15"/><circle class="dot" cx="134.7" cy="39.1" r="3.2"/></g>
+      <g class="pt b" data-y="2021" data-v="5.8% · 51,200명" data-n="정점"><circle class="hit" cx="165.3" cy="18" r="15"/><circle class="dot" cx="165.3" cy="18" r="3.2"/></g>
+      <g class="pt b" data-y="2022" data-v="5.0% · 43,085명"><circle class="hit" cx="196" cy="36.8" r="15"/><circle class="dot" cx="196" cy="36.8" r="3.2"/></g>
+      <g class="pt b" data-y="2023" data-v="4.1% · 40,369명"><circle class="hit" cx="226.7" cy="58" r="15"/><circle class="dot" cx="226.7" cy="58" r="3.2"/></g>
+      <g class="pt b" data-y="2024" data-v="4.0% · 40,123명"><circle class="hit" cx="257.3" cy="60.3" r="15"/><circle class="dot" cx="257.3" cy="60.3" r="3.2"/></g>
+      <g class="pt b" data-y="2025" data-v="3.6% · 35,013명" data-n="10년 내 최저 수준"><circle class="hit" cx="288" cy="69.7" r="15"/><circle class="dot" cx="288" cy="69.7" r="3.2"/></g>
+      <text class="ax" x="12" y="96">2016</text><text class="ax" x="288" y="96" text-anchor="end">2025</text>
+    </svg>
+  </div>
+  <div class="read">전체 폐업 중 양도·양수 비중. 점을 눌러보세요.</div>
+
+  <p style="margin-top:20px">같은 기간 사업부진 폐업은 403,696명에서 491,966명으로 늘었습니다. 버티다 닫는 사람 100명당 넘기고 나가는 사람이 <b class="num">12.7명에서 7.1명</b>으로 줄었습니다. 거의 반토막입니다.</p>
+  <p class="cap">국세통계는 양도·양수 폐업을 전업종 합계로만 공표합니다. 음식업만 떼어낸 값은 확인하지 못했습니다.</p>
+</section>
+</div>
+
+<!-- 5. 두 선 -->
+<div class="wrap">
+<section>
+  <div class="eyebrow">다섯 · 시장의 체온</div>
+  <h2>두 선이 만나는 날, 시장은 줄기 시작한다</h2>
+  <p class="dek">시장의 건강은 폐업 수가 아니라 <b>순환 속도</b>로 잽니다. 얼마나 빨리 들어오고 얼마나 빨리 빠져나가는가. 국세통계 10년치로 두 속도를 나란히 놓으면 무슨 일이 있었는지가 한 장에 들어옵니다.</p>
+
+  <div class="chart" id="c2">
+    <svg viewBox="0 0 300 104" role="img" aria-label="진입률은 2018년 17.9퍼센트에서 2025년 11.3퍼센트로 급락한 반면 폐업률은 완만히 하락해 두 선의 간격이 좁아짐">
+      <line x1="12" y1="86" x2="288" y2="86" stroke="#E9E5E1" stroke-width="1"/>
+      <path class="ln t" style="--len:400" d="M12,17.1 L42.7,17.3 L73.3,16.7 L104,25.8 L134.7,18.6 L165.3,29 L196,40.2 L226.7,47.1 L257.3,52 L288,56.1"/>
+      <path class="ln b" style="--len:400" d="M12,54 L42.7,57 L73.3,61 L104,62.3 L134.7,67.7 L165.3,71.4 L196,74.7 L226.7,69.9 L257.3,69.8 L288,72.2"/>
+      <g class="pt t" data-y="2016 진입률" data-v="17.8%"><circle class="hit" cx="12" cy="17.1" r="14"/><circle class="dot" cx="12" cy="17.1" r="3"/></g>
+      <g class="pt t" data-y="2018 진입률" data-v="17.9%" data-n="정점"><circle class="hit" cx="73.3" cy="16.7" r="14"/><circle class="dot" cx="73.3" cy="16.7" r="3"/></g>
+      <g class="pt t" data-y="2020 진입률" data-v="17.6%"><circle class="hit" cx="134.7" cy="18.6" r="14"/><circle class="dot" cx="134.7" cy="18.6" r="3"/></g>
+      <g class="pt t" data-y="2022 진입률" data-v="14.0%"><circle class="hit" cx="196" cy="40.2" r="14"/><circle class="dot" cx="196" cy="40.2" r="3"/></g>
+      <g class="pt t" data-y="2025 진입률" data-v="11.3%" data-n="10년 최저"><circle class="hit" cx="288" cy="56.1" r="14"/><circle class="dot" cx="288" cy="56.1" r="3"/></g>
+      <g class="pt b" data-y="2016 폐업률" data-v="11.7%"><circle class="hit" cx="12" cy="54" r="14"/><circle class="dot" cx="12" cy="54" r="3"/></g>
+      <g class="pt b" data-y="2020 폐업률" data-v="9.4%"><circle class="hit" cx="134.7" cy="67.7" r="14"/><circle class="dot" cx="134.7" cy="67.7" r="3"/></g>
+      <g class="pt b" data-y="2022 폐업률" data-v="8.2%"><circle class="hit" cx="196" cy="74.7" r="14"/><circle class="dot" cx="196" cy="74.7" r="3"/></g>
+      <g class="pt b" data-y="2024 폐업률" data-v="9.0%"><circle class="hit" cx="257.3" cy="69.8" r="14"/><circle class="dot" cx="257.3" cy="69.8" r="3"/></g>
+      <g class="pt b" data-y="2025 폐업률" data-v="8.6%"><circle class="hit" cx="288" cy="72.2" r="14"/><circle class="dot" cx="288" cy="72.2" r="3"/></g>
+      <text class="ax" x="12" y="100">2016</text><text class="ax" x="288" y="100" text-anchor="end">2025</text>
+    </svg>
+  </div>
+  <div class="lgd"><span><i class="t"></i>진입률 · 신규 ÷ 가동사업자</span><span><i class="b"></i>폐업률 · 폐업 ÷ (연말 사업자 + 폐업)</span></div>
+  <div class="read">두 선의 간격이 그해의 순증 여력입니다. 점을 눌러보세요.</div>
+
+  <table>
+    <tr><th>전업종</th><th class="n">2020</th><th class="n">2025</th><th class="n">변화</th></tr>
+    <tr><td>진입률</td><td class="n">17.6%</td><td class="n hi">11.3%</td><td class="n dn">−36%</td></tr>
+    <tr><td>폐업률</td><td class="n">9.38%</td><td class="n hi">8.64%</td><td class="n dn">−8%</td></tr>
+    <tr><td>두 선의 간격</td><td class="n">8.2%p</td><td class="n hi">2.7%p</td><td class="n dn">−67%</td></tr>
+  </table>
+  <p class="cap">변화는 상대 감소율. 진입률과 2020년 폐업률은 국세통계 원자료에서 계산한 값이며, 계산식은 중기부 공표 폐업률과 소수점까지 일치하는 것을 확인했습니다.</p>
+
+  <p style="margin-top:22px"><b>나가는 속도는 8% 느려졌고, 들어오는 속도는 36% 느려졌습니다.</b> 폐업이 늘어서 시장이 쪼그라든 게 아닙니다. 폐업도 느려졌는데 진입이 그보다 네 배 넘게 빨리 식었습니다. 두 선의 간격이 0이 되면 사업자 수는 줄기 시작합니다.</p>
+
+  <div class="close">
+    <div class="cq">음식업은 이미 만났습니다.</div>
+    <p>2025년 음식업 신규 130,114명, 폐업 142,557명. 폐업이 창업을 넘어섰습니다. 2024년에 이어 두 해 연속이고, 비교 가능한 통계에서 음식업 순감소는 이 두 해뿐입니다. 전업종이 2.7%p 남기고 걸어가는 방향의 끝에, 음식업이 먼저 도착해 있습니다.</p>
+  </div>
+</section>
+</div>
+
+<!-- 6. 그래서 -->
+<div class="wrap">
+<section>
+  <div class="eyebrow">여섯 · 그래서</div>
+  <h2>이 판정이 각자에게 뜻하는 것</h2>
+  <p class="dek">시장이 닫힌다는 말은 위치에 따라 다른 의미입니다. 위의 다섯 마디에서 직접 따라 나오는 것만 적습니다.</p>
+
+  <div class="who">
+    <div class="wk">지금 가게를 하고 있다면</div>
+    <div class="wt">경쟁자는 줄지만, 출구도 같이 줄어든다</div>
+    <p>음식업 사업자는 2년간 약 17,900곳 감소했습니다. 남은 가게가 나눠 갖는 몫은 커집니다. 다만 <b>퇴장 시점의 회수 가능성은 계속 나빠지는 중</b>입니다. 양도·양수 비중은 4년 연속 하락했습니다. 가게를 자산으로 계산하고 있다면, 그 자산의 환금성이 지금 어느 수준인지가 예전과 다른 변수입니다.</p>
+  </div>
+
+  <div class="who">
+    <div class="wk">창업을 생각하고 있다면</div>
+    <div class="wt">경쟁 밀도는 낮아졌고, 인수 조건은 유리해졌을 가능성이 있다</div>
+    <p>진입이 마르는 시장은 들어가기 나쁜 시장이기도 하지만, 들어갈 때 값을 덜 치르는 시장이기도 합니다. 파는 쪽의 협상력이 4년째 약해지고 있습니다. 다만 이건 <b>권리금 시세를 직접 확인한 결과가 아니라 구조에서 나온 추정</b>입니다. 그리고 진입 자체가 줄었다는 것은 남들이 계산해 보고 안 들어왔다는 뜻이기도 합니다.</p>
+  </div>
+
+  <div class="who">
+    <div class="wk">정책으로 보고 있다면</div>
+    <div class="wt">폐업률이 내려갔다고 상황이 나아진 것이 아니다</div>
+    <p>이 지표는 진입이 마르면 자동으로 내려갑니다. 폐업률만 보면 회복으로 읽히는 구간에서 시장은 굳고 있을 수 있습니다. 그리고 순환이 끊긴 원인이 <b>퇴장 비용</b>이라면, 폐업을 막는 지원과 폐업을 돕는 지원은 다른 정책입니다. 후자를 다루는 통계는 거의 없습니다.</p>
+  </div>
+
+  <div class="who">
+    <div class="wk">기사로 읽고 있다면</div>
+    <div class="wt">폐업 숫자는 이 시장의 상태를 알려주지 않는다</div>
+    <p>폐업 수는 사업자가 늘면 자동으로 늘고, 진입이 마르면 자동으로 줍니다. 방향이 어느 쪽이든 헤드라인이 됩니다. 아래 세 지표가 대신 답합니다.</p>
+  </div>
+</section>
+</div>
+
+<!-- 7. 다음에 볼 것 -->
+<div class="wrap">
+<section>
+  <div class="eyebrow">일곱 · 다음 기사</div>
+  <h2>내년 6월에 볼 세 가지</h2>
+  <p class="dek">자영업 통계는 매년 6월 말에 나옵니다. 그때 헤드라인은 또 폐업 숫자일 겁니다. 그 기사에서 이 셋만 찾으면 시장의 상태가 보입니다.</p>
+
+  <div class="watch"><div class="wt">1. 폐업 수 말고 폐업률</div>
+    <p>폐업 수는 사업자가 늘면 자동으로 늘어납니다. 폐업률은 분모가 붙은 숫자입니다. 2025년 전업종 8.64%, 음식업 15.14%.</p></div>
+  <div class="watch"><div class="wt">2. 창업 수 말고 진입률</div>
+    <p>신규 사업자 ÷ 가동사업자. 2018년 17.9%에서 2025년 11.3%까지 왔습니다. 이 시장의 체온계인데 어떤 기사도 이 숫자를 쓰지 않습니다.</p></div>
+  <div class="watch"><div class="wt">3. 폐업 사유표의 양도·양수 줄</div>
+    <p>가게가 팔리는가, 그냥 닫히는가. 이 한 줄이 권리금 시장과 인수 창업의 상태를 동시에 보여줍니다. 2025년 3.6%. <b>이 값이 반등하면 진입도 같이 살아납니다.</b> 순환이 다시 도는지를 가장 먼저 알려주는 신호입니다.</p></div>
+
+  <div class="close">
+    <div class="cq">폐업이 늘어난 게 아니라, 나가는 문과 들어오는 문이 함께 닫혔습니다.</div>
+    <p>위험한 건 폐업의 양이 아닙니다. 이 시장이 사람을 주고받는 능력을 잃고 있다는 것입니다. 오래 버틴 가게가 무너지는 것보다, 그 자리를 이어받을 사람이 나타나지 않는 쪽이 훨씬 되돌리기 어렵습니다.</p>
+  </div>
+
+  <div class="warn">
+    이 글을 “자영업은 괜찮다”로 읽으면 안 됩니다. 음식업 폐업률 15.14%는 전 업종 평균 8.64%의 1.75배이고, 소매업 다음으로 높습니다. 폐업률이 내려간 건 상황이 나아졌다는 뜻이 아니라 <b>애초에 문을 여는 사람이 줄어 위험에 노출된 모수 자체가 얇아졌다</b>는 뜻일 수 있습니다. 나쁜 지점이 기사가 지목한 곳과 다를 뿐입니다.
+  </div>
+</section>
+</div>
+
+<!-- 8. 반대 시나리오 -->
+<div class="wrap">
+<section>
+  <div class="eyebrow">여덟 · 반대 시나리오</div>
+  <h2>이 판정이 틀리는 경우</h2>
+  <p class="dek">무너뜨릴 수 있는 경로를 먼저 적어둡니다. 어느 쪽이 맞는지는 확인 가능한 자료가 결정합니다.</p>
+
+  <div class="cs"><div class="no">01</div><div>
+    <div class="ct">진입률 하락이 시장 위축이 아니라 고용시장 개선의 결과라면</div>
+    <p>취업이 잘 되면 생계형 창업은 줄어듭니다. 그렇다면 진입률 하락은 나쁜 신호가 아니라 정상화입니다. 폐업자의 41.4%가 재창업 대신 취업을 택했다는 조사는 이 해석과도 맞습니다. 고용통계를 대조하지 않았으므로 배제되지 않았습니다. <b>이 리포트의 결론을 가장 세게 흔드는 반대 해석입니다.</b></p>
+  </div></div>
+
+  <div class="cs"><div class="no">02</div><div>
+    <div class="ct">폐업률 하락이 “못 나가서”가 아니라 “신고가 밀려서”라면</div>
+    <p>순환 고리의 3번 마디가 바뀝니다. 폐업 통계는 사업자등록 말소 기준이라 실제로 닫고도 신고를 미루면 그해에서 빠집니다. 다만 중기부 조사에서 폐업 결심 후 말소까지 걸린 기간은 평균 7.7개월로, 전년 조사(16개월)보다 절반으로 짧아졌습니다. 신고가 빨라졌는데도 폐업이 줄었다면 하락 판정은 강화되는 쪽입니다. 단, 이 조사는 정부 지원사업 참여자 표본입니다.</p>
+  </div></div>
+
+  <div class="cs"><div class="no">03</div><div>
+    <div class="ct">양도·양수 하락이 시장 경색이 아니라 통계 분류의 문제라면</div>
+    <p>같은 표에서 폐업 사유 ‘기타’가 44.7%입니다. 사유 미상이 절반 가까운 상태에서 특정 항목의 비중 변화가 실제 행태 변화인지, 신고 관행 변화인지는 갈리지 않습니다. 순환 고리의 1번 마디가 약해집니다. 다만 양도·양수는 10년간 완만한 상승 후 2021년 정점, 이후 4년 연속 하락이라는 뚜렷한 모양을 그립니다. 분류 오차라면 이런 모양이 나오기 어렵습니다.</p>
+  </div></div>
+
+  <div class="cs"><div class="no">04</div><div>
+    <div class="ct">5년 이상 존속 음식점의 모수가 실제로 크게 줄었다면</div>
+    <p>기사 검증 부분이 뒤집힙니다. 41,659는 얇아진 모수에서 나온 값이 아니라 실제 노포 붕괴의 증거가 됩니다. <b>1장의 판정을 한 번에 뒤집을 수 있는 유일한 수치</b>입니다. 국세청 사업자현황 존속연수별 자료에 있는데 확보하지 못했습니다.</p>
+  </div></div>
+
+  <div class="cs"><div class="no">05</div><div>
+    <div class="ct">창업 감소가 커피·배달 등 특정 하위 업종에 쏠린 것이라면</div>
+    <p>국세통계의 음식업에는 커피음료점과 배달 전문점이 함께 들어갑니다. 최근 몇 년의 창업 증가를 이끈 것도 이 저자본 진입 업종이었습니다. 감소분이 여기 집중돼 있다면 정확한 서술은 “음식점 시장이 닫힌다”가 아니라 <b>“저자본 진입 채널이 닫힌다”</b>가 됩니다.</p>
+  </div></div>
+</section>
+</div>
+
+<!-- 9. 이동 경로 -->
+<div class="wrap">
+<section>
+  <div class="eyebrow">아홉 · 이동 경로</div>
+  <h2>잠정 판정에서 여기까지</h2>
+  <p class="dek">이 검증은 한 줄의 가설에서 출발했습니다. 틀린 이유가 아니라, 어디서 무엇을 보고 판단이 옮겨갔는지를 적습니다.</p>
+
+  <div class="path">
+    <div class="step">
+      <div class="sl">출발</div>
+      <div class="st">“5년 넘게 버틴 곳까지 무너진다면, 이건 경기 문제가 아니라 구조 문제다”</div>
+      <p>전제와 결론이 하나로 묶인 문장입니다. 검증은 두 마디를 떼어놓는 데서 시작했습니다.</p>
+    </div>
+    <div class="step on">
+      <div class="sl">첫 번째 이동 · 전제가 흔들렸다</div>
+      <div class="st">음식업 폐업률은 15.82%에서 15.14%로 내려갔다</div>
+      <p>결론에 반대되는 자료부터 찾은 결과입니다. 폐업자 중 장기 존속자 비중도 29.2%로 전업종 평균 32.5%보다 낮았습니다. 음식업은 “5년 넘게 버틴 곳이 무너지는” 대표 사례가 아니었습니다.</p>
+    </div>
+    <div class="step on">
+      <div class="sl">두 번째 이동 · 질문이 바뀌었다</div>
+      <div class="st">순감소 12,443의 절반 이상이 창업 쪽에서 왔다</div>
+      <p>폐업 −10,460, 창업 −20,412. 왜 아무도 들어오지 않는가로 질문이 옮겨갔고, 그때 폐업 사유 표를 처음부터 다시 읽었습니다.</p>
+    </div>
+    <div class="step on">
+      <div class="sl">세 번째 이동 · 구조가 나왔다</div>
+      <div class="st">팔고 나가는 문이 닫히자 들어오는 문도 닫혔다</div>
+      <p>양도·양수 −31.6%, 폐업 비용 1,286만원, 재창업 26.9%. 흩어져 있던 세 숫자가 하나의 순환 고리로 붙었습니다.</p>
+    </div>
+    <div class="step on">
+      <div class="sl">도착</div>
+      <div class="st">결론은 유지된다. 구조의 위치가 다를 뿐이다</div>
+      <p>구조는 “오래 버틴 가게가 무너지는 것”에 있지 않았습니다. <b>가게가 팔리지 않게 된 것</b>에 있었습니다. 경기가 나쁘면 폐업이 튑니다. 구조가 바뀌면 진입이 마릅니다. 2025년 데이터는 후자입니다. 전제는 반증됐고 결론은 살아남았습니다.</p>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- 10. 부록 -->
+<div class="wrap">
+<section>
+  <div class="eyebrow">부록</div>
+  <p class="dek">확인하지 못한 것을 적어두는 이유는, 이 판정을 뒤집을 사람이 어디를 파야 하는지 알려주기 위해서입니다.</p>
+
+  <details>
+    <summary><span class="ch"></span>기사가 근거로 든 일곱 개 숫자, 항목별 등급<span class="c">7개</span></summary>
+    <div class="db" style="padding-bottom:8px">
+      <div class="acc"><button type="button"><span class="i num">01</span><span class="t">전업종 5년 이상 폐업 317,406명, 2005년 이후 최다<em>비중 32.5%</em></span><span class="gr i">부분 착시</span><span class="ch"></span></button>
+      <div class="bd"><p><b>절대수 최다는 분모가 커진 결과가 큽니다.</b> 2020년 신규 사업자는 1,519,284명으로 전년보다 15.4% 늘어난 역대급 규모였고, 이 무리가 2025년에 업력 5년 선을 통과했습니다. 2024년에 그 선을 넘은 2019년 무리는 1,316,360명이었습니다.</p><p><b>다만 비중 32.5%는 착시가 아닙니다.</b> 분모와 무관한 지표이고 5년 연속 올랐습니다. 2025년은 전체 폐업이 줄었는데 5년 이상 폐업은 절대수로도 늘었습니다. 기사가 세워야 했던 근거는 절대수가 아니라 이 비중입니다.</p></div></div>
+
+      <div class="acc"><button type="button"><span class="i num">02</span><span class="t">5년 이상 존속 음식점 폐업 41,659곳, 2007년 이후 최대<em>기사의 중심 근거</em></span><span class="gr i">부분 착시</span><span class="ch"></span></button>
+      <div class="bd"><p><b>구성비로 보면 방향이 반대입니다.</b> 음식업 폐업자 중 5년 이상은 29.2%로 전업종 평균 32.5%보다 낮습니다.</p><p><b>규모 효과와 구조 효과가 섞여 있습니다.</b> 음식업은 사업자 수가 가장 많은 업종 중 하나이고, 신규 창업이 무너지면서 업력 5년 미만 집단이 얇아졌습니다. 젊은 가게가 적으면 젊은 가게의 폐업도 적어지고, 폐업 구성은 자동으로 늙습니다.</p><p><b>남은 확인.</b> 5년 이상 존속 음식점의 실제 모수는 확보하지 못했습니다. 그 값이 크게 줄어든 것으로 확인되면 이 등급은 실제 신호로 바뀝니다.</p></div></div>
+
+      <div class="acc"><button type="button"><span class="i num">03</span><span class="t">20년 이상 음식점 폐업 2,797곳, 2021년 대비 61% 증가<em>역대 최다</em></span><span class="gr i">부분 착시</span><span class="ch"></span></button>
+      <div class="bd"><p><b>기준연도가 증가율을 부풀립니다.</b> 2021년은 손실보상과 대출 만기연장·상환유예가 작동해 폐업이 눌린 해입니다. 전체 폐업자도 885,173명으로 최근 10년 중 두 번째로 낮았습니다.</p><p><b>은퇴 요인이 분리되지 않았습니다.</b> 중기부 실태조사에서 건강·노령 은퇴 12.1%, 개인 사정 13.7%로 비경영 사유가 25.8%였고, 60세 이상 폐업 비중은 22.3% → 22.7% → 24.4%로 오르는 중입니다. 20년 넘게 가게를 지킨 사업자는 연령 분포가 위쪽에 몰립니다.</p><p><b>모수도 없습니다.</b> 20년 이상 집단은 매년 새 연차가 유입되며 누적됩니다. 2021년(2001년 이전 개업분) 대비 2025년(2005년 이전 개업분) 규모 변화가 61%의 상당 부분을 설명할 수 있습니다.</p></div></div>
+
+      <div class="acc"><button type="button"><span class="i num">04</span><span class="t">음식업 신규 창업 130,114명, 13.6% 감소<em>2011년 이후 최대 낙폭</em></span><span class="gr r">실제 신호</span><span class="ch"></span></button>
+      <div class="bd"><p><b>기사에서 가장 단단한 숫자입니다.</b> 모수 논란이 없고 다른 지표로 대체 설명되지도 않습니다. 창업 건수는 절대량이라 분모를 따질 필요가 없습니다. 그런데 본문 중간에 한 문장으로 지나갑니다.</p></div></div>
+
+      <div class="acc"><button type="button"><span class="i num">05</span><span class="t">음식업 순감소 12,443명, 전년의 5배<em>두 해 연속 순감소</em></span><span class="gr r">실제 신호</span><span class="ch"></span></button>
+      <div class="bd"><p><b>숫자는 정확하고 원인 귀속이 뒤집혀 있습니다.</b> 폐업은 전년보다 10,460명 줄었고 신규는 20,412명 줄었습니다. 순감소가 커진 건 폐업이 늘어서가 아닙니다.</p></div></div>
+
+      <div class="acc"><button type="button"><span class="i num">06</span><span class="t">가동사업자 증가율 1.7%, 2005년 이후 최저<em>10,321,407명</em></span><span class="gr r">실제 신호</span><span class="ch"></span></button>
+      <div class="bd"><p><b>기사 본문도 원인을 창업 감소로 적고 있습니다.</b> 신규 사업자는 1,168,273명으로 5년 연속 줄어 2014년 이후 최소입니다. 같은 해 폐업자는 975,681명으로 3.2% 감소했습니다. 본문은 창업을, 제목은 폐업을 지목합니다.</p></div></div>
+
+      <div class="acc"><button type="button"><span class="i num">07</span><span class="t">폐업 사유 사업부진 50.4%, 2009년 이후 최고 비중<em>491,966명</em></span><span class="gr i">부분 착시</span><span class="ch"></span></button>
+      <div class="bd"><p><b>비중은 올랐지만 절대수는 줄었습니다.</b> 506,198명(2024) → 491,966명(2025). 비중이 오른 건 분모인 전체 폐업이 더 빨리 줄었기 때문입니다.</p><p><b>분류 자체의 밀도도 높지 않습니다.</b> 같은 표에서 ‘기타’가 435,637명, 전체의 44.7%입니다. 사유 미상이 절반 가까운 상태에서 소수점 변화를 해석하는 건 무리입니다. 비자발적 폐업의 몫이 커지는 흐름 자체는 유효하지만, “사업부진으로 문 닫는 사람이 늘었다”로 읽히면 사실과 반대가 됩니다.</p></div></div>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="ch"></span>숫자별 출처<span class="c">4개 자료</span></summary>
+    <div class="db">
+      <h4>국세청 국세통계포털 · 2025년 귀속 (2026-06-29 공개)</h4>
+      <ul>
+        <li>가동사업자 10,321,407명 / 증가율 1.7% · 신규 1,168,273명 / −4.1% · 폐업 975,681명 / −3.2%</li>
+        <li>5년 이상 존속 폐업 317,406명(32.5%) · 2016-2025 시계열 전체</li>
+        <li>폐업 사유 2016-2025 시계열 : 사업부진 491,966명(50.4%), 양도·양수 35,013명(3.6%), 기타 435,637명(44.7%)</li>
+        <li>양도·양수 비중 3.5 · 3.8 · 4.2 · 4.4 · 4.9 · 5.8(2021) · 5.0 · 4.1 · 4.0 · 3.6(2025)</li>
+        <li>가동사업자·신규·폐업 2016-2025 시계열 전체 (진입률 계산의 기초)</li>
+        <li>음식업 가동 798,969명 · 신규 130,114명 · 폐업 142,557명 · 순감소 −12,443명</li>
+        <li>음식업 5년 이상 폐업 41,659곳 · 20년 이상 2,797곳 (2021년 1,738곳)</li>
+      </ul>
+      <div class="u">확인 경로 https://www.fnnews.com/news/202607060551374331 · 확인 2026-08-11</div>
+
+      <h4>국세청 국세통계포털 · 2024년 귀속</h4>
+      <ul><li>음식점업 폐업 153,017명 · 폐업률 15.82% · 소매업 16.78%</li></ul>
+      <p>이 두 값은 당초 역산 추정치였으나 국세청 공표값으로 교체했고, 역산값과 소수점까지 일치했습니다. 2024→2025 폐업률 하락은 확정입니다.</p>
+      <div class="u">https://www.news2day.co.kr/article/20250714500118 · 확인 2026-08-11</div>
+
+      <h4>중소벤처기업부 「폐업자 현황·실태 통계」 (2026-06-30)</h4>
+      <ul>
+        <li>전체 폐업률 8.64%(2025) / 9.04%(2024) / 9.02%(2023) · 음식업 15.14% · 소매업 15.40%</li>
+        <li>60세 이상 폐업 비중 22.3% → 22.7% → 24.4%</li>
+        <li>실태조사 1,500명 : 폐업 이유 매출 부진 70.9% / 개인 사정 13.7% / 은퇴 12.1%</li>
+        <li>폐업 비용 평균 1,286만원 · 폐업 결심 시점 부채 보유 68.5%, 평균 8,531만원 · 폐업 소요 평균 7.7개월</li>
+        <li>폐업 후 상태 : 취업(준비 포함) 41.4% · 재창업(준비 포함) 26.9% · 경제활동 포기·휴식 29.3%</li>
+      </ul>
+      <div class="u">https://go.seoul.co.kr/news/prnewsView.php?id=434593 · 확인 2026-08-11</div>
+
+      <h4>국세청 국세통계 · 2020년 귀속 (2021-06-29)</h4>
+      <ul><li>2020년 음식점업 신규 164,000명 · 급증 업종은 부동산업 +56.4%, 소매업 +26.1%로 음식점업은 목록에 없음</li></ul>
+      <div class="u">https://www.asiae.co.kr/article/2021062911175615204 · 확인 2026-08-11</div>
+
+      <h4>계산으로 만든 값</h4>
+      <ul>
+        <li>진입률 = 신규 ÷ 가동사업자 · 2016-2025 전 연도</li>
+        <li>2020년 폐업률 9.38%. 계산식은 2025년 값으로 중기부 공표치와 대조해 소수점까지 일치를 확인</li>
+        <li>2024년 음식업 가동사업자 약 814,000명 · 음식업 5년 이상 폐업 구성비 29.2% · 사업부진 대비 양도·양수 12.7%(2021) → 7.1%(2025)</li>
+      </ul>
+
+      <h4>배제한 자료 · 인용 중복</h4>
+      <p>2024년 음식점업 폐업률을 18.2%로 제시한 자료가 검색에 잡혔으나, 같은 문서에서 전체 폐업을 987,000건(실제 1,008,282건)으로 적는 등 원자료와 여러 지점에서 어긋나 채택하지 않았습니다. 또 이 기사를 실은 매체는 열 곳이 넘지만 전부 같은 기사이고, 원출처는 국세통계포털 하나입니다.</p>
+    </div>
+  </details>
+
+  <details>
+    <summary><span class="ch"></span>확인하지 못한 것<span class="c">7개 항목</span></summary>
+    <div class="db">
+      <div class="gp"><div class="gt">1. 순환 고리 3번 마디, “나갈 돈이 없어 못 나간 사업자”</div>이 리포트 핵심 논지의 유일한 미확인 연결점입니다. 직접 세는 통계가 없습니다. 폐업 비용과 부채 보유율, 양도·양수 하락에서 추론했습니다. 근접 대리 지표로는 폐업 지연 사유 조사가 있으나 확보하지 못했습니다.</div>
+      <div class="gp"><div class="gt">2. 권리금 시세 추이</div>양도·양수 하락이 거래량 감소인지 가격 붕괴인지 갈리지 않았습니다. 6장의 “인수 조건이 유리해졌을 가능성”은 이것이 확인되기 전까지 추정입니다.</div>
+      <div class="gp"><div class="gt">3. 5년 이상 존속 음식점의 모수</div>국세청 사업자현황 존속연수별 자료에 값이 있으나 자동 접근이 차단돼 받지 못했습니다. <b>근사하지 않았습니다.</b> 5년 생존율 같은 다른 지표로 역산하는 건 이 수치를 설명하는 게 아니라 대체하는 것이라 쓰지 않았고, 폐업자 구성비와 폐업률이라는 다른 각도로 우회했습니다.</div>
+      <div class="gp"><div class="gt">4. 양도·양수 폐업의 업종별 분해</div>국세통계는 전업종 합계로만 공표합니다. 음식업 단위로 인수 시장이 얼었는지는 검증되지 않았습니다.</div>
+      <div class="gp"><div class="gt">5. 20년 이상 존속 음식점의 모수와 추이</div>2,797의 분모. 매년 새 연차가 유입되며 누적되는 구조라, 2021년 대비 규모 변화가 61%의 상당 부분을 설명할 수 있습니다.</div>
+      <div class="gp"><div class="gt">6. 음식업 하위 업종 분해</div>커피음료점·배달 전문점이 창업 감소를 얼마나 주도했는지. 반대 시나리오 05에 직결됩니다.</div>
+      <div class="gp"><div class="gt">7. 고용·수요 측 대조</div>고용통계와 외식 지출을 붙이지 않았습니다. 진입률 하락이 시장 위축인지 고용시장 개선인지, 사업자 감소가 수요 위축인지 과잉공급 정리인지는 이 통계만으로 갈리지 않습니다.</div>
+    </div>
+  </details>
+</section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="n">Vera</div>
+    <div class="d">이 리포트는 시장조사 담당 팀원 Vera가 작성했습니다.<br>인용되지 않고 남은 열의 숫자를 찾고, 자기 결론을 가장 세게 흔드는 반론을 직접 씁니다.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var zones=document.querySelectorAll('.chart,#doors');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('drawn'); io.unobserve(e.target);} });
+    },{threshold:0.25});
+    zones.forEach(function(z){io.observe(z);});
+  } else { zones.forEach(function(z){z.classList.add('drawn');}); }
+
+  document.querySelectorAll('.chart').forEach(function(c){
+    var out=c.nextElementSibling;
+    while(out&&!out.classList.contains('read')) out=out.nextElementSibling;
+    var pts=c.querySelectorAll('.pt');
+    pts.forEach(function(p){
+      p.addEventListener('click',function(){
+        pts.forEach(function(q){q.classList.remove('sel');});
+        p.classList.add('sel');
+        if(!out) return;
+        var n=p.dataset.n?' <em>· '+p.dataset.n+'</em>':'';
+        out.innerHTML='<b class="num">'+p.dataset.y+'</b> <span class="num">'+p.dataset.v+'</span>'+n;
+      });
+    });
+  });
+
+  document.querySelectorAll('.acc button').forEach(function(b){
+    b.addEventListener('click',function(e){ e.preventDefault(); b.parentElement.classList.toggle('open'); });
+  });
+})();
+</script>
+</body>
+</html>
