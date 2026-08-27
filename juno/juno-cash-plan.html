@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>(주)노드플로우 · 13주 현금흐름 계획</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  color-scheme: light;
+  --plane:#F1F2F0; --surface:#FFFFFF; --surface-2:#F7F8F6;
+  --ink:#14181B; --ink-2:#525A60; --ink-3:#878F94;
+  --rule:#DEE1DE; --rule-2:#EAEDEA;
+  --accent:#123C4F; --accent-2:#1E5C74; --accent-wash:#E8F0F3;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --good:#0ca30c; --warn:#fab219; --crit:#d03b3b;
+  --crit-wash:#FBECEC; --warn-wash:#FDF4E1; --good-wash:#E9F6E9;
+  --shadow:0 1px 2px rgba(20,24,27,.05), 0 8px 24px -12px rgba(20,24,27,.14);
+  --kr:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
+  --num:'Inter','Pretendard Variable',Pretendard,system-ui,sans-serif;
+  --eb:'Oswald','Pretendard Variable',Pretendard,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme: dark;
+  --plane:#0E1113; --surface:#171B1E; --surface-2:#1D2225;
+  --ink:#F2F4F3; --ink-2:#AEB6BB; --ink-3:#7E878C;
+  --rule:#2B3134; --rule-2:#23282B;
+  --accent:#8FC4D6; --accent-2:#A9D4E3; --accent-wash:#17323D;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --crit:#e66767; --crit-wash:#3A2222; --warn-wash:#332912; --good-wash:#16301A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --plane:#0E1113; --surface:#171B1E; --surface-2:#1D2225;
+  --ink:#F2F4F3; --ink-2:#AEB6BB; --ink-3:#7E878C;
+  --rule:#2B3134; --rule-2:#23282B;
+  --accent:#8FC4D6; --accent-2:#A9D4E3; --accent-wash:#17323D;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --crit:#e66767; --crit-wash:#3A2222; --warn-wash:#332912; --good-wash:#16301A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:24px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+body{margin:0; background:var(--plane); color:var(--ink); font-family:var(--kr); font-size:15px; line-height:1.72;
+  -webkit-font-smoothing:antialiased; word-break:keep-all; overflow-wrap:break-word;}
+h1,h2,h3,h4,h5{margin:0; text-wrap:balance; letter-spacing:-.021em; line-height:1.28; font-weight:700; word-break:keep-all}
+p{margin:0; word-break:keep-all}
+a{color:var(--accent-2)}
+.num{font-family:var(--num); font-variant-numeric:tabular-nums}
+.shell{display:grid; grid-template-columns:250px minmax(0,1fr); max-width:1440px; margin:0 auto}
+.rail{position:sticky; top:0; height:100vh; padding:34px 22px 34px 30px; border-right:1px solid var(--rule);
+  background:var(--surface); display:flex; flex-direction:column; gap:22px; overflow-y:auto;}
+.rail-brand{display:flex; flex-direction:column; gap:5px}
+.rail-brand .mark{font-family:var(--eb); font-weight:600; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent)}
+.rail-brand .co{font-size:19px; font-weight:700; letter-spacing:-.02em}
+.rail-brand .sub{font-size:11.5px; color:var(--ink-3); line-height:1.5}
+.rail nav{display:flex; flex-direction:column; gap:1px}
+.rail nav a{display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:5px; text-decoration:none;
+  color:var(--ink-2); font-size:13px; line-height:1.4; border-left:2px solid transparent; transition:background .15s,color .15s;}
+.rail nav a .n{font-family:var(--eb); font-size:10.5px; color:var(--ink-3); min-width:16px}
+.rail nav a:hover{background:var(--surface-2); color:var(--ink)}
+.rail nav a.on{background:var(--accent-wash); color:var(--accent); font-weight:600; border-left-color:var(--accent)}
+.rail nav a.on .n{color:var(--accent)}
+.rail-foot{margin-top:auto; font-size:11px; color:var(--ink-3); display:flex; flex-direction:column; gap:9px}
+.btn{appearance:none; border:1px solid var(--rule); background:var(--surface-2); color:var(--ink-2); font:inherit;
+  font-size:12px; padding:6px 11px; border-radius:5px; cursor:pointer; font-family:var(--kr)}
+.btn:hover{border-color:var(--ink-3); color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+main{padding:0 0 90px; min-width:0}
+.wrap{max-width:1000px; padding:0 44px}
+.mast{background:var(--accent); color:#fff; padding:60px 44px 46px; position:relative; overflow:hidden}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .mast{background:#10262F}}
+:root[data-theme="dark"] .mast{background:#10262F}
+.mast .inner{max-width:1000px}
+.mast .eyebrow{font-family:var(--eb); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(255,255,255,.72); display:flex; gap:14px; align-items:center; margin-bottom:20px; flex-wrap:wrap}
+.mast .eyebrow .tag{border:1px solid rgba(255,255,255,.34); padding:3px 8px; border-radius:3px}
+.mast h1{font-size:clamp(28px,4.2vw,44px); font-weight:800; letter-spacing:-.032em; color:#fff; margin-bottom:16px}
+.mast .lede{font-size:16.5px; line-height:1.7; color:rgba(255,255,255,.86); max-width:64ch}
+.mast .meta{display:flex; flex-wrap:wrap; gap:0 34px; margin-top:32px; padding-top:22px; border-top:1px solid rgba(255,255,255,.2)}
+.mast .meta div{display:flex; flex-direction:column; gap:2px}
+.mast .meta dt{font-family:var(--eb); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.6)}
+.mast .meta dd{margin:0; font-size:14px; color:#fff; font-weight:500}
+section{padding:56px 0 10px}
+.sec-head{display:flex; gap:16px; align-items:baseline; margin-bottom:8px}
+.sec-head .no{font-family:var(--eb); font-size:12px; font-weight:500; letter-spacing:.14em; color:var(--accent);
+  border-bottom:2px solid var(--accent); padding-bottom:2px; flex:none}
+.sec-head h2{font-size:26px; font-weight:700; letter-spacing:-.028em}
+.sec-sub{color:var(--ink-2); font-size:15px; max-width:70ch; margin-bottom:26px}
+.rule{height:1px; background:var(--rule); margin:0 0 26px}
+p.body{max-width:70ch; margin-bottom:15px; color:var(--ink-2)}
+p.body strong{color:var(--ink); font-weight:600}
+.lead{font-size:17px; line-height:1.68; color:var(--ink); max-width:66ch; margin-bottom:20px; font-weight:500}
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:1px; background:var(--rule);
+  border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:30px}
+.tile{background:var(--surface); padding:18px 20px 17px; display:flex; flex-direction:column; gap:5px}
+.tile .lbl{font-size:11.5px; color:var(--ink-3); line-height:1.4}
+.tile .val{font-family:var(--num); font-size:27px; font-weight:600; letter-spacing:-.03em; line-height:1.1}
+.tile .val .u{font-size:14px; font-weight:500; color:var(--ink-2); margin-left:2px}
+.tile .note{font-size:11.5px; color:var(--ink-3)}
+.tile.neg .val{color:var(--crit)} .tile.pos .val{color:var(--good)}
+.finding{display:flex; gap:16px; background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+  border-radius:8px; padding:19px 22px; margin-bottom:12px; box-shadow:var(--shadow)}
+.finding.crit{border-left-color:var(--crit)} .finding.warn{border-left-color:var(--warn)}
+.finding .fno{font-family:var(--eb); font-size:13px; color:var(--ink-3); flex:none; padding-top:2px}
+.finding h4{font-size:16.5px; margin-bottom:6px; line-height:1.4}
+.finding p{font-size:13.8px; color:var(--ink-2); line-height:1.7}
+.finding p strong{color:var(--ink); font-weight:600}
+.callout{padding:17px 20px; border-radius:7px; margin:22px 0; font-size:14.2px; line-height:1.7;
+  border:1px solid var(--rule); background:var(--surface-2); color:var(--ink-2)}
+.callout strong{color:var(--ink)}
+.callout .ct{display:flex; align-items:center; gap:8px; font-family:var(--eb); font-size:10.5px;
+  letter-spacing:.16em; text-transform:uppercase; margin-bottom:8px; color:var(--ink-3)}
+.callout.crit{background:var(--crit-wash); border-color:color-mix(in srgb,var(--crit) 30%, transparent)}
+.callout.crit .ct{color:var(--crit)}
+.callout.warn{background:var(--warn-wash); border-color:color-mix(in srgb,var(--warn) 42%, transparent)}
+.callout.warn .ct{color:#9A6C04}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .callout.warn .ct{color:var(--warn)}}
+:root[data-theme="dark"] .callout.warn .ct{color:var(--warn)}
+.callout.acc{background:var(--accent-wash); border-color:color-mix(in srgb,var(--accent) 26%, transparent)}
+.callout.acc .ct{color:var(--accent)}
+.tbl-wrap{overflow-x:auto; border:1px solid var(--rule); border-radius:8px; background:var(--surface); margin:22px 0}
+table{border-collapse:collapse; width:100%; font-size:13.4px}
+th,td{padding:10px 13px; text-align:right; border-bottom:1px solid var(--rule-2); vertical-align:top; word-break:keep-all}
+th:first-child,td:first-child{text-align:left}
+td:not(:first-child){font-family:var(--num); font-variant-numeric:tabular-nums}
+thead th{background:var(--surface-2); font-family:var(--eb); font-size:11px; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--ink-3); font-weight:500; border-bottom:1px solid var(--rule); white-space:nowrap}
+tbody td{color:var(--ink-2); line-height:1.62}
+tbody td:first-child{color:var(--ink); font-weight:600; min-width:130px; font-family:var(--kr)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+tbody tr.sum td{background:var(--surface-2); font-weight:600; color:var(--ink)}
+td.hi{font-weight:600; color:var(--ink)}
+td.pos{color:var(--good)} td.neg{color:var(--crit)}
+.cap{font-size:11.5px; color:var(--ink-3); margin:-12px 0 24px; line-height:1.6}
+.grade{display:inline-block; font-family:var(--eb); font-size:9.5px; letter-spacing:.08em; padding:1px 5px;
+  border-radius:3px; border:1px solid var(--rule); color:var(--ink-3); vertical-align:middle; margin-left:5px; font-weight:500}
+.grade.a{color:var(--good); border-color:color-mix(in srgb,var(--good) 40%,transparent); background:var(--good-wash)}
+.grade.b{color:var(--s1); border-color:color-mix(in srgb,var(--s1) 40%,transparent)}
+.grade.c{color:#9A6C04; border-color:color-mix(in srgb,var(--warn) 50%,transparent); background:var(--warn-wash)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .grade.c{color:var(--warn)}}
+:root[data-theme="dark"] .grade.c{color:var(--warn)}
+.grade.d{color:var(--ink-3)}
+.triage{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:var(--rule);
+  border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin:24px 0}
+.triage > div{background:var(--surface); padding:19px 21px 21px}
+.triage h5{font-family:var(--eb); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:11px; font-weight:500}
+.triage .can h5{color:var(--good)} .triage .cant h5{color:var(--crit)} .triage .get h5{color:var(--s1)}
+.triage ul{margin:0; padding-left:16px; font-size:13.2px; color:var(--ink-2); line-height:1.62}
+.triage li{margin-bottom:8px}
+.triage li b{color:var(--ink); font-weight:600}
+figure{margin:24px 0 8px; background:var(--surface); border:1px solid var(--rule); border-radius:8px; padding:20px 22px 16px; box-shadow:var(--shadow)}
+.fig-title{font-size:14.5px; font-weight:600; margin-bottom:3px}
+.fig-sub{font-size:12px; color:var(--ink-3); margin-bottom:12px}
+.legend{display:flex; flex-wrap:wrap; gap:14px; font-size:11.5px; color:var(--ink-3); margin-bottom:10px}
+.legend span{display:flex; align-items:center; gap:6px}
+.legend i{width:11px; height:11px; border-radius:2px; display:inline-block}
+.chart{width:100%; overflow-x:auto}
+figure figcaption{font-size:11.8px; color:var(--ink-3); margin-top:12px; line-height:1.6}
+svg text{font-family:var(--num); font-variant-numeric:tabular-nums}
+#tip{position:fixed; z-index:99; pointer-events:none; background:var(--ink); color:var(--plane); font-size:12px;
+  padding:7px 10px; border-radius:6px; opacity:0; transition:opacity .12s; font-family:var(--num); line-height:1.5; max-width:260px}
+.switch{display:inline-flex; border:1px solid var(--rule); border-radius:7px; overflow:hidden; margin:6px 0 18px; background:var(--surface-2)}
+.switch button{appearance:none; border:none; border-right:1px solid var(--rule); background:none; font:inherit; font-family:var(--kr);
+  font-size:12.5px; padding:9px 16px; cursor:pointer; color:var(--ink-2); white-space:nowrap}
+.switch button:last-child{border-right:none}
+.switch button[aria-pressed="true"]{background:var(--accent); color:#fff; font-weight:600}
+.switch button:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+.vec{background:var(--surface); border:1px solid var(--rule); border-radius:9px; margin-bottom:14px; overflow:hidden; box-shadow:var(--shadow)}
+.vec-head{display:flex; gap:15px; align-items:flex-start; padding:19px 22px 16px; border-bottom:1px solid var(--rule-2)}
+.vec-rank{font-family:var(--eb); font-size:12px; letter-spacing:.1em; color:#fff; background:var(--accent); padding:4px 9px; border-radius:4px; flex:none; margin-top:2px}
+.vec-head h4{font-size:16.5px; margin-bottom:5px; line-height:1.4}
+.vec-head .why{font-size:13.5px; color:var(--ink-2); line-height:1.65}
+.vec-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:var(--rule-2)}
+.vec-grid > div{background:var(--surface); padding:15px 22px 17px}
+.vec-grid dt{font-family:var(--eb); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px}
+.vec-grid dd{margin:0; font-size:13.3px; color:var(--ink-2); line-height:1.65}
+.vec-grid dd strong{color:var(--ink)}
+.vec-grid .big{display:block; font-family:var(--num); font-size:19px; font-weight:600; color:var(--ink); letter-spacing:-.02em; margin-bottom:2px}
+.vec-grid .sfx{color:var(--ink-2)}
+.chk{list-style:none; padding:0; margin:14px 0 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:0 24px}
+.chk li{font-size:13px; color:var(--ink-2); padding:6px 0; display:flex; gap:9px; align-items:flex-start; border-bottom:1px solid var(--rule-2); line-height:1.55}
+.chk li::before{content:'✓'; color:var(--good); font-weight:700; flex:none; font-size:12px; margin-top:2px}
+.chk li.no::before{content:'•'; color:var(--ink-3)}
+details{border:1px solid var(--rule); border-radius:8px; background:var(--surface); margin-bottom:10px; overflow:hidden}
+details summary{padding:14px 20px; cursor:pointer; font-size:14px; font-weight:600; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+'; font-family:var(--num); font-size:17px; color:var(--ink-3); font-weight:400}
+details[open] summary::after{content:'–'}
+details summary:hover{background:var(--surface-2)}
+details summary:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+details .dbody{padding:6px 20px 18px; border-top:1px solid var(--rule-2); font-size:13.6px; color:var(--ink-2); line-height:1.72}
+details .dbody p{max-width:74ch; margin-bottom:12px}
+details .dbody p:last-child{margin-bottom:0}
+details .dbody strong{color:var(--ink)}
+details .dbody table{margin:12px 0}
+footer.doc{margin-top:60px; padding:30px 44px 40px; border-top:1px solid var(--rule); font-size:12px; color:var(--ink-3); line-height:1.75; max-width:1000px}
+footer.doc strong{color:var(--ink-2)}
+@media (max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  .rail{position:static; height:auto; border-right:none; border-bottom:1px solid var(--rule); padding:22px 24px}
+  .rail nav{display:none}
+  .wrap{padding:0 24px}
+  .mast{padding:44px 24px 36px}
+  .mast .meta{display:grid; grid-template-columns:1fr 1fr; gap:18px 20px}
+  footer.doc{padding:28px 24px 36px}
+}
+@media print{
+  .rail,#tip,.switch{display:none!important}
+  body{background:#fff; font-size:10.5pt}
+  .shell{grid-template-columns:1fr}
+  section,figure,.vec,.tbl-wrap{page-break-inside:avoid}
+  section{padding-top:26px}
+  .mast{background:#123C4F!important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  details{border:none} details .dbody{display:block!important}
+}
+</style>
+</head>
+<body>
+<div id="tip"></div>
+<style>
+.mast.plan{background:var(--surface-2); color:var(--ink); border-bottom:3px solid var(--accent)}
+.mast.plan .eyebrow{color:var(--ink-3)}
+.mast.plan .eyebrow .tag{border-color:var(--rule); color:var(--accent)}
+.mast.plan h1{color:var(--ink)}
+.mast.plan .lede{color:var(--ink-2)}
+.mast.plan .meta{border-top-color:var(--rule)}
+.mast.plan .meta dt{color:var(--ink-3)}
+.mast.plan .meta dd{color:var(--ink)}
+@media print{.mast.plan{background:#F7F8F6!important}}
+table.wk{font-size:12.2px}
+table.wk th,table.wk td{padding:8px 9px; white-space:nowrap}
+table.wk tbody td:first-child{min-width:96px}
+td.low{background:var(--crit-wash)!important; color:var(--crit); font-weight:700}
+</style>
+<div class="shell">
+<aside class="rail">
+  <div class="rail-brand">
+    <div class="mark">Juno · Cash Plan</div>
+    <div class="co">(주)노드플로우</div>
+    <div class="sub">13주 현금흐름 계획<br>2026-06-29 ~ 2026-09-27</div>
+  </div>
+  <nav id="nav">
+    <a href="#p0"><span class="n">00</span><span>결론</span></a>
+    <a href="#p1"><span class="n">01</span><span>이 계획을 읽는 법</span></a>
+    <a href="#p2"><span class="n">02</span><span>주별 잔고</span></a>
+    <a href="#p3"><span class="n">03</span><span>유입은 어디서 오나</span></a>
+    <a href="#p4"><span class="n">04</span><span>유출은 어디로 가나</span></a>
+    <a href="#p5"><span class="n">05</span><span>시나리오 3종</span></a>
+    <a href="#p6"><span class="n">06</span><span>주차별 대응</span></a>
+    <a href="#p7"><span class="n">07</span><span>갱신 규칙</span></a>
+  </nav>
+  <div class="rail-foot">
+    <button class="btn" id="themeBtn" type="button">다크 모드</button>
+    <button class="btn" onclick="window.print()" type="button">인쇄 · PDF 저장</button>
+    <div>대외비 · 작성 기준일 2026-08-24</div>
+  </div>
+</aside>
+<main>
+
+<header class="mast plan">
+  <div class="inner">
+    <div class="eyebrow">
+      <span>현금 계획</span>
+      <span class="tag">13주</span>
+      <span class="tag">근거 등급 C·D 포함</span>
+      <span class="tag">진단 리포트와 별도 문서</span>
+      <span class="tag">대외비</span>
+    </div>
+    <h1>앞 13주에 구멍은 없습니다<br>단, 세 가지 조건 위에서만 그렇습니다</h1>
+    <p class="lede">기준 시나리오에서 가장 낮은 잔고는 <strong>4주차(7/20~7/26)의 1.57억</strong>이고, 13주 내내 마이너스가 되는 주는 없습니다. 다만 이건 미회수 채권 3.87억이 지금까지의 회수 속도대로 들어온다는 전제 위에 서 있습니다. 회수가 한 달 더 밀리면 최저 잔고가 1.34억, 부가가치세 정산이 발생하면 1.35억까지 내려갑니다. 셋 다 겹치면 급여 3개월치를 밑돕니다.</p>
+    <dl class="meta">
+      <div><dt>Base</dt><dd>2026-06-29 잔고 1.229억</dd></div>
+      <div><dt>Horizon</dt><dd>13주 (2026-06-29 ~ 09-27)</dd></div>
+      <div><dt>Lowest</dt><dd>1.57억 (기준) / 1.34억 (지연)</dd></div>
+      <div><dt>Alert Line</dt><dd>급여 3개월치 1.43억</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ 00 ============ -->
+<section id="p0">
+  <div class="sec-head"><span class="no">00</span><h2>결론</h2></div>
+  <div class="rule"></div>
+
+  <div class="tiles">
+    <div class="tile neg"><div class="lbl">최저 잔고 시점과 금액 (기준 시나리오)</div><div class="val num">1.57<span class="u">억</span></div><div class="note">4주차 · 7월 20~26일. 급여와 외주비가 같은 주에 겹침</div></div>
+    <div class="tile neg"><div class="lbl">회수가 한 달 더 밀리면</div><div class="val num">1.34<span class="u">억</span></div><div class="note">4주차. 경보선 1.43억을 밑돎</div></div>
+    <div class="tile neg"><div class="lbl">부가세 정산이 발생하면</div><div class="val num">1.35<span class="u">억</span></div><div class="note">13주차. 분기 4,000만원 가정</div></div>
+    <div class="tile"><div class="lbl">13주 순증감 (기준)</div><div class="val num">+0.55<span class="u">억</span></div><div class="note">유입 4.34억 − 유출 3.79억</div></div>
+  </div>
+
+  <div class="callout crit">
+    <div class="ct">가장 먼저 읽으실 것</div>
+    <strong>이 계획의 유입 4.34억 중 3.87억은 이미 판 것을 받는 돈입니다.</strong> 신규 매출이 13주 안에 현금이 되는 금액은 1.76억뿐이고, 그중 실제 13주 안에 들어오는 건 0.88억입니다. 즉 <strong>이번 분기 잔고가 버티는 것은 밀려 있던 채권이 들어오기 때문이지 영업이 현금을 만들어서가 아닙니다.</strong> 같은 구조라면 다음 13주(10~12월)에 다시 같은 자리로 돌아옵니다. 진단 리포트의 개선 벡터 01(회수)이 1번인 이유입니다.
+  </div>
+
+  <div class="callout warn">
+    <div class="ct">이 계획의 시작점에 관하여</div>
+    <strong>확보된 통장 실적은 2026년 6월 29일까지입니다.</strong> 작성 기준일(8월 24일)까지 8주가 이미 지났으므로, 1~8주차는 계획이 아니라 <strong>검증 대상</strong>입니다. 7·8월 통장 내역을 주시면 그 8주를 실적으로 덮어쓰고 13주를 다시 굴립니다. <strong>그때까지 이 계획의 1~8주차는 "이렇게 됐어야 한다"로 읽으십시오.</strong> 실제와 벌어진 부분이 곧 진단의 다음 단서입니다.
+  </div>
+</section>
+
+<!-- ============ 01 ============ -->
+<section id="p1">
+  <div class="sec-head"><span class="no">01</span><h2>이 계획을 읽는 법</h2></div>
+  <p class="sec-sub">모든 숫자에 가정이 괄호로 붙어 있습니다. 가정을 안 읽으면 숫자를 잘못 씁니다.</p>
+  <div class="rule"></div>
+
+  <p class="body"><strong>이 계획은 진단의 연장입니다.</strong> 새 가정을 만들지 않았습니다. 회수 리듬, 지급 조건, 고정비 규모는 전부 진단에서 나온 값을 그대로 넘겼습니다. 다음 표가 그 연결입니다.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>진단에서 나온 값</th><th style="text-align:left">계획에 어떻게 들어갔나</th><th>등급</th></tr></thead>
+    <tbody>
+      <tr><td>거래처별 실측 회수일수</td><td style="text-align:left;font-family:var(--kr)">미회수 24건 각각에 그 거래처의 최근 12개월 평균 회수일을 더해 예상 입금 주차를 배정. 에이치케이리테일은 91일, 나머지는 43~63일</td><td><span class="grade b">B</span></td></tr>
+      <tr><td>결제조건별 회수일수</td><td style="text-align:left;font-family:var(--kr)">실측 이력이 없는 거래처는 결제조건 평균(검수 후 30일은 40일, 45일은 49일, 60일은 58일, 월말 마감 익월 말일은 66일)을 적용</td><td><span class="grade b">B</span></td></tr>
+      <tr><td>인건비 월액</td><td style="text-align:left;font-family:var(--kr)">매월 25일에 4,760만원. 2026년 6월 통장 실적 그대로. 인원 변동 없음 가정</td><td><span class="grade a">A</span></td></tr>
+      <tr><td>외부 인력비 지급 리듬</td><td style="text-align:left;font-family:var(--kr)">월 6,010만원을 13·18·24일에 3분할. 2026년 상반기 월평균과 실제 지급일 분포 기준</td><td><span class="grade b">B</span></td></tr>
+      <tr><td>준고정비 연액</td><td style="text-align:left;font-family:var(--kr)">임차료 450만(월말) + 관리·통신·보험 107만(월초) + 클라우드·API 504만(5일) + 기타 운영 709만(3분할)</td><td><span class="grade a">A</span></td></tr>
+      <tr><td>차입 이자</td><td style="text-align:left;font-family:var(--kr)">매월 12일 81.25만원. 원금 상환 스케줄 없음(만기 일시)</td><td><span class="grade a">A</span></td></tr>
+      <tr><td>세금 납부 주기</td><td style="text-align:left;font-family:var(--kr)">7월 25일 부가가치세 222만원(통장 실적 패턴), 8월 31일 법인세 중간예납 235만원(2025년 귀속의 50% 추정)</td><td><span class="grade c">C</span></td></tr>
+      <tr><td>계절성 판정</td><td style="text-align:left;font-family:var(--kr)"><strong>판정 불가</strong>. 신규 매출은 월 균등 배분했고, 균등 가정임을 명시합니다</td><td><span class="grade d">D</span></td></tr>
+      <tr><td>거래처 집중도</td><td style="text-align:left;font-family:var(--kr)">에이치케이리테일 입금 지연을 시나리오 2의 충격 요인으로 사용</td><td><span class="grade b">B</span></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">진단에서 나오지 않은 값은 이 계획에서도 만들지 않았습니다. 신규 매출과 부가세만 예외적으로 가정을 세웠고, 각각 근거 등급 C·D로 표시하고 가정 원장에 올렸습니다.</p>
+
+  <div class="callout acc">
+    <div class="ct">신규 매출 가정</div>
+    7·8·9월 발행 매출을 <strong>월 1.18억(공급가액)</strong>으로 놓았습니다. 내역은 <strong>에이치케이리테일 리테이너 3,800만원</strong>(계약에 따른 확정분, 등급 B) + <strong>구축 프로젝트 8,000만원</strong>(2026년 상반기 월평균 9,210만원보다 13% 보수적으로 잡음, 등급 C)입니다. 수주 잔고와 견적 제출 현황을 받지 못해 이 부분이 이 계획에서 가장 약한 고리입니다. 다만 <strong>7·8월 발행분 중 13주 안에 입금되는 것은 8,800만원 한 건뿐</strong>이라 최저 잔고에 미치는 영향은 제한적입니다.
+  </div>
+</section>
+<!-- ============ 02 ============ -->
+<section id="p2">
+  <div class="sec-head"><span class="no">02</span><h2>주별 잔고</h2></div>
+  <p class="sec-sub">기준 시나리오. 13주 전체를 한 표에 놓습니다. 가로로 스크롤하십시오.</p>
+  <div class="rule"></div>
+
+  <div class="tbl-wrap"><table class="wk">
+    <thead><tr><th>주차 (백만원)</th><th>W1</th><th>W2</th><th>W3</th><th>W4</th><th>W5</th><th>W6</th><th>W7</th><th>W8</th><th>W9</th><th>W10</th><th>W11</th><th>W12</th><th>W13</th></tr></thead>
+    <tbody>
+      <tr><td>기간</td><td>6/29</td><td>7/6</td><td>7/13</td><td>7/20</td><td>7/27</td><td>8/3</td><td>8/10</td><td>8/17</td><td>8/24</td><td>8/31</td><td>9/7</td><td>9/14</td><td>9/21</td></tr>
+      <tr><td>기초 잔고</td><td>122.9</td><td>162.3</td><td>177.1</td><td>188.1</td><td>157.1</td><td>211.9</td><td>223.2</td><td>218.0</td><td>223.0</td><td>301.8</td><td>293.4</td><td>270.7</td><td>248.2</td></tr>
+      <tr><td>유입</td><td class="pos">45.5</td><td class="pos">17.4</td><td class="pos">53.5</td><td class="pos">41.8</td><td class="pos">59.2</td><td class="pos">17.4</td><td class="pos">17.4</td><td class="pos">27.5</td><td class="pos">153.8</td><td>0.0</td><td>0.0</td><td>0.0</td><td>0.0</td></tr>
+      <tr><td>유출</td><td class="neg">6.1</td><td class="neg">2.6</td><td class="neg">42.5</td><td class="neg">72.7</td><td class="neg">4.5</td><td class="neg">6.1</td><td class="neg">22.6</td><td class="neg">22.5</td><td class="neg">75.0</td><td class="neg">8.5</td><td class="neg">22.6</td><td class="neg">22.5</td><td class="neg">70.5</td></tr>
+      <tr class="sum"><td>기말 잔고</td><td>162.3</td><td>177.1</td><td>188.1</td><td class="low">157.1</td><td>211.9</td><td>223.2</td><td>218.0</td><td>223.0</td><td>301.8</td><td>293.4</td><td>270.7</td><td>248.2</td><td>177.8</td></tr>
+      <tr><td>급여 3개월치 대비</td><td>+1.9</td><td>+3.4</td><td>+4.5</td><td class="neg">+1.4</td><td>+6.9</td><td>+8.0</td><td>+7.5</td><td>+8.0</td><td>+15.9</td><td>+15.1</td><td>+12.8</td><td>+10.5</td><td>+3.5</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">단위 백만원. 기초 잔고 1.229억은 2026년 6월 29일 국민은행 주계좌 실제 잔액입니다 <span class="grade a">A</span>. 급여 3개월치 경보선은 1.43억(4,760만원 × 3)이며, 마지막 행은 잔고에서 이 경보선을 뺀 값입니다. W13의 기말 잔고가 낮아 보이는 것은 9월 25일 급여가 나가고 그 주에 예정된 유입이 없기 때문이며, 에이치케이리테일 6월 말 발행분 4,180만원이 9월 4일에 들어오는 것으로 배정돼 W10 이후 유입이 비어 있습니다.</p>
+
+  <figure>
+    <div class="fig-title">13주 주별 기말 잔고, 시나리오 3종</div>
+    <div class="fig-sub">점선은 급여 3개월치 경보선 1.43억. 단위 백만원.</div>
+    <div class="legend"><span><i style="background:var(--s1)"></i>기준</span><span><i style="background:var(--s2)"></i>회수 1개월 추가 지연</span><span><i style="background:var(--warn)"></i>부가세 정산 발생</span></div>
+    <div class="chart" id="c-bal"></div>
+    <figcaption>세 시나리오 모두 마이너스가 되는 주는 없습니다. 다만 회수 지연 시나리오는 4주차부터 8주차까지 다섯 주 연속으로 경보선 부근에 머무릅니다. 그 구간에서는 <strong>새로운 지출 결정을 하지 마십시오.</strong></figcaption>
+  </figure>
+
+  <div class="callout acc">
+    <div class="ct">한 줄 판정</div>
+    <strong>4주차(7월 20~26일)가 이번 분기의 고비입니다.</strong> 급여 4,760만원, 외주비 2,010만원, 부가세 222만원이 같은 주에 겹치는데 유입은 4,180만원뿐입니다. 한 주 순유출이 3,090만원입니다. 이 주 전에 회수를 앞당기는 것이 이 계획에서 가장 효율이 높은 행동입니다.
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section id="p3">
+  <div class="sec-head"><span class="no">03</span><h2>유입은 어디서 오나</h2></div>
+  <p class="sec-sub">4.34억 중 3.87억이 이미 판 것입니다. 즉 이 계획은 회수 계획입니다.</p>
+  <div class="rule"></div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>유입 항목</th><th>금액 (백만)</th><th style="text-align:left">가정</th><th>등급</th></tr></thead>
+    <tbody>
+      <tr><td>미회수 채권 중 이미 예상 시점을 넘긴 분</td><td class="hi">139.6</td><td style="text-align:left;font-family:var(--kr)">12건. W1~W8에 균등 분산(주당 1,745만원). <strong>실제로는 언제 들어올지 모름</strong>이라 균등으로 놓았습니다</td><td><span class="grade c">C</span></td></tr>
+      <tr><td>미회수 채권 중 시점 도래 전</td><td class="hi">247.8</td><td style="text-align:left;font-family:var(--kr)">12건. 각 거래처 실측 회수일을 발행일에 더해 주차 배정. 에이치케이리테일 3건 1.254억 포함</td><td><span class="grade b">B</span></td></tr>
+      <tr><td>7월 발행 구축분 회수</td><td>88.0</td><td style="text-align:left;font-family:var(--kr)">7월 15일 발행 가정, 45일 후인 8월 29일 입금(W9)</td><td><span class="grade c">C</span></td></tr>
+      <tr><td>8월 발행 구축분 회수</td><td>0.0</td><td style="text-align:left;font-family:var(--kr)">9월 29일 입금 예정이라 <strong>13주 밖</strong>. 계획에 넣지 않았습니다</td><td><span class="grade c">C</span></td></tr>
+      <tr><td>7·8월 리테이너 회수</td><td>0.0</td><td style="text-align:left;font-family:var(--kr)">에이치케이리테일 실측 회수 91일 기준이면 10월·11월 입금. <strong>13주 밖</strong></td><td><span class="grade b">B</span></td></tr>
+      <tr class="sum"><td>유입 계</td><td>433.6</td><td style="text-align:left;font-family:var(--kr)">그중 <strong>89.3%가 이미 발행한 세금계산서의 회수</strong></td><td></td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">모든 금액은 부가세 포함 입금액 기준입니다. 진단 리포트의 매출채권 3.52억은 공급가액이고, 실제 통장에 찍히는 금액은 부가세를 더한 3.87억입니다. 대손은 없다고 전제했습니다(30개월간 미회수 종결 0건, 등급 B).</p>
+
+  <div class="callout warn">
+    <div class="ct">주목하실 것</div>
+    <strong>13주 후반(W10~W13) 4주 동안 유입이 0입니다.</strong> 계산 착오가 아니라, 7·8월에 발행한 세금계산서가 회수되는 시점이 전부 13주 밖으로 나가기 때문입니다. 회수일 82일이 만드는 구조입니다. 잔고가 W9에 3.02억까지 올라갔다가 W13에 1.78억으로 떨어지는 것도 같은 이유입니다. <strong>10월에는 회수가 다시 들어오지만, 회수일을 60일로 줄이지 않으면 이 톱니 모양은 매 분기 반복됩니다.</strong>
+  </div>
+</section>
+
+<!-- ============ 04 ============ -->
+<section id="p4">
+  <div class="sec-head"><span class="no">04</span><h2>유출은 어디로 가나</h2></div>
+  <p class="sec-sub">3.79억. 항목별 주차 배치와 그 근거입니다.</p>
+  <div class="rule"></div>
+
+  <div class="tbl-wrap"><table class="wk">
+    <thead><tr><th>항목 (백만원)</th><th>W1</th><th>W2</th><th>W3</th><th>W4</th><th>W5</th><th>W6</th><th>W7</th><th>W8</th><th>W9</th><th>W10</th><th>W11</th><th>W12</th><th>W13</th><th>계</th></tr></thead>
+    <tbody>
+      <tr><td>급여 (25일)</td><td>–</td><td>–</td><td>–</td><td>47.6</td><td>–</td><td>–</td><td>–</td><td>–</td><td>47.6</td><td>–</td><td>–</td><td>–</td><td>47.6</td><td class="hi">142.8</td></tr>
+      <tr><td>외주·프리랜서</td><td>–</td><td>–</td><td>40.0</td><td>20.1</td><td>–</td><td>–</td><td>20.0</td><td>20.0</td><td>20.1</td><td>–</td><td>20.0</td><td>20.0</td><td>20.1</td><td class="hi">180.3</td></tr>
+      <tr><td>클라우드·API (5일)</td><td>5.0</td><td>–</td><td>–</td><td>–</td><td>–</td><td>5.0</td><td>–</td><td>–</td><td>–</td><td>5.0</td><td>–</td><td>–</td><td>–</td><td>15.1</td></tr>
+      <tr><td>임차·관리·통신·보험</td><td>1.1</td><td>–</td><td>–</td><td>–</td><td>4.5</td><td>1.1</td><td>–</td><td>–</td><td>4.5</td><td>1.1</td><td>–</td><td>–</td><td>–</td><td>12.3</td></tr>
+      <tr><td>기타 운영비</td><td>–</td><td>1.8</td><td>2.5</td><td>2.8</td><td>–</td><td>–</td><td>1.8</td><td>2.5</td><td>2.8</td><td>–</td><td>1.8</td><td>2.5</td><td>2.8</td><td>21.3</td></tr>
+      <tr><td>차입 이자 (12일)</td><td>–</td><td>0.8</td><td>–</td><td>–</td><td>–</td><td>–</td><td>0.8</td><td>–</td><td>–</td><td>–</td><td>0.8</td><td>–</td><td>–</td><td>2.4</td></tr>
+      <tr><td>세금</td><td>–</td><td>–</td><td>–</td><td>2.2</td><td>–</td><td>–</td><td>–</td><td>–</td><td>–</td><td>2.4</td><td>–</td><td>–</td><td>–</td><td>4.6</td></tr>
+      <tr class="sum"><td>유출 계</td><td>6.1</td><td>2.6</td><td>42.5</td><td>72.7</td><td>4.5</td><td>6.1</td><td>22.6</td><td>22.5</td><td>75.0</td><td>8.5</td><td>22.6</td><td>22.5</td><td>70.5</td><td>378.7</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">급여는 2026년 6월 통장 실적 4,760만원을 인원 변동 없이 3회 반복(등급 A). 외주·프리랜서는 2026년 상반기 월평균 6,010만원을 실제 지급일 분포(13·18·24일)에 맞춰 3분할했습니다(등급 B). W3에 4,000만원이 몰린 것은 6월 말 발행 세금계산서의 결제가 7월 중순에 도래하기 때문입니다. 세금은 7월 25일 부가가치세 222만원(통장 실적 패턴 기준, 등급 C)과 8월 31일 법인세 중간예납 235만원(2025년 귀속 470만원의 50% 추정, 등급 C)입니다.</p>
+
+  <div class="callout crit">
+    <div class="ct">이 표에 없는 것 세 가지</div>
+    <strong>하나, 부가가치세 정산.</strong> 매출·매입 규모로 계산되는 분기 납부액은 약 4,000만원인데 통장 실적은 222만원입니다. 이 차이의 원인은 세무 대리인 확인 사항이며, 만약 정산 유출이 발생하면 시나리오 3이 됩니다.<br>
+    <strong>둘, 퇴직금.</strong> 퇴직급여충당금 누적액이 8,050만원입니다. 13주 안에 퇴사 예정이 확정된 인원이 없어 반영하지 않았습니다. <strong>퇴직연금으로 사외 적립하고 있지 않다면 이 금액은 통장에서 나갑니다.</strong><br>
+    <strong>셋, 성과급.</strong> 2024년 12월 1,008만원, 2025년 12월 2,153만원을 지급하셨습니다. 12월은 13주 밖이라 이 계획에는 없지만, <strong>다음 분기 계획에는 반드시 들어가야 합니다.</strong>
+  </div>
+</section>
+<!-- ============ 05 ============ -->
+<section id="p5">
+  <div class="sec-head"><span class="no">05</span><h2>시나리오 3종</h2></div>
+  <p class="sec-sub">기준 / 회수 1개월 추가 지연 / 부가세 정산 발생. 각각 무엇이 달라지는지.</p>
+  <div class="rule"></div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>시나리오</th><th style="text-align:left">가정</th><th>최저 잔고</th><th>시점</th><th>13주 기말</th></tr></thead>
+    <tbody>
+      <tr><td>1. 기준</td><td style="text-align:left;font-family:var(--kr)">거래처별 실측 회수 속도가 유지됨. 신규 매출 월 1.18억</td><td class="hi">157.1</td><td>W4 (7/20)</td><td>177.8</td></tr>
+      <tr><td>2. 회수 1개월 추가 지연</td><td style="text-align:left;font-family:var(--kr)">에이치케이리테일 3건이 각 30일씩 더 밀리고, 이미 지연된 12건이 W1~W8이 아니라 13주 전체에 균등 분산됨</td><td class="neg hi">133.9</td><td>W4 (7/20)</td><td class="neg">136.0</td></tr>
+      <tr><td>3. 부가세 정산 발생</td><td style="text-align:left;font-family:var(--kr)">7월 27일에 부가가치세 4,300만원이 추가로 나감. 회수는 기준과 동일</td><td class="neg hi">134.8</td><td>W13 (9/21)</td><td class="neg">134.8</td></tr>
+      <tr class="sum"><td>2 + 3 동시 발생</td><td style="text-align:left;font-family:var(--kr)">회수 지연과 부가세 정산이 겹치는 경우</td><td class="neg hi">91.7</td><td>W8 (8/17)</td><td class="neg">93.0</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">단위 백만원. 급여 3개월치 경보선은 1.43억입니다. 시나리오 2·3은 각각 단독으로도 경보선을 밑돌고, 동시에 발생하면 <strong>급여 2개월치(9,520만원)에 근접</strong>합니다. 시나리오 2에는 매출 감소를 넣지 않았습니다. 13주 안에 입금되는 신규 매출이 8,800만원 한 건뿐이라, 매출이 20% 줄어도 이 기간 잔고에는 1,760만원 영향에 그치고 외주비 감소로 일부 상쇄되기 때문입니다. <strong>매출 감소의 충격은 13주가 아니라 그다음 분기에 나타납니다.</strong></p>
+
+  <div class="callout crit">
+    <div class="ct">시나리오 2와 3이 동시에 일어나면</div>
+    5주차부터 8주차까지 네 주 연속으로 1억 안팎에 머무르고, 최저는 8주차 <strong>9,170만원</strong>입니다. 급여 2개월치가 9,520만원이므로 <strong>그 아래입니다.</strong> 이 경우 선택지는 셋입니다. <strong>(가)</strong> 미회수 채권 중 61일 넘은 12건(1.61억)을 집중 회수해 최소 5,000만원을 4주차 전에 당긴다. <strong>(나)</strong> 외주비 지급을 2주 미룬다(2,000만원 규모, 다만 외주사 관계에 부담). <strong>(다)</strong> 한도대출 증액 또는 추가 여신을 <strong>미리</strong> 협의해 둔다. 잔고가 실제로 낮아진 뒤에 은행에 가면 조건이 나빠집니다.<br><br>
+    <strong>지금 하실 일은 (가)와 (다)를 병행하는 것입니다.</strong> (나)는 마지막 수단으로 두십시오. 외주사 7곳이 이 회사 생산 능력의 절반을 담당하고 있습니다.
+  </div>
+</section>
+
+<!-- ============ 06 ============ -->
+<section id="p6">
+  <div class="sec-head"><span class="no">06</span><h2>주차별 대응</h2></div>
+  <p class="sec-sub">예보로 끝내지 않습니다. 어느 주 앞에서 무엇을 해야 하는지 붙입니다.</p>
+  <div class="rule"></div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>시점</th><th style="text-align:left">무엇을</th><th style="text-align:left">왜</th></tr></thead>
+    <tbody>
+      <tr><td>즉시 (이번 주)</td><td style="text-align:left;font-family:var(--kr)"><strong>7·8월 통장 내역을 뽑아 1~8주차를 실적으로 덮어쓴다.</strong> 그리고 이 계획을 다시 굴린다</td><td style="text-align:left;font-family:var(--kr)">현재 1~8주차는 검증되지 않은 계획입니다. 실제와 벌어진 부분이 다음 진단의 단서입니다</td></tr>
+      <tr><td>즉시 (이번 주)</td><td style="text-align:left;font-family:var(--kr)"><strong>세무 대리인에게 부가가치세 납부 내역을 확인한다.</strong> 2024·2025·2026 상반기 신고서와 실제 납부액</td><td style="text-align:left;font-family:var(--kr)">이 계획의 최대 불확실성입니다. 시나리오 3의 발생 여부가 여기서 갈립니다</td></tr>
+      <tr><td>W1~W2 (7월 초)</td><td style="text-align:left;font-family:var(--kr)"><strong>61일 넘은 미회수 12건(1.61억)에 지급 예정일을 확인받는다.</strong> 에이치케이리테일 3건(1.25억)이 먼저</td><td style="text-align:left;font-family:var(--kr)">4주차 고비를 넘기는 가장 효율적인 방법. 5,000만원만 앞당겨도 최저 잔고가 2.07억이 됩니다</td></tr>
+      <tr><td>W3 직전 (7월 10일경)</td><td style="text-align:left;font-family:var(--kr)"><strong>7월 외주비 지급 예정액을 확정한다.</strong> W3·W4에 6,010만원이 나갑니다</td><td style="text-align:left;font-family:var(--kr)">W3~W4 2주 동안 유출 1.15억, 유입 9,530만원. 이 구간이 가장 타이트합니다</td></tr>
+      <tr><td>W4 (7월 20~26일)</td><td style="text-align:left;font-family:var(--kr)"><strong>최저 잔고 주차.</strong> 이 주에는 신규 지출 결정을 하지 않는다. 장비 구입·채용·계약금 지급 전부 다음 주로</td><td style="text-align:left;font-family:var(--kr)">급여 4,760만 + 외주 2,010만 + 세금 222만이 겹칩니다</td></tr>
+      <tr><td>W5 (8월 초)</td><td style="text-align:left;font-family:var(--kr)"><strong>은행에 한도대출 증액 가능성을 타진해 둔다.</strong> 실행이 아니라 사전 협의</td><td style="text-align:left;font-family:var(--kr)">현재 한도 1.5억이 전액 소진 상태이고 원금 상환 이력이 없습니다. 잔고가 낮아진 뒤에 가면 조건이 나빠집니다</td></tr>
+      <tr><td>W9~W10 (8월 말)</td><td style="text-align:left;font-family:var(--kr)"><strong>잔고가 3억까지 오르는 구간.</strong> 여기서 차입 원금 일부 상환을 검토한다</td><td style="text-align:left;font-family:var(--kr)">잔고가 높을 때가 유일한 상환 기회입니다. 다만 W13에 1.78억으로 내려가므로 <strong>5,000만원 이내</strong>로 제한하십시오</td></tr>
+      <tr><td>W13 이후 (10월)</td><td style="text-align:left;font-family:var(--kr)"><strong>다음 13주를 굴린다.</strong> 12월 성과급(2025년 2,153만원)과 4분기 부가세를 반드시 넣는다</td><td style="text-align:left;font-family:var(--kr)">이 계획에 없는 유출입니다. 4분기는 이번 분기보다 타이트할 가능성이 있습니다</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout acc">
+    <div class="ct">한 줄 판정</div>
+    이번 분기에 하실 일은 딱 하나로 줄어듭니다. <strong>이미 판 3.87억을 예정보다 빨리 받는 것.</strong> 5,000만원을 4주차 전에 당기면 세 시나리오 모두 경보선 위로 올라갑니다.
+  </div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section id="p7">
+  <div class="sec-head"><span class="no">07</span><h2>갱신 규칙</h2></div>
+  <p class="sec-sub">계획은 한 번 만들고 끝내면 예보에 그칩니다. 매주 굴려야 자금 사고를 잡습니다.</p>
+  <div class="rule"></div>
+
+  <p class="body"><strong>매주 월요일, 15분.</strong> 지난주 통장 실적으로 그 주를 덮어쓰고, 13주를 한 칸 밀어서 다시 굴립니다. 월 단위로는 자금 사고를 못 잡습니다. 이 회사는 급여가 25일, 외주비가 13·18·24일에 나가서 <strong>월 후반 2주에 유출이 집중</strong>되는데, 월 단위로 보면 그 안에서 잔고가 얼마나 내려가는지 안 보입니다.</p>
+
+  <p class="body">매주 볼 숫자는 넷입니다. <strong>지난주 실제 잔고, 미회수 채권 총액, 61일 초과 미회수 금액, 앞 4주 최저 예상 잔고.</strong> 이 넷이 스프레드시트 한 줄이면 됩니다.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>경보 단계</th><th>기준</th><th style="text-align:left">할 일</th></tr></thead>
+    <tbody>
+      <tr><td>정상</td><td class="pos">2.00억 초과</td><td style="text-align:left;font-family:var(--kr)">평상 운영. 차입 원금 상환 검토 가능</td></tr>
+      <tr><td>주의</td><td>1.43억 ~ 2.00억</td><td style="text-align:left;font-family:var(--kr)">신규 지출 결정 보류. 61일 초과 미회수 건에 주 2회 연락</td></tr>
+      <tr><td>경보</td><td class="neg">0.95억 ~ 1.43억</td><td style="text-align:left;font-family:var(--kr)">급여 3개월치 미달. 외주비 지급 시점 조정 검토, 은행 사전 협의 실행</td></tr>
+      <tr><td>위험</td><td class="neg">0.95억 미만</td><td style="text-align:left;font-family:var(--kr)">급여 2개월치 미달. 대표 가수금 또는 추가 여신을 <strong>그 주 안에</strong> 확보</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">경보선은 급여 통장 유출액 4,760만원의 배수입니다(2개월 9,520만원, 3개월 1.43억). 인원이 바뀌면 경보선도 다시 계산하십시오. 이 회사는 인건비가 월 유출의 38%를 차지해 급여 기준 경보선이 가장 실용적입니다.</p>
+
+  <div class="callout warn">
+    <div class="ct">이 계획을 다시 만들어야 하는 조건</div>
+    <strong>하나,</strong> 7·8월 실적을 넣었을 때 실제 잔고가 계획과 3,000만원 이상 벌어지면 가정 자체를 다시 봅니다. <strong>둘,</strong> 부가가치세 확인 결과가 나오면 즉시. <strong>셋,</strong> 에이치케이리테일 리테이너가 갱신되지 않거나 조건이 바뀌면 즉시. 이 한 건이 이 계획 유입의 29%입니다. <strong>넷,</strong> 인원이 바뀌면 즉시. 급여는 이 계획에서 가장 큰 확정 유출입니다.
+  </div>
+</section>
+
+</div>
+
+<footer class="doc">
+  <p><strong>이 문서는 재무 진단의 부속 계획이며 세무 처리·감사 의견·투자 자문이 아닙니다.</strong> 이 문서의 모든 미래 숫자는 추정이며 근거 등급 C·D를 포함합니다. 그래서 진단 리포트와 파일을 분리했습니다. 확정된 숫자는 2026년 6월 29일 기준 통장 잔액 1.229억과 미회수 세금계산서 24건 3.874억뿐입니다. 부가가치세를 포함한 세무 신고 및 회계 처리에 관한 판단은 세무 전문가의 확인이 필요합니다.</p>
+  <p style="margin-top:14px">단위는 백만원 소수 첫째 자리입니다. 음수는 −(U+2212)로 표기했습니다. 반올림으로 항목 합과 계가 0.1 차이 날 수 있습니다.</p>
+  <p style="margin-top:14px">Juno · 재무 판독 · 개선 파트너 · 13주 현금흐름 계획 · 작성 기준일 2026-08-24 · 대외비</p>
+</footer>
+</main>
+</div>
+
+<script>
+const NS='http://www.w3.org/2000/svg';
+function el(n,a){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;}
+function svgRoot(host,w,h){host.innerHTML='';const s=el('svg',{viewBox:`0 0 ${w} ${h}`,width:'100%',role:'img'});
+  s.style.display='block';s.style.minWidth=(w<520?w:520)+'px';host.appendChild(s);return s;}
+function txt(p,x,y,t,o){const a=Object.assign({x,y,fill:'var(--ink-3)','font-size':11},o||{});
+  const e=el('text',a);e.textContent=t;p.appendChild(e);return e;}
+const TIP=document.getElementById('tip');
+function bindTip(node,html){
+  node.style.cursor='crosshair';
+  const show=ev=>{TIP.innerHTML=html;TIP.style.opacity=1;
+    const x=Math.min(ev.clientX+14,innerWidth-TIP.offsetWidth-10);
+    TIP.style.left=x+'px';TIP.style.top=(ev.clientY-TIP.offsetHeight-12)+'px';};
+  node.addEventListener('mouseenter',show);node.addEventListener('mousemove',show);
+  node.addEventListener('mouseleave',()=>TIP.style.opacity=0);
+}
+(function(){
+  const host=document.getElementById('c-bal'); if(!host) return;
+  const W=760,H=320,L=50,R=22,T=28,B=58;
+  const s=svgRoot(host,W,H);
+  const WK=['6/29','7/6','7/13','7/20','7/27','8/3','8/10','8/17','8/24','8/31','9/7','9/14','9/21'];
+  const S=[{n:'기준',c:'--s1',v:[162.3,177.1,188.1,157.1,211.9,223.2,218.0,223.0,301.8,293.4,270.7,248.2,177.8]},
+           {n:'회수 1개월 지연',c:'--s2',v:[156.4,165.5,170.6,133.9,141.0,146.5,135.5,134.7,225.1,228.3,217.3,206.4,136.0]},
+           {n:'부가세 정산',c:'--warn',v:[162.3,177.1,188.1,157.1,168.9,180.2,175.0,180.0,258.8,250.4,227.7,205.2,134.8]}];
+  const max=320, iw=W-L-R, ih=H-T-B;
+  const x=i=>L+(iw/(WK.length-1))*i, y=v=>T+ih-(v/max)*ih;
+  for(let g=0;g<=max;g+=80){
+    s.appendChild(el('line',{x1:L,x2:W-R,y1:y(g),y2:y(g),stroke:'var(--rule)','stroke-width':1}));
+    txt(s,L-9,y(g)+4,g+'',{'text-anchor':'end'});
+  }
+  s.appendChild(el('rect',{x:L,y:y(143),width:iw,height:T+ih-y(143),fill:'var(--crit)',opacity:.05}));
+  s.appendChild(el('line',{x1:L,x2:W-R,y1:y(143),y2:y(143),stroke:'var(--crit)','stroke-width':1.4,'stroke-dasharray':'5 4'}));
+  txt(s,W-R-4,y(143)-7,'급여 3개월치 143',{'text-anchor':'end','font-size':10.5,fill:'var(--crit)'});
+  WK.forEach((t,i)=>{ if(i%2===0||i===12) txt(s,x(i),H-38,t,{'text-anchor':'middle','font-size':10.5,fill:'var(--ink-2)'});
+    txt(s,x(i),H-22,'W'+(i+1),{'text-anchor':'middle','font-size':10,fill:'var(--ink-3)'}); });
+  S.forEach(ser=>{
+    s.appendChild(el('path',{d:ser.v.map((v,i)=>(i?'L':'M')+x(i)+','+y(v)).join(' '),
+      stroke:`var(${ser.c})`,'stroke-width':2.2,fill:'none','stroke-linecap':'round','stroke-linejoin':'round'}));
+    ser.v.forEach((v,i)=>{
+      const c=el('circle',{cx:x(i),cy:y(v),r:3.6,fill:`var(${ser.c})`,stroke:'var(--surface)','stroke-width':1.4});
+      bindTip(c,`<b>W${i+1} (${WK[i]})</b><br>${ser.n} ${v.toFixed(1)}백만<br>경보선 대비 ${(v-143).toFixed(1)}`);
+      s.appendChild(c);
+    });
+  });
+  const lows=[[3,157.1,'--s1'],[3,133.9,'--s2'],[12,134.8,'--warn']];
+  lows.forEach(l=>{
+    s.appendChild(el('circle',{cx:x(l[0]),cy:y(l[1]),r:7,fill:'none',stroke:`var(${l[2]})`,'stroke-width':1.6}));
+  });
+  txt(s,L,H-6,'동그라미가 각 시나리오의 최저 잔고 시점입니다. 단위 백만원.',{'font-size':11});
+})();
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
+    links.forEach(l=>l.classList.toggle('on', l.getAttribute('href')==='#'+e.target.id));}});},
+    {rootMargin:'-15% 0px -70% 0px', threshold:0});
+  secs.forEach(x=>io.observe(x));
+})();
+(function(){
+  const b=document.getElementById('themeBtn'); if(!b) return;
+  const sysDark=matchMedia('(prefers-color-scheme: dark)');
+  const label=()=>{const cur=document.documentElement.getAttribute('data-theme');
+    b.textContent=(cur?cur==='dark':sysDark.matches)?'라이트 모드':'다크 모드';};
+  label();
+  b.addEventListener('click',()=>{const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur?cur==='dark':sysDark.matches;
+    document.documentElement.setAttribute('data-theme',dark?'light':'dark');label();});
+  sysDark.addEventListener('change',label);
+})();
+</script>
+</body>
+</html>
