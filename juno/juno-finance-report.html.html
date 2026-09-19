@@ -1,0 +1,1070 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>(주)노드플로우 · 재무 판독 리포트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Oswald:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+:root{
+  color-scheme: light;
+  --plane:#F1F2F0; --surface:#FFFFFF; --surface-2:#F7F8F6;
+  --ink:#14181B; --ink-2:#525A60; --ink-3:#878F94;
+  --rule:#DEE1DE; --rule-2:#EAEDEA;
+  --accent:#123C4F; --accent-2:#1E5C74; --accent-wash:#E8F0F3;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --good:#0ca30c; --warn:#fab219; --crit:#d03b3b;
+  --crit-wash:#FBECEC; --warn-wash:#FDF4E1; --good-wash:#E9F6E9;
+  --shadow:0 1px 2px rgba(20,24,27,.05), 0 8px 24px -12px rgba(20,24,27,.14);
+  --kr:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Apple SD Gothic Neo','Malgun Gothic','Noto Sans KR',sans-serif;
+  --num:'Inter','Pretendard Variable',Pretendard,system-ui,sans-serif;
+  --eb:'Oswald','Pretendard Variable',Pretendard,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  color-scheme: dark;
+  --plane:#0E1113; --surface:#171B1E; --surface-2:#1D2225;
+  --ink:#F2F4F3; --ink-2:#AEB6BB; --ink-3:#7E878C;
+  --rule:#2B3134; --rule-2:#23282B;
+  --accent:#8FC4D6; --accent-2:#A9D4E3; --accent-wash:#17323D;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --crit:#e66767; --crit-wash:#3A2222; --warn-wash:#332912; --good-wash:#16301A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --plane:#0E1113; --surface:#171B1E; --surface-2:#1D2225;
+  --ink:#F2F4F3; --ink-2:#AEB6BB; --ink-3:#7E878C;
+  --rule:#2B3134; --rule-2:#23282B;
+  --accent:#8FC4D6; --accent-2:#A9D4E3; --accent-wash:#17323D;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --crit:#e66767; --crit-wash:#3A2222; --warn-wash:#332912; --good-wash:#16301A;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth; scroll-padding-top:24px}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+body{margin:0; background:var(--plane); color:var(--ink); font-family:var(--kr); font-size:15px; line-height:1.72;
+  -webkit-font-smoothing:antialiased; word-break:keep-all; overflow-wrap:break-word;}
+h1,h2,h3,h4,h5{margin:0; text-wrap:balance; letter-spacing:-.021em; line-height:1.28; font-weight:700; word-break:keep-all}
+p{margin:0; word-break:keep-all}
+a{color:var(--accent-2)}
+.num{font-family:var(--num); font-variant-numeric:tabular-nums}
+.shell{display:grid; grid-template-columns:250px minmax(0,1fr); max-width:1440px; margin:0 auto}
+.rail{position:sticky; top:0; height:100vh; padding:34px 22px 34px 30px; border-right:1px solid var(--rule);
+  background:var(--surface); display:flex; flex-direction:column; gap:22px; overflow-y:auto;}
+.rail-brand{display:flex; flex-direction:column; gap:5px}
+.rail-brand .mark{font-family:var(--eb); font-weight:600; font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--accent)}
+.rail-brand .co{font-size:19px; font-weight:700; letter-spacing:-.02em}
+.rail-brand .sub{font-size:11.5px; color:var(--ink-3); line-height:1.5}
+.rail nav{display:flex; flex-direction:column; gap:1px}
+.rail nav a{display:flex; gap:10px; align-items:baseline; padding:7px 10px; border-radius:5px; text-decoration:none;
+  color:var(--ink-2); font-size:13px; line-height:1.4; border-left:2px solid transparent; transition:background .15s,color .15s;}
+.rail nav a .n{font-family:var(--eb); font-size:10.5px; color:var(--ink-3); min-width:16px}
+.rail nav a:hover{background:var(--surface-2); color:var(--ink)}
+.rail nav a.on{background:var(--accent-wash); color:var(--accent); font-weight:600; border-left-color:var(--accent)}
+.rail nav a.on .n{color:var(--accent)}
+.rail-foot{margin-top:auto; font-size:11px; color:var(--ink-3); display:flex; flex-direction:column; gap:9px}
+.btn{appearance:none; border:1px solid var(--rule); background:var(--surface-2); color:var(--ink-2); font:inherit;
+  font-size:12px; padding:6px 11px; border-radius:5px; cursor:pointer; font-family:var(--kr)}
+.btn:hover{border-color:var(--ink-3); color:var(--ink)}
+.btn:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+main{padding:0 0 90px; min-width:0}
+.wrap{max-width:1000px; padding:0 44px}
+.mast{background:var(--accent); color:#fff; padding:60px 44px 46px; position:relative; overflow:hidden}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .mast{background:#10262F}}
+:root[data-theme="dark"] .mast{background:#10262F}
+.mast .inner{max-width:1000px}
+.mast .eyebrow{font-family:var(--eb); font-size:11px; letter-spacing:.2em; text-transform:uppercase;
+  color:rgba(255,255,255,.72); display:flex; gap:14px; align-items:center; margin-bottom:20px; flex-wrap:wrap}
+.mast .eyebrow .tag{border:1px solid rgba(255,255,255,.34); padding:3px 8px; border-radius:3px}
+.mast h1{font-size:clamp(28px,4.2vw,44px); font-weight:800; letter-spacing:-.032em; color:#fff; margin-bottom:16px}
+.mast .lede{font-size:16.5px; line-height:1.7; color:rgba(255,255,255,.86); max-width:64ch}
+.mast .meta{display:flex; flex-wrap:wrap; gap:0 34px; margin-top:32px; padding-top:22px; border-top:1px solid rgba(255,255,255,.2)}
+.mast .meta div{display:flex; flex-direction:column; gap:2px}
+.mast .meta dt{font-family:var(--eb); font-size:10px; letter-spacing:.16em; text-transform:uppercase; color:rgba(255,255,255,.6)}
+.mast .meta dd{margin:0; font-size:14px; color:#fff; font-weight:500}
+section{padding:56px 0 10px}
+.sec-head{display:flex; gap:16px; align-items:baseline; margin-bottom:8px}
+.sec-head .no{font-family:var(--eb); font-size:12px; font-weight:500; letter-spacing:.14em; color:var(--accent);
+  border-bottom:2px solid var(--accent); padding-bottom:2px; flex:none}
+.sec-head h2{font-size:26px; font-weight:700; letter-spacing:-.028em}
+.sec-sub{color:var(--ink-2); font-size:15px; max-width:70ch; margin-bottom:26px}
+.rule{height:1px; background:var(--rule); margin:0 0 26px}
+p.body{max-width:70ch; margin-bottom:15px; color:var(--ink-2)}
+p.body strong{color:var(--ink); font-weight:600}
+.lead{font-size:17px; line-height:1.68; color:var(--ink); max-width:66ch; margin-bottom:20px; font-weight:500}
+.tiles{display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:1px; background:var(--rule);
+  border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin-bottom:30px}
+.tile{background:var(--surface); padding:18px 20px 17px; display:flex; flex-direction:column; gap:5px}
+.tile .lbl{font-size:11.5px; color:var(--ink-3); line-height:1.4}
+.tile .val{font-family:var(--num); font-size:27px; font-weight:600; letter-spacing:-.03em; line-height:1.1}
+.tile .val .u{font-size:14px; font-weight:500; color:var(--ink-2); margin-left:2px}
+.tile .note{font-size:11.5px; color:var(--ink-3)}
+.tile.neg .val{color:var(--crit)} .tile.pos .val{color:var(--good)}
+.finding{display:flex; gap:16px; background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+  border-radius:8px; padding:19px 22px; margin-bottom:12px; box-shadow:var(--shadow)}
+.finding.crit{border-left-color:var(--crit)} .finding.warn{border-left-color:var(--warn)}
+.finding .fno{font-family:var(--eb); font-size:13px; color:var(--ink-3); flex:none; padding-top:2px}
+.finding h4{font-size:16.5px; margin-bottom:6px; line-height:1.4}
+.finding p{font-size:13.8px; color:var(--ink-2); line-height:1.7}
+.finding p strong{color:var(--ink); font-weight:600}
+.callout{padding:17px 20px; border-radius:7px; margin:22px 0; font-size:14.2px; line-height:1.7;
+  border:1px solid var(--rule); background:var(--surface-2); color:var(--ink-2)}
+.callout strong{color:var(--ink)}
+.callout .ct{display:flex; align-items:center; gap:8px; font-family:var(--eb); font-size:10.5px;
+  letter-spacing:.16em; text-transform:uppercase; margin-bottom:8px; color:var(--ink-3)}
+.callout.crit{background:var(--crit-wash); border-color:color-mix(in srgb,var(--crit) 30%, transparent)}
+.callout.crit .ct{color:var(--crit)}
+.callout.warn{background:var(--warn-wash); border-color:color-mix(in srgb,var(--warn) 42%, transparent)}
+.callout.warn .ct{color:#9A6C04}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .callout.warn .ct{color:var(--warn)}}
+:root[data-theme="dark"] .callout.warn .ct{color:var(--warn)}
+.callout.acc{background:var(--accent-wash); border-color:color-mix(in srgb,var(--accent) 26%, transparent)}
+.callout.acc .ct{color:var(--accent)}
+.tbl-wrap{overflow-x:auto; border:1px solid var(--rule); border-radius:8px; background:var(--surface); margin:22px 0}
+table{border-collapse:collapse; width:100%; font-size:13.4px}
+th,td{padding:10px 13px; text-align:right; border-bottom:1px solid var(--rule-2); vertical-align:top; word-break:keep-all}
+th:first-child,td:first-child{text-align:left}
+td:not(:first-child){font-family:var(--num); font-variant-numeric:tabular-nums}
+thead th{background:var(--surface-2); font-family:var(--eb); font-size:11px; letter-spacing:.09em;
+  text-transform:uppercase; color:var(--ink-3); font-weight:500; border-bottom:1px solid var(--rule); white-space:nowrap}
+tbody td{color:var(--ink-2); line-height:1.62}
+tbody td:first-child{color:var(--ink); font-weight:600; min-width:130px; font-family:var(--kr)}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface-2)}
+tbody tr.sum td{background:var(--surface-2); font-weight:600; color:var(--ink)}
+td.hi{font-weight:600; color:var(--ink)}
+td.pos{color:var(--good)} td.neg{color:var(--crit)}
+.cap{font-size:11.5px; color:var(--ink-3); margin:-12px 0 24px; line-height:1.6}
+.grade{display:inline-block; font-family:var(--eb); font-size:9.5px; letter-spacing:.08em; padding:1px 5px;
+  border-radius:3px; border:1px solid var(--rule); color:var(--ink-3); vertical-align:middle; margin-left:5px; font-weight:500}
+.grade.a{color:var(--good); border-color:color-mix(in srgb,var(--good) 40%,transparent); background:var(--good-wash)}
+.grade.b{color:var(--s1); border-color:color-mix(in srgb,var(--s1) 40%,transparent)}
+.grade.c{color:#9A6C04; border-color:color-mix(in srgb,var(--warn) 50%,transparent); background:var(--warn-wash)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .grade.c{color:var(--warn)}}
+:root[data-theme="dark"] .grade.c{color:var(--warn)}
+.grade.d{color:var(--ink-3)}
+.triage{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:var(--rule);
+  border:1px solid var(--rule); border-radius:8px; overflow:hidden; margin:24px 0}
+.triage > div{background:var(--surface); padding:19px 21px 21px}
+.triage h5{font-family:var(--eb); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; margin-bottom:11px; font-weight:500}
+.triage .can h5{color:var(--good)} .triage .cant h5{color:var(--crit)} .triage .get h5{color:var(--s1)}
+.triage ul{margin:0; padding-left:16px; font-size:13.2px; color:var(--ink-2); line-height:1.62}
+.triage li{margin-bottom:8px}
+.triage li b{color:var(--ink); font-weight:600}
+figure{margin:24px 0 8px; background:var(--surface); border:1px solid var(--rule); border-radius:8px; padding:20px 22px 16px; box-shadow:var(--shadow)}
+.fig-title{font-size:14.5px; font-weight:600; margin-bottom:3px}
+.fig-sub{font-size:12px; color:var(--ink-3); margin-bottom:12px}
+.legend{display:flex; flex-wrap:wrap; gap:14px; font-size:11.5px; color:var(--ink-3); margin-bottom:10px}
+.legend span{display:flex; align-items:center; gap:6px}
+.legend i{width:11px; height:11px; border-radius:2px; display:inline-block}
+.chart{width:100%; overflow-x:auto}
+figure figcaption{font-size:11.8px; color:var(--ink-3); margin-top:12px; line-height:1.6}
+svg text{font-family:var(--num); font-variant-numeric:tabular-nums}
+#tip{position:fixed; z-index:99; pointer-events:none; background:var(--ink); color:var(--plane); font-size:12px;
+  padding:7px 10px; border-radius:6px; opacity:0; transition:opacity .12s; font-family:var(--num); line-height:1.5; max-width:260px}
+.switch{display:inline-flex; border:1px solid var(--rule); border-radius:7px; overflow:hidden; margin:6px 0 18px; background:var(--surface-2)}
+.switch button{appearance:none; border:none; border-right:1px solid var(--rule); background:none; font:inherit; font-family:var(--kr);
+  font-size:12.5px; padding:9px 16px; cursor:pointer; color:var(--ink-2); white-space:nowrap}
+.switch button:last-child{border-right:none}
+.switch button[aria-pressed="true"]{background:var(--accent); color:#fff; font-weight:600}
+.switch button:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+.vec{background:var(--surface); border:1px solid var(--rule); border-radius:9px; margin-bottom:14px; overflow:hidden; box-shadow:var(--shadow)}
+.vec-head{display:flex; gap:15px; align-items:flex-start; padding:19px 22px 16px; border-bottom:1px solid var(--rule-2)}
+.vec-rank{font-family:var(--eb); font-size:12px; letter-spacing:.1em; color:#fff; background:var(--accent); padding:4px 9px; border-radius:4px; flex:none; margin-top:2px}
+.vec-head h4{font-size:16.5px; margin-bottom:5px; line-height:1.4}
+.vec-head .why{font-size:13.5px; color:var(--ink-2); line-height:1.65}
+.vec-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:1px; background:var(--rule-2)}
+.vec-grid > div{background:var(--surface); padding:15px 22px 17px}
+.vec-grid dt{font-family:var(--eb); font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px}
+.vec-grid dd{margin:0; font-size:13.3px; color:var(--ink-2); line-height:1.65}
+.vec-grid dd strong{color:var(--ink)}
+.vec-grid .big{display:block; font-family:var(--num); font-size:19px; font-weight:600; color:var(--ink); letter-spacing:-.02em; margin-bottom:2px}
+.vec-grid .sfx{color:var(--ink-2)}
+.chk{list-style:none; padding:0; margin:14px 0 0; display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:0 24px}
+.chk li{font-size:13px; color:var(--ink-2); padding:6px 0; display:flex; gap:9px; align-items:flex-start; border-bottom:1px solid var(--rule-2); line-height:1.55}
+.chk li::before{content:'✓'; color:var(--good); font-weight:700; flex:none; font-size:12px; margin-top:2px}
+.chk li.no::before{content:'•'; color:var(--ink-3)}
+details{border:1px solid var(--rule); border-radius:8px; background:var(--surface); margin-bottom:10px; overflow:hidden}
+details summary{padding:14px 20px; cursor:pointer; font-size:14px; font-weight:600; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:12px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+'; font-family:var(--num); font-size:17px; color:var(--ink-3); font-weight:400}
+details[open] summary::after{content:'–'}
+details summary:hover{background:var(--surface-2)}
+details summary:focus-visible{outline:2px solid var(--accent); outline-offset:-2px}
+details .dbody{padding:6px 20px 18px; border-top:1px solid var(--rule-2); font-size:13.6px; color:var(--ink-2); line-height:1.72}
+details .dbody p{max-width:74ch; margin-bottom:12px}
+details .dbody p:last-child{margin-bottom:0}
+details .dbody strong{color:var(--ink)}
+details .dbody table{margin:12px 0}
+footer.doc{margin-top:60px; padding:30px 44px 40px; border-top:1px solid var(--rule); font-size:12px; color:var(--ink-3); line-height:1.75; max-width:1000px}
+footer.doc strong{color:var(--ink-2)}
+@media (max-width:1080px){
+  .shell{grid-template-columns:1fr}
+  .rail{position:static; height:auto; border-right:none; border-bottom:1px solid var(--rule); padding:22px 24px}
+  .rail nav{display:none}
+  .wrap{padding:0 24px}
+  .mast{padding:44px 24px 36px}
+  .mast .meta{display:grid; grid-template-columns:1fr 1fr; gap:18px 20px}
+  footer.doc{padding:28px 24px 36px}
+}
+@media print{
+  .rail,#tip,.switch{display:none!important}
+  body{background:#fff; font-size:10.5pt}
+  .shell{grid-template-columns:1fr}
+  section,figure,.vec,.tbl-wrap{page-break-inside:avoid}
+  section{padding-top:26px}
+  .mast{background:#123C4F!important; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  details{border:none} details .dbody{display:block!important}
+}
+</style>
+</head>
+<body>
+<div id="tip"></div>
+<div class="shell">
+<aside class="rail">
+  <div class="rail-brand">
+    <div class="mark">Juno · Financial Diagnostics</div>
+    <div class="co">(주)노드플로우</div>
+    <div class="sub">2024.01 ~ 2026.06 · 30개월</div>
+  </div>
+  <nav id="nav">
+    <a href="#s0"><span class="n">00</span><span>결론</span></a>
+    <a href="#s1"><span class="n">01</span><span>이 리포트를 읽는 법</span></a>
+    <a href="#s2"><span class="n">02</span><span>전체 그림</span></a>
+    <a href="#s3"><span class="n">03</span><span>사라진 자리는 마진</span></a>
+    <a href="#s4"><span class="n">04</span><span>30개월째 같은 단가</span></a>
+    <a href="#s5"><span class="n">05</span><span>통장 밖의 3.87억</span></a>
+    <a href="#s6"><span class="n">06</span><span>매출의 29%가 한 곳</span></a>
+    <a href="#s7"><span class="n">07</span><span>개발자 2명 채용</span></a>
+    <a href="#s8"><span class="n">08</span><span>개선 벡터 3개</span></a>
+    <a href="#s9"><span class="n">09</span><span>이 리포트의 한계</span></a>
+    <a href="#s10"><span class="n">10</span><span>부록</span></a>
+  </nav>
+  <div class="rail-foot">
+    <button class="btn" id="themeBtn" type="button">다크 모드</button>
+    <button class="btn" onclick="window.print()" type="button">인쇄 · PDF 저장</button>
+    <div>대외비 · 진단 기준일 2026-08-24</div>
+  </div>
+</aside>
+<main>
+
+<header class="mast">
+  <div class="inner">
+    <div class="eyebrow">
+      <span>재무 판독 리포트</span>
+      <span class="tag">전체 진단</span>
+      <span class="tag">발생주의 + 현금 병행</span>
+      <span class="tag">대외비</span>
+    </div>
+    <h1>매출은 93% 늘었고<br>남는 돈은 72% 줄었습니다</h1>
+    <p class="lede">장부를 그대로 읽으면 매출총이익률이 64.8%입니다. 그런데 프리랜서 개발비와 클라우드·API 비용이 판관비에 들어가 있어서 그 숫자는 실제 마진이 아닙니다. 직접 원가로 되돌려 다시 계산하면 공헌이익률은 53.3%이고, 2024년 64.4%에서 11.1%p 내려왔습니다. 통장이 빡빡한 이유는 적자가 아니라 마진과 회수, 두 곳에 있습니다.</p>
+    <dl class="meta">
+      <div><dt>Period</dt><dd>2024.01 ~ 2026.06 (30개월)</dd></div>
+      <div><dt>Basis</dt><dd>발생주의 손익 + 현금 수지 병행</dd></div>
+      <div><dt>Records</dt><dd>재무제표 3기 · 원장 2,372행 · 통장 1,412행 · 세금계산서 246건</dd></div>
+      <div><dt>Mode</dt><dd>전체 진단 (첫 거래)</dd></div>
+    </dl>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ 00 ============ -->
+<section id="s0">
+  <div class="sec-head"><span class="no">00</span><h2>결론</h2></div>
+  <div class="rule"></div>
+
+  <p class="lead">매출이 느는데 남는 게 없는 이유는 셋입니다. 하나는 마진, 하나는 회수, 하나는 그 둘이 합쳐져 만든 <strong>손익분기 여유의 소멸</strong>입니다. 비용 절감은 답이 아닙니다.</p>
+
+  <div class="finding crit">
+    <div class="fno">01</div>
+    <div><h4>이익이 사라진 자리는 비용이 아니라 마진입니다</h4>
+    <p>공헌이익률이 2024년 <strong>64.4%</strong>에서 2026년 <strong>53.3%</strong>로 11.1%p 내려왔습니다. 2026년 연환산 매출 15.61억에 2024년 마진율을 그대로 적용하면 공헌이익이 10.06억인데 실제는 8.32억입니다. <strong>연 1.74억이 마진에서 사라졌습니다.</strong> 같은 기간 준고정비는 매출 대비 54.2%에서 51.8%로 오히려 좋아졌습니다. 비용을 줄여서 될 문제가 아닙니다.</p></div>
+  </div>
+
+  <div class="finding crit">
+    <div class="fno">02</div>
+    <div><h4>3.87억이 통장 밖에 있고, 매출이 늘수록 더 묶입니다</h4>
+    <p>세금계산서 발행부터 입금까지 걸리는 날이 <strong>53일에서 82일</strong>로 늘었습니다. 6월 말 기준 미회수 채권은 부가세 포함 <strong>3.87억</strong>이고, 그중 <strong>1.40억은 이미 평소 회수 시점을 넘겼습니다.</strong> 이 구조에서 매출을 1억 늘리면 현금이 <strong>1,867만원</strong> 추가로 묶입니다. 2024년에는 917만원이었습니다. 작년에 받은 대출 1.5억과 대표님이 넣은 4천만원은 이 자리로 들어갔습니다.</p></div>
+  </div>
+
+  <div class="finding crit">
+    <div class="fno">03</div>
+    <div><h4>매출이 1.6%만 빠지면 적자입니다</h4>
+    <p>이자까지 덮으려면 필요한 매출이 2026년 연환산 기준 <strong>15.36억</strong>인데 실제 매출은 15.61억입니다. 여유는 <strong>2,570만원, 매출의 1.6%</strong>입니다. 2024년에는 이 여유가 15.8%였습니다. 매출이 10% 줄면 손실 <strong>6,950만원</strong>, 20% 줄면 <strong>1.53억</strong>입니다. <strong>이 상태에서 개발자 2명을 추가 채용하면 안 됩니다.</strong> 근거는 7번에 있습니다.</p></div>
+  </div>
+
+  <div class="callout crit">
+    <div class="ct">이 진단이 답할 수 없었던 것</div>
+    <strong>프로젝트별로 실제 몇 사람이 며칠 붙었는지 기록이 없습니다.</strong> 그래서 외부 인력비가 47% 늘어난 것이 외주 단가가 오른 탓인지, 견적보다 실제 투입이 초과된 탓인지 갈라내지 못했습니다. 둘 중 어느 쪽이냐에 따라 처방이 달라지므로, 이 기록을 만드는 것 자체를 개선 벡터 03에 넣었습니다. 별도로 <strong>통장에서 확인되는 부가가치세 납부액이 매출·매입 규모로 계산되는 금액과 크게 다릅니다.</strong> 자세한 내용은 9번에 있고, 13주 계획에는 시나리오로 반영했습니다.
+  </div>
+</section>
+
+<!-- ============ 01 ============ -->
+<section id="s1">
+  <div class="sec-head"><span class="no">01</span><h2>이 리포트를 읽는 법</h2></div>
+  <p class="sec-sub">숫자를 어디까지 믿을지 먼저 정하고 읽으셔야 합니다. 산출 기준과 판독 범위를 앞에 둡니다.</p>
+  <div class="rule"></div>
+
+  <p class="body"><strong>손익은 발생주의로, 현금은 통장으로 따로 산출했습니다.</strong> 재무제표와 통장이 둘 다 있어서 이익과 현금의 괴리를 항목별로 벌릴 수 있었습니다. 손익 숫자는 재무제표 기준이고, 현금 숫자는 통장 기준입니다. 두 기준을 섞은 곳은 없습니다.</p>
+
+  <p class="body"><strong>손익을 재분류해서 읽었습니다.</strong> 현재 장부는 매출원가에 외주용역비만 들어 있고, 프리랜서 개발용역비(연 1.20억 규모)와 클라우드·AI API 비용(연 0.60억 규모)이 판관비의 지급수수료에 섞여 있습니다. 이 셋은 전부 프로젝트 수행에 직접 붙는 비용이라 원가로 되돌렸습니다. 그래서 이 리포트의 마진 숫자는 <strong>재무제표에 찍힌 매출총이익률과 다릅니다.</strong> 어느 쪽이 틀린 게 아니라, 세무 신고용 분류와 판단용 분류가 다른 것입니다.</p>
+
+  <p class="body"><strong>2026년은 상반기 6개월 실적을 2배로 연환산했습니다.</strong> 연환산 숫자에는 계절성이 반영되지 않았습니다. 30개월 데이터에서 월별 매출 분포를 보면 뚜렷한 계절 패턴은 관측되지 않았으나, 24개월치로 계절성을 확정 판정하기에는 부족해 <strong>판정 불가</strong>로 둡니다.</p>
+
+  <div class="triage">
+    <div class="can"><h5>이 데이터로 답할 수 있는 것</h5><ul>
+      <li><b>공헌이익 구조</b>와 그 변화 원인의 위치</li>
+      <li><b>손익분기 매출</b>과 현재 매출의 거리, 매출 감소 시 손실 규모</li>
+      <li><b>회수 리듬</b>: 거래처별·결제조건별 실제 회수일수와 그 추세</li>
+      <li><b>현금전환주기</b>와 성장에 필요한 운전자본</li>
+      <li><b>거래처 집중도·축적 구조</b>, 이탈률과 신규율</li>
+      <li><b>이익과 현금의 괴리</b>를 만든 항목별 크기</li>
+      <li><b>앞 13주 주별 잔고</b>와 최저 시점</li>
+    </ul></div>
+    <div class="cant"><h5>이 데이터로 답할 수 없는 것</h5><ul>
+      <li><b>프로젝트별 수익성.</b> 원가 대응 자료가 없습니다(재무제표 주석 3에도 명시). 어떤 프로젝트가 밑지는지 특정 불가</li>
+      <li><b>외부 인력비 증가의 원인.</b> 단가 상승인지 견적 초과 투입인지 갈라낼 투입시간 기록이 없음</li>
+      <li><b>내부 인력 가동률.</b> 급여대장에 직군·프로젝트 배분이 없음</li>
+      <li><b>법인카드 개인 지출 혼입 여부.</b> 카드 명세를 대조할 수 없음. 다만 접대비와 차량유지비 합계가 매출의 0.96%로 낮아 규모는 크지 않을 것으로 봄</li>
+      <li><b>부가가치세 납부의 적정성.</b> 판정 유보. 9번 참조</li>
+    </ul></div>
+    <div class="get"><h5>받으면 열리는 것</h5><ul>
+      <li><b>7·8월 통장 내역</b> → 13주 계획을 실적으로 덮어쓰고 재산출<span class="grade">난이도 낮음</span></li>
+      <li><b>부가세 신고서 3개년</b> → 세금 유출 규모 확정, 13주 계획 정밀화<span class="grade">난이도 낮음</span></li>
+      <li><b>외주 계약서·단가표</b> → 외주 인일단가 추세 확정<span class="grade">난이도 낮음</span></li>
+      <li><b>프로젝트별 투입 공수 기록</b> → 견적 대 실제 갭, 밑지는 프로젝트 특정<span class="grade">난이도 보통</span></li>
+      <li><b>직원 직군·프로젝트 배분표</b> → 내부 가동률, 채용 판단 정밀화<span class="grade">난이도 보통</span></li>
+    </ul></div>
+  </div>
+
+  <div class="callout acc">
+    <div class="ct">한 줄 판정</div>
+    이 회사 장부는 소규모 기업 기준으로 <strong>상태가 좋은 편</strong>입니다. 계좌가 하나이고, 원장에 적요가 남아 있고, 세금계산서에 결제조건과 입금일자가 붙어 있습니다. 그래서 회수와 마진은 A·B 등급으로 판정할 수 있었습니다. <strong>딱 하나 빠진 것이 프로젝트별 투입 기록</strong>이고, 그 하나 때문에 가장 중요한 질문 하나가 닫혔습니다.
+  </div>
+</section>
+<!-- ============ 02 ============ -->
+<section id="s2">
+  <div class="sec-head"><span class="no">02</span><h2>전체 그림</h2></div>
+  <p class="sec-sub">30개월을 한 화면에. 이 뒤의 모든 섹션은 여기 있는 숫자를 쪼갠 것입니다.</p>
+  <div class="rule"></div>
+
+  <div class="tiles">
+    <div class="tile neg"><div class="lbl">30개월 누적 영업 현금 수지 (대출·가수금 제외)</div><div class="val num">−1.29<span class="u">억</span></div><div class="note">매출 유입 26.42억 대비 −4.9%</div></div>
+    <div class="tile neg"><div class="lbl">공헌이익률 (원가 재분류 기준)</div><div class="val num">53.3<span class="u">%</span></div><div class="note">2024년 64.4% → −11.1%p</div></div>
+    <div class="tile neg"><div class="lbl">손익분기 여유 (2026 연환산)</div><div class="val num">1.6<span class="u">%</span></div><div class="note">2,570만원. 2024년은 15.8%</div></div>
+    <div class="tile neg"><div class="lbl">매출채권 회수일수</div><div class="val num">82.3<span class="u">일</span></div><div class="note">2024년 53.0일 → +29.3일</div></div>
+  </div>
+
+  <p class="body">30개월간 영업으로 만든 현금은 <strong>−1.29억</strong>입니다. 그 사이 대출 1.5억과 대표님 가수금 0.4억, 합계 <strong>1.9억을 조달</strong>해서 메웠습니다. 통장 잔액이 2024년 초 6,200만원에서 2026년 6월 말 1.23억으로 늘어난 것은 영업이 현금을 만들어서가 아니라 <strong>빌린 돈이 들어왔기 때문</strong>입니다.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>항목 (억원)</th><th>2024</th><th>2025</th><th>2026 상반기</th><th>2026 연환산</th></tr></thead>
+    <tbody>
+      <tr><td>매출</td><td>8.09</td><td>13.74</td><td>7.81</td><td class="hi">15.61</td></tr>
+      <tr><td>직접 원가 <span class="grade b">B</span></td><td>2.88</td><td>6.40</td><td>3.65</td><td>7.29</td></tr>
+      <tr class="sum"><td>공헌이익</td><td>5.21</td><td>7.34</td><td>4.16</td><td>8.32</td></tr>
+      <tr><td>공헌이익률</td><td class="pos">64.4%</td><td>53.4%</td><td>53.3%</td><td class="neg">53.3%</td></tr>
+      <tr><td>준고정비 (판관비)</td><td>4.39</td><td>7.05</td><td>4.04</td><td>8.09</td></tr>
+      <tr class="sum"><td>영업이익</td><td class="pos">+0.82</td><td>+0.29</td><td>+0.12</td><td>+0.23</td></tr>
+      <tr><td>이자비용</td><td>0.00</td><td>0.04</td><td>0.05</td><td>0.10</td></tr>
+      <tr class="sum"><td>세전이익</td><td class="pos">+0.82</td><td>+0.25</td><td>+0.07</td><td class="neg">+0.14</td></tr>
+      <tr><td>손익분기 매출 <span class="grade b">B</span></td><td>6.81</td><td>13.28</td><td>7.68</td><td>15.36</td></tr>
+      <tr><td>손익분기 여유</td><td class="pos">+1.28</td><td>+0.46</td><td>+0.13</td><td class="neg">+0.26</td></tr>
+      <tr><td>여유 비율</td><td class="pos">15.8%</td><td>3.4%</td><td>1.6%</td><td class="neg">1.6%</td></tr>
+      <tr><td>영업 현금 수지</td><td class="pos">+0.45</td><td class="neg">−1.36</td><td class="neg">−0.37</td><td>–</td></tr>
+      <tr><td>자금 조달</td><td>0.00</td><td>1.90</td><td>0.00</td><td>–</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">직접 원가 = 외주용역비 + 프리랜서 개발용역비 + 클라우드·AI API. 뒤의 둘은 장부에서 판관비 지급수수료에 있던 것을 옮겼습니다. 준고정비 = 판매관리비에서 직접 원가로 옮긴 항목을 뺀 나머지. 손익분기 매출은 이자비용까지 덮는 수준으로 산출했습니다(준고정비 + 이자 ÷ 공헌이익률). 이 표의 영업이익·세전이익은 재무제표 수치와 일치합니다. 2026 연환산은 상반기 실적 × 2이며 계절성 미반영, 근거 등급 B. 영업 현금 수지는 통장 기준이며 대출 실행·가수금 입금을 제외한 값입니다.</p>
+
+  <figure>
+    <div class="fig-title">매출은 늘고 공헌이익은 준고정비에 따라잡혔습니다</div>
+    <div class="fig-sub">막대는 매출·공헌이익·준고정비, 위 숫자는 영업이익. 단위 억원.</div>
+    <div class="legend"><span><i style="background:var(--s1)"></i>매출</span><span><i style="background:var(--s3)"></i>공헌이익</span><span><i style="background:var(--s2)"></i>준고정비</span></div>
+    <div class="chart" id="c-pl"></div>
+    <figcaption>2024년에는 공헌이익이 준고정비를 8,220만원 앞섰습니다. 2026년 연환산은 2,340만원입니다. 매출은 93% 늘었는데 그 격차는 72% 줄었습니다. 여기서 이자 975만원을 더 빼면 남는 것은 1,360만원입니다.</figcaption>
+  </figure>
+
+  <div class="callout acc">
+    <div class="ct">한 줄 판정</div>
+    매출 성장은 실재합니다. 문제는 <strong>성장이 이익으로도 현금으로도 바뀌지 않는다</strong>는 것입니다. 이익 쪽 원인은 3·4번, 현금 쪽 원인은 5·6번에 있습니다.
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section id="s3">
+  <div class="sec-head"><span class="no">03</span><h2>이익이 사라진 자리는 비용이 아니라 마진입니다</h2></div>
+  <p class="sec-sub">대표님이 줄여야 할 곳을 찾고 계신다면, 그 방향이 아닙니다. 숫자로 보여드립니다.</p>
+  <div class="rule"></div>
+
+  <p class="body">2024년 대비 2026년(연환산)의 영업이익 감소분을 두 갈래로 나눠보면 이렇습니다. 매출은 8.09억에서 15.61억으로 <strong>7.52억 늘었습니다.</strong> 이 매출에 2024년 공헌이익률 64.4%를 그대로 적용하면 공헌이익이 <strong>10.06억</strong>이어야 합니다. 실제는 8.32억입니다. <strong>차액 1.74억이 마진에서 사라졌습니다.</strong></p>
+
+  <p class="body">준고정비는 4.39억에서 8.09억으로 3.70억 늘었습니다. 늘긴 늘었는데, <strong>매출 대비로 보면 54.2%에서 51.8%로 오히려 2.4%p 좋아졌습니다.</strong> 인원이 4명에서 9명으로 늘었는데도 매출이 더 빨리 늘어서 그렇습니다. 즉 고정비 관리는 문제가 아닙니다.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>매출 대비 비율</th><th>2024</th><th>2025</th><th>2026 연환산</th><th>변화</th></tr></thead>
+    <tbody>
+      <tr><td>외주용역비</td><td>24.4%</td><td>36.1%</td><td>35.2%</td><td class="neg">+10.8%p</td></tr>
+      <tr><td>프리랜서 개발용역비</td><td>7.8%</td><td>6.9%</td><td>7.7%</td><td>−0.1%p</td></tr>
+      <tr><td>클라우드·AI API</td><td>3.4%</td><td>3.5%</td><td>3.9%</td><td class="neg">+0.5%p</td></tr>
+      <tr class="sum"><td>직접 원가 계</td><td>35.6%</td><td>46.6%</td><td>46.7%</td><td class="neg">+11.1%p</td></tr>
+      <tr><td>급여·퇴직·복리후생</td><td>39.0%</td><td>40.4%</td><td>42.3%</td><td class="neg">+3.3%p</td></tr>
+      <tr><td>임차·관리·통신·보험</td><td>5.9%</td><td>4.6%</td><td>4.5%</td><td class="pos">−1.4%p</td></tr>
+      <tr><td>기타 판관비</td><td>9.3%</td><td>6.4%</td><td>5.1%</td><td class="pos">−4.2%p</td></tr>
+      <tr class="sum"><td>준고정비 계</td><td>54.2%</td><td>51.3%</td><td>51.8%</td><td class="pos">−2.4%p</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">기타 판관비 = 여비교통비·접대비·차량유지비·소모품비·도서인쇄비·세금과공과·광고선전비·감가상각비·세무법률수수료·채용공고비·SaaS 구독료. 이자비용은 영업외비용이라 이 표의 준고정비에서는 제외했습니다(2025년 406만원, 2026년 연환산 975만원). 반올림 때문에 세부 항목 합과 계에 0.1%p 차이가 있을 수 있습니다.</p>
+
+  <p class="body">한 줄로 줄이면 이렇습니다. <strong>매출 대비 비율이 의미 있게 움직인 계정은 외주용역비 하나뿐이고, 그 하나가 10.8%p입니다.</strong> 나머지는 전부 1~4%p 안에서 움직였고 방향도 절반은 좋은 쪽입니다. 인건비 비중이 3.3%p 오른 것은 인원을 5명 늘린 결과이고, 이건 외주비 증가에 비하면 부차적입니다.</p>
+
+  <div class="callout warn">
+    <div class="ct">이 판정을 뒤집을 수 있는 것</div>
+    직접 원가 재분류 중 <strong>클라우드·AI API를 원가로 볼지</strong>는 판단이 갈릴 수 있습니다. 일부는 회사 운영용(사내 개발 환경)일 수 있기 때문입니다. 다만 이 항목은 매출 대비 3.4% → 3.9%로 0.5%p만 움직여서, 어느 쪽으로 분류해도 <strong>위 결론은 바뀌지 않습니다.</strong> 프리랜서 개발용역비는 적요에 개인명과 "개발용역"이 명시되어 있어 직접 원가로 보는 데 이견이 없습니다.
+  </div>
+
+  <div class="callout acc">
+    <div class="ct">한 줄 판정</div>
+    <strong>비용 절감안으로는 이 문제가 풀리지 않습니다.</strong> 준고정비를 1% 줄이면 영업이익이 809만원 늘고, 판매 단가를 1% 올리면 1,561만원 늘어납니다. 같은 노력이면 단가 쪽이 두 배 가까이 큽니다. 무엇을 건드릴지는 4번에서 정합니다.
+  </div>
+</section>
+<!-- ============ 04 ============ -->
+<section id="s4">
+  <div class="sec-head"><span class="no">04</span><h2>단가는 30개월째 그대로인데, 주는 돈은 47% 올랐습니다</h2></div>
+  <p class="sec-sub">마진이 어디서 새는지 한 단위까지 내려가 봤습니다. 단위는 견적 인일 하나입니다.</p>
+  <div class="rule"></div>
+
+  <p class="body">이 회사는 견적을 인일로 냅니다. 그래서 <strong>견적 인일 1일이 얼마를 벌어오고 얼마를 쓰는지</strong>를 보면 마진 문제가 한 화면에 들어옵니다. 30개월간 발행한 세금계산서 246건에서 인일과 금액을 뽑았습니다.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>견적 인일 1일당 (원)</th><th>2024</th><th>2025</th><th>2026 상반기</th><th>2024 대비</th></tr></thead>
+    <tbody>
+      <tr><td>받는 돈 (매출)</td><td>650,036</td><td>726,101</td><td class="hi">716,042</td><td class="pos">+10.2%</td></tr>
+      <tr><td>외부 인력비 (외주+프리랜서)</td><td>209,449</td><td>312,866</td><td class="hi">306,753</td><td class="neg">+46.5%</td></tr>
+      <tr><td>클라우드·AI API</td><td>21,951</td><td>25,564</td><td>27,733</td><td class="neg">+26.3%</td></tr>
+      <tr class="sum"><td>남는 돈 (공헌이익)</td><td>418,636</td><td>387,671</td><td class="hi">381,556</td><td class="neg">−8.9%</td></tr>
+      <tr><td>구축 프로젝트 표시 단가</td><td>650,000</td><td>650,000</td><td>650,000</td><td class="neg">0.0%</td></tr>
+      <tr><td>리테이너 표시 단가</td><td>–</td><td>950,000</td><td>950,000</td><td>–</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">인일은 세금계산서에 기재된 견적 인일수이며 실제 투입 인일이 아닙니다 <span class="grade a">A</span>. 받는 돈이 표시 단가보다 높은 것은 인일당 95만원인 운영·고도화 리테이너가 2025년부터 매출에 섞였기 때문입니다. 구축 프로젝트만 보면 표시 단가는 인일당 65만원이고, 리테이너를 제외한 세금계산서 전수가 같은 값입니다. <strong>30개월 동안 한 번도 오르지 않았습니다.</strong></p>
+
+  <figure>
+    <div class="fig-title">견적 인일 하나가 남기는 돈</div>
+    <div class="fig-sub">막대 전체가 받는 돈. 아래부터 외부 인력비, 클라우드·API, 남는 돈. 단위 천원.</div>
+    <div class="legend"><span><i style="background:var(--s2)"></i>외부 인력비</span><span><i style="background:var(--warn)"></i>클라우드·API</span><span><i style="background:var(--s3)"></i>남는 돈</span></div>
+    <div class="chart" id="c-day"></div>
+    <figcaption>받는 돈이 6.6만원 늘어나는 동안 외부 인력비는 9.7만원 늘었습니다. 리테이너 믹스 덕분에 받는 돈이 올라간 것까지 감안해도 인일당 남는 돈은 3.7만원 줄었습니다. 2026년 연환산 인일 2,180일을 곱하면 <strong>연 8,080만원</strong>입니다.</figcaption>
+  </figure>
+
+  <p class="body">외부 인력비 증가분을 조금 더 벌려보면 이렇습니다. 외주 개발사는 7곳, 프리랜서는 10명입니다. 30개월 누적 외주비 상위는 디자인랩오 2.31억, 위코드테크 1.37억, 엠제이시스템 1.33억, 아이티솔루션 1.32억 순입니다. <strong>2024년 대비 2025년에 외주용역비가 152% 늘었는데 같은 기간 매출은 70% 늘었습니다.</strong> 매출보다 두 배 빠르게 늘었다는 뜻입니다.</p>
+
+  <div class="callout crit">
+    <div class="ct">여기서 판정이 멈춥니다</div>
+    외부 인력비가 인일당 47% 오른 원인은 둘 중 하나입니다. <strong>(가) 외주 단가 자체가 올랐다.</strong> 그러면 처방은 외주 재협상과 판매 단가 전가입니다. <strong>(나) 견적 인일보다 실제 투입 인일이 초과됐다.</strong> 그러면 처방은 견적 정확도와 범위 관리입니다. <strong>이 둘을 갈라낼 자료가 없습니다.</strong> 프로젝트별 투입 공수 기록이 존재하지 않고(재무제표 주석 3), 외주 계약서 단가표도 받지 못했습니다. 그래서 개선 벡터 03의 첫 동작은 개선이 아니라 <strong>측정</strong>입니다.
+  </div>
+
+  <div class="callout acc">
+    <div class="ct">한 줄 판정</div>
+    원인을 못 갈랐어도 <strong>처방 하나는 지금 확정할 수 있습니다.</strong> 원인이 (가)든 (나)든 표시 단가 65만원은 30개월째 그대로이고, 그 사이 인일당 외부 인력비는 9.7만원 올랐습니다. <strong>단가 인상은 두 경우 모두에서 옳은 답입니다.</strong> 얼마나 올릴 수 있는지는 8번 개선 벡터 02에 있습니다.
+  </div>
+</section>
+
+<!-- ============ 05 ============ -->
+<section id="s5">
+  <div class="sec-head"><span class="no">05</span><h2>3.87억이 통장 밖에 있고, 매출이 늘수록 더 묶입니다</h2></div>
+  <p class="sec-sub">이익과 현금이 갈라진 자리입니다. 손익만 보면 절대 안 보입니다.</p>
+  <div class="rule"></div>
+
+  <div class="tiles">
+    <div class="tile neg"><div class="lbl">미회수 채권 (2026-06-30, 부가세 포함)</div><div class="val num">3.87<span class="u">억</span></div><div class="note">24건. 2024년 말은 1.29억</div></div>
+    <div class="tile neg"><div class="lbl">그중 평소 회수 시점을 넘긴 금액</div><div class="val num">1.40<span class="u">억</span></div><div class="note">12건. 최장 경과 83일</div></div>
+    <div class="tile neg"><div class="lbl">현금전환주기</div><div class="val num">68.2<span class="u">일</span></div><div class="note">2024년 33.5일</div></div>
+    <div class="tile neg"><div class="lbl">매출 1억 늘 때 묶이는 현금</div><div class="val num">1,867<span class="u">만원</span></div><div class="note">2024년 917만원</div></div>
+  </div>
+
+  <p class="body">이 회사는 재고가 없습니다. 그래서 현금전환주기는 <strong>받는 데 걸리는 날에서 주는 데 걸리는 날을 뺀 값</strong>입니다. 받는 데 걸리는 날은 53일에서 82.3일로 늘었고, 주는 데 걸리는 날은 19.5일에서 14.2일로 <strong>줄었습니다.</strong> 양쪽이 반대로 움직였습니다. 받는 건 늦어지는데 주는 건 빨라졌다는 뜻입니다.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>항목</th><th>2024</th><th>2025</th><th>2026 상반기</th></tr></thead>
+    <tbody>
+      <tr><td>매출채권 회수일수 <span class="grade a">A</span></td><td>53.0일</td><td>79.0일</td><td class="neg">82.3일</td></tr>
+      <tr><td>매입채무 지급일수 <span class="grade a">A</span></td><td>19.5일</td><td>31.2일</td><td class="neg">14.2일</td></tr>
+      <tr class="sum"><td>현금전환주기</td><td>33.5일</td><td>47.8일</td><td class="neg">68.2일</td></tr>
+      <tr><td>매출 1억 증가 시 필요 현금</td><td>917만원</td><td>1,309만원</td><td class="neg">1,867만원</td></tr>
+      <tr><td>매출채권 잔액 (억원)</td><td>1.17</td><td>2.97</td><td>3.52</td></tr>
+      <tr><td>매출 증가율</td><td>–</td><td>+69.9%</td><td>+13.6%</td></tr>
+      <tr><td>매출채권 증가율</td><td>–</td><td class="neg">+153.3%</td><td class="neg">+18.4%</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">회수일수 = 매출채권 ÷ 매출 × 365(2026년은 182.5). 지급일수 = 매입채무및미지급금 ÷ 직접 원가 × 365(2026년은 182.5). 2026년 증가율은 상반기를 연환산해 전년과 비교한 값입니다. 매출채권 잔액은 재무상태표 기준(공급가액)이며, 실제로 받아야 할 돈은 부가세를 더한 3.87억입니다.</p>
+
+  <p class="body">여기서 이익과 현금이 갈라집니다. 30개월 누적 세전이익은 <strong>+1.14억</strong>인데 영업으로 만든 현금은 <strong>−1.29억</strong>입니다. 재무상태표가 2024년 말부터 있어서, 괴리를 항목으로 벌릴 수 있는 구간은 <strong>2025년 1월부터 2026년 6월까지 18개월</strong>입니다. 그 18개월을 벌리면 이렇습니다.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>2025.01 ~ 2026.06 (억원)</th><th>금액</th><th>성격</th></tr></thead>
+    <tbody>
+      <tr><td>세전이익</td><td class="pos">+0.32</td><td style="text-align:left;font-family:var(--kr)">장부상 벌어들인 것</td></tr>
+      <tr><td>감가상각비</td><td class="pos">+0.14</td><td style="text-align:left;font-family:var(--kr)">현금이 안 나간 비용</td></tr>
+      <tr><td>매출채권 증가</td><td class="neg hi">−2.35</td><td style="text-align:left;font-family:var(--kr)"><strong>판 것이 현금이 안 됨</strong></td></tr>
+      <tr><td>미지급비용 증가</td><td class="pos hi">+0.97</td><td style="text-align:left;font-family:var(--kr)"><strong>급여성 지출을 미룬 것</strong></td></tr>
+      <tr><td>매입채무 증가</td><td class="pos">+0.13</td><td style="text-align:left;font-family:var(--kr)">외주비 지급을 미룬 것</td></tr>
+      <tr><td>법인세 납부·미지급 감소</td><td class="neg">−0.20</td><td style="text-align:left;font-family:var(--kr)">확정 유출</td></tr>
+      <tr><td>임차보증금 증가</td><td class="neg">−0.50</td><td style="text-align:left;font-family:var(--kr)">사무실 확장 (2025년 5월)</td></tr>
+      <tr><td>비품 취득</td><td class="neg">−0.24</td><td style="text-align:left;font-family:var(--kr)">가구·집기</td></tr>
+      <tr class="sum"><td>현금 증감</td><td class="neg">−1.74</td><td style="text-align:left;font-family:var(--kr)">통장 실적과 일치</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">재무상태표 잔액 변동으로 산출했고, 결과값 −1.74억은 같은 기간 통장에서 조달(대출 1.5억·가수금 0.4억)을 뺀 실제 현금 증감 −1.736억과 일치합니다 <span class="grade a">A</span>. 괴리를 만든 상위 두 항목은 매출채권 증가와 미지급비용 증가입니다.</p>
+
+  <div class="callout warn">
+    <div class="ct">플러스로 잡힌 0.97억을 다시 보십시오</div>
+    미지급비용 증가 +0.97억은 현금 계산에서 플러스로 잡히지만 <strong>벌어들인 돈이 아니라 아직 안 나간 돈</strong>입니다. 이 잔액 1.49억 안에는 <strong>퇴직급여충당금 누적 0.81억</strong>이 들어 있습니다. 직원이 퇴사하면 실제 현금으로 나갑니다. 지금 통장 잔액 1.23억보다 큽니다. 13주 계획에는 반영하지 않았습니다(13주 안에 퇴사 예정이 확정되지 않았으므로). <strong>퇴직연금 형태로 사외 적립하고 있지 않다면 이건 별도로 관리하셔야 합니다.</strong>
+  </div>
+
+  <figure>
+    <div class="fig-title">받는 데 걸리는 날이 계속 늘고 있습니다</div>
+    <div class="fig-sub">세금계산서 발행일부터 실제 입금일까지, 반기별 평균. 단위 일.</div>
+    <div class="legend"><span><i style="background:var(--s1)"></i>전체 평균</span><span><i style="background:var(--s3)"></i>에이치케이리테일 제외</span><span><i style="background:var(--s2)"></i>에이치케이리테일</span></div>
+    <div class="chart" id="c-dso"></div>
+    <figcaption>최대 거래처인 에이치케이리테일을 빼도 회수일은 37.8일에서 45.2일로 7.4일 늘었습니다. 즉 회수 지연은 한 거래처만의 문제가 아니라 <strong>전반적인 흐름</strong>입니다. 다만 그 한 곳의 지연 폭이 압도적으로 큽니다.</figcaption>
+  </figure>
+
+  <figure>
+    <div class="fig-title">지금 밖에 있는 3.87억의 나이</div>
+    <div class="fig-sub">2026년 6월 30일 기준 미회수 세금계산서 24건. 발행일로부터의 경과일. 단위 백만원.</div>
+    <div class="chart" id="c-age"></div>
+    <figcaption>61~90일 구간에 1.61억(12건)이 몰려 있습니다. 이 회사의 평균 회수일이 49일이므로 이 구간은 <strong>전부 평소보다 늦어진 건</strong>입니다. 다행히 30개월 전 기간에 회수를 못 한 건은 한 건도 없었습니다. 대손 위험보다 <strong>시점 위험</strong>으로 봅니다.</figcaption>
+  </figure>
+
+  <div class="callout acc">
+    <div class="ct">한 줄 판정</div>
+    작년에 받은 대출 1.5억과 대표님이 넣은 4천만원, 합계 1.9억은 <strong>사업이 나빠서 필요했던 게 아니라 매출채권으로 걸어 들어간 돈</strong>입니다. 같은 기간 매출채권은 2.35억 늘었습니다. 그리고 이 구조를 안 바꾸면 <strong>매출을 1억 늘릴 때마다 1,867만원을 또 조달해야 합니다.</strong>
+  </div>
+</section>
+<!-- ============ 06 ============ -->
+<section id="s6">
+  <div class="sec-head"><span class="no">06</span><h2>매출의 29%가 한 곳이고, 그곳이 가장 늦게 냅니다</h2></div>
+  <p class="sec-sub">거래처 구조는 나쁘지 않습니다. 딱 한 곳이 문제입니다.</p>
+  <div class="rule"></div>
+
+  <p class="body">먼저 좋은 소식부터. <strong>이 회사는 고객이 쌓이는 구조입니다.</strong> 30개월간 거래한 회사는 28곳인데, 그중 16곳이 3개 연도에 모두 거래했고 <strong>그 16곳이 전체 매출의 77.2%</strong>를 만듭니다. 1개 연도만 거래하고 끊긴 곳은 3곳, 매출 비중 6.2%입니다. 2025년에서 2026년 상반기로 넘어오면서 26곳 중 19곳이 유지됐습니다. 소규모 B2B에서 이 정도 축적이면 좋은 편입니다.</p>
+
+  <div class="callout warn">
+    <div class="ct">먼저 정리한 것</div>
+    원본 자료에 거래처명이 <strong>39개</strong>로 잡혀 있었습니다. 같은 회사가 "에이치케이리테일", "(주)에이치케이리테일", "에이치케이리테일(주)", "HK리테일" 네 가지로 들어와 있는 식입니다. 정규화하면 <strong>28곳</strong>이 됩니다. 이걸 안 하면 거래처 수·집중도·이탈률이 전부 틀어집니다. 실제로 원본 그대로 세면 최대 거래처 비중이 10.5%로 보이지만, 정규화하면 <strong>28.1%</strong>입니다. 세금계산서 발행 시스템에서 거래처 마스터를 정리하시기를 권합니다.
+  </div>
+
+  <figure>
+    <div class="fig-title">상위 10곳이 매출의 64.6%</div>
+    <div class="fig-sub">30개월 누적 공급가액. 거래처명 정규화 후. 단위 백만원.</div>
+    <div class="chart" id="c-cli"></div>
+    <figcaption>2위 한빛에듀케이션(1.55억)의 5.4배가 1위입니다. 상위 3곳 38.2%, 상위 5곳 46.2%. 2·3위 이하는 고르게 분포해서 <strong>집중 리스크는 사실상 1위 한 곳에 집중</strong>돼 있습니다.</figcaption>
+  </figure>
+
+  <p class="body">문제는 그 1위입니다. <strong>에이치케이리테일은 2025년 매출의 33.2%, 2026년 상반기의 29.2%를 차지합니다.</strong> 전액이 월 3,800만원짜리 운영·고도화 리테이너이고, 인일당 95만원으로 구축 프로젝트(65만원)보다 마진이 좋습니다. 거기까진 좋습니다.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>에이치케이리테일 리테이너</th><th>2025 상반기</th><th>2025 하반기</th><th>2026 상반기</th></tr></thead>
+    <tbody>
+      <tr><td>계약상 결제조건</td><td>월말 마감 익월 말일</td><td>월말 마감 익월 말일</td><td>월말 마감 익월 말일</td></tr>
+      <tr><td>실제 회수일수 <span class="grade a">A</span></td><td class="neg">75.0일</td><td class="neg">88.0일</td><td class="neg">91.3일</td></tr>
+      <tr><td>조건 대비 초과</td><td>+45일</td><td>+58일</td><td class="neg">+61일</td></tr>
+      <tr><td>미회수 잔액 (부가세 포함)</td><td>–</td><td>–</td><td class="neg">1.25억 (3건)</td></tr>
+      <tr><td>상시 묶여 있는 현금 <span class="grade b">B</span></td><td>0.94억</td><td>1.10억</td><td class="neg">1.14억</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">회수일수는 세금계산서 발행일부터 입금일까지 실측 평균이며 15건 전수 기준입니다. 최장은 126일이었습니다. 상시 묶여 있는 현금 = 연환산 리테이너 매출 4.56억 ÷ 365 × 회수일수. 미회수 3건은 2026년 4·5·6월 말 발행분입니다.</p>
+
+  <p class="body">즉 <strong>이 한 거래처가 상시로 1.14억을 물고 있습니다.</strong> 회사 통장 잔액(1.23억)과 비슷한 규모이고, 대출 1.5억의 76%에 해당합니다. 계약 조건대로 익월 말일에 받았다면 묶이는 돈은 3,750만원이었을 것입니다. <strong>차액 7,650만원이 조건 미이행 때문에 추가로 묶인 금액입니다.</strong> 연 6.5% 이자로 환산하면 <strong>연 497만원</strong>을 이 지연 하나에 쓰고 있는 셈입니다.</p>
+
+  <div class="callout crit">
+    <div class="ct">동시에 이건 리스크입니다</div>
+    이 거래처가 빠지면 매출의 29%, 연 4.56억이 사라집니다. 리테이너는 인일당 95만원이라 마진이 좋아서, 공헌이익으로는 연 <strong>2.65억</strong>이 사라집니다. 현재 준고정비가 8.09억이므로 <strong>즉시 대규모 적자</strong>입니다. 그래서 회수 조건을 밀어붙일 때 관계 관리가 같이 가야 합니다. 개선 벡터 01의 부작용 항목에 이 내용을 적었습니다.
+  </div>
+
+  <div class="callout acc">
+    <div class="ct">한 줄 판정</div>
+    거래처 구조 자체는 건강합니다. 고쳐야 할 것은 거래처 수나 신규 유치가 아니라 <strong>가장 큰 거래처의 결제 이행</strong> 하나입니다.
+  </div>
+</section>
+
+<!-- ============ 07 ============ -->
+<section id="s7">
+  <div class="sec-head"><span class="no">07</span><h2>지금 개발자 2명을 뽑으면 안 됩니다</h2></div>
+  <p class="sec-sub">대표님이 물으신 질문에 단정으로 답합니다. 그리고 언제 뽑아도 되는지 조건을 숫자로 답니다.</p>
+  <div class="rule"></div>
+
+  <p class="body">먼저 인건비부터 확정합니다. 급여대장 기준 직원 1인당 월 급여는 <strong>505만원</strong>이고, 여기에 사용자부담 4대보험과 퇴직급여충당을 더하면 <strong>월 610만원</strong>입니다. 2명이면 <strong>연 1.46억</strong>입니다. 채용공고비는 2025년에 790만원을 썼으므로 2명 기준 약 500만원을 더합니다.</p>
+
+  <p class="body">여기서 갈립니다. 개발자를 뽑는 목적이 <strong>매출을 늘리기 위해서인지, 외주를 대체하기 위해서인지</strong>에 따라 숫자가 완전히 다릅니다. 두 경우를 눌러서 비교해 보십시오.</p>
+
+  <div class="switch" role="group" aria-label="채용 목적별 시나리오">
+    <button id="btn-add" aria-pressed="true">매출을 늘리려고 뽑는다</button>
+    <button id="btn-sub" aria-pressed="false">외주를 대체하려고 뽑는다</button>
+  </div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>2026 연환산 기준 (억원)</th><th>현재</th><th id="hire-h">개발자 2명 추가 후</th></tr></thead>
+    <tbody>
+      <tr><td>매출</td><td>15.61</td><td id="h-rev">15.61</td></tr>
+      <tr><td>직접 원가</td><td>7.29</td><td id="h-dc">7.29</td></tr>
+      <tr><td>공헌이익률</td><td>53.3%</td><td id="h-cmr">53.3%</td></tr>
+      <tr><td>준고정비 + 이자</td><td>8.18</td><td id="h-fx">9.65</td></tr>
+      <tr class="sum"><td>손익분기 매출</td><td>15.36</td><td id="h-be" class="neg">18.10</td></tr>
+      <tr class="sum"><td>손익분기 여유</td><td class="neg">+0.26 (1.6%)</td><td id="h-mg" class="neg">−2.49 (−16.0%)</td></tr>
+      <tr><td>매출 10% 감소 시 손익</td><td class="neg">−0.70</td><td id="h-d10" class="neg">−2.16</td></tr>
+      <tr><td>매출 20% 감소 시 손익</td><td class="neg">−1.53</td><td id="h-d20" class="neg">−2.99</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap" id="h-cap">매출을 늘리려고 뽑는 경우: 외주 물량은 그대로 두고 인건비만 늘어납니다. 매출이 즉시 늘지 않는다는 전제이며, 손익분기를 다시 넘으려면 연 2.49억의 매출 증가가 필요합니다 <span class="grade b">B</span>.</p>
+
+  <div class="callout crit">
+    <div class="ct">어느 쪽이어도 답은 같습니다</div>
+    <strong>매출을 늘리려고 뽑는 경우</strong>, 손익분기 여유가 +1.6%에서 −16.0%로 떨어집니다. 지금 매출을 유지해도 연 2.49억이 모자랍니다. 명백히 안 됩니다.<br><br>
+    <strong>외주를 대체하려고 뽑는 경우</strong>는 겉보기에 손익이 거의 중립입니다. 2명이 연 480인일(1인 월 20인일 기준)을 소화하면 외부 인력비가 1.47억 줄어 인건비 1.46억과 거의 정확히 상쇄됩니다. 그런데 <strong>하방이 나빠집니다.</strong> 매출이 20% 줄면 지금은 1.53억 손실인데 채용 후에는 1.81억 손실입니다. 외주비는 매출이 줄면 같이 줄지만 <strong>급여는 안 줄기 때문</strong>입니다. 그리고 현금 문제가 남습니다.
+  </div>
+
+  <p class="body">현금 쪽을 보겠습니다. 개발자 2명이 만든 매출이 현금이 되기까지 <strong>82일</strong>이 걸립니다. 그동안 급여는 매달 25일에 나갑니다. 채용 시점부터 회수까지 <strong>선투입해야 하는 현금이 약 3,290만원</strong>(2명 × 610만원 × 2.7개월)이고 채용비 500만원을 더하면 <strong>3,790만원</strong>입니다. 13주 현금계획에서 가장 낮은 잔고는 기준 시나리오 1.57억, 회수가 더 밀리는 시나리오 1.34억입니다. 급여 3개월치가 1.43억이므로, <strong>회수가 밀리는 시나리오에서는 이미 급여 3개월치를 밑돕니다.</strong> 여기에 3,790만원을 더 얹을 여력이 없습니다.</p>
+
+  <div class="callout acc">
+    <div class="ct">그럼 언제 뽑아도 되는가</div>
+    아래 <strong>세 가지가 동시에 충족되면 1명씩</strong> 뽑으십시오. 2명 동시는 어느 시점에도 권하지 않습니다.<br><br>
+    <strong>하나.</strong> 매출채권 회수일수가 <strong>60일 이하</strong>로 내려올 것. 현재 82.3일. 이게 되면 매출 1억당 묶이는 현금이 1,867만원에서 1,260만원으로 줄어듭니다.<br>
+    <strong>둘.</strong> 손익분기 여유가 <strong>매출의 10% 이상</strong>일 것. 현재 1.6%. 개선 벡터 02(단가 인상)가 실행되면 여유가 5~7% 구간으로 올라옵니다. 거기에 매출 성장이 붙어야 10%입니다.<br>
+    <strong>셋.</strong> 13주 계획의 최저 잔고가 <strong>급여 3개월치(1.43억) 이상</strong>을 유지할 것. 채용 후 기준으로 다시 굴려서 확인하십시오.<br><br>
+    지금은 셋 다 미달입니다. <strong>당장 인력이 부족하다면 외주나 프리랜서로 가십시오.</strong> 비싸 보이지만, 지금 이 회사에서 고정비 1.46억을 늘리는 것보다 쌉니다.
+  </div>
+</section>
+<!-- ============ 08 ============ -->
+<section id="s8">
+  <div class="sec-head"><span class="no">08</span><h2>세 가지만 하십시오</h2></div>
+  <p class="sec-sub">효과 금액을 실행 난이도로 나눠 정렬하고 3개에서 잘랐습니다. 열 개를 드리면 영 개가 실행됩니다.</p>
+  <div class="rule"></div>
+
+  <div class="vec">
+    <div class="vec-head">
+      <span class="vec-rank">01</span>
+      <div><h4>미회수 3.87억에 회수 담당과 주간 점검 루틴을 붙이고, 에이치케이리테일 3건부터 지급일을 확정받는다</h4>
+        <p class="why">이 회사에서 현금을 가장 빨리 만드는 방법은 파는 것도 아끼는 것도 아니고 <strong>이미 판 것을 받는 것</strong>입니다. 지금 회수를 챙기는 사람이 지정돼 있지 않습니다. 회수일수가 53일에서 82일로 늘어난 30개월 동안 아무도 그걸 지표로 보지 않았다는 뜻입니다.</p></div>
+    </div>
+    <div class="vec-grid">
+      <div><dt>연간 효과</dt><dd><span class="big">7,000만 ~ 9,500만원</span>일회성 현금 확보 (이익 아님)<span class="grade b">B</span><br>+ 연 455만 ~ 618만원 이자 절감<span class="grade b">B</span></dd></div>
+      <div><dt>계산식</dt><dd>연환산 매출 15.61억 ÷ 365 × 단축일수. 82.3일 → 66일이면 7,000만원, 60일이면 9,500만원. 확보한 현금으로 차입 1.5억을 상환하면 연 6.5%가 절감됩니다.</dd></div>
+      <div><dt>첫 동작</dt><dd>미회수 24건을 거래처·발행일·경과일·담당자로 정리한 표를 만들고, 61일 넘은 12건(1.61억)에 이번 주 안에 지급 예정일 확인 연락. <strong>소요 3시간.</strong> 에이치케이리테일 3건(1.25억)이 먼저입니다.</dd></div>
+      <div><dt>누가 언제</dt><dd>대표님이 이번 주에 시작. 다음 주부터 <strong>매주 월요일 15분</strong>, 미회수 표를 열어 경과 60일 초과 건만 점검. 이건 위임 가능한 업무이므로 4주 뒤 담당자를 지정하십시오.</dd></div>
+      <div><dt>부작용</dt><dd class="sfx">에이치케이리테일은 매출의 29%, 공헌이익 연 2.65억이 걸린 곳입니다. <strong>독촉이 아니라 조건 재확인으로 접근하십시오.</strong> 계약서에 익월 말일이라고 적혀 있으므로 "확인차 여쭙는다"는 형식이 성립합니다. 동시에 이 거래처 매출 비중을 25% 아래로 낮추는 것을 6개월 과제로 잡으십시오.</dd></div>
+    </div>
+  </div>
+
+  <div class="vec">
+    <div class="vec-head">
+      <span class="vec-rank">02</span>
+      <div><h4>구축 프로젝트 인일 단가를 65만원에서 70만원으로, 신규 견적부터 올린다</h4>
+        <p class="why">표시 단가는 <strong>30개월째 65만원</strong>이고, 리테이너를 제외한 세금계산서 전수가 같은 값입니다. 그 사이 견적 인일당 외부 인력비는 9.7만원 올랐습니다. 원가 상승분을 한 번도 전가하지 않았습니다. 그리고 이 회사에서 단가 1%는 영업이익 1,561만원인데, 준고정비 1%는 809만원입니다. <strong>같은 1%면 단가 쪽이 두 배입니다.</strong></p></div>
+    </div>
+    <div class="vec-grid">
+      <div><dt>연간 효과</dt><dd><span class="big">4,900만 ~ 8,000만원</span>공헌이익 기준, 연간 반복<span class="grade c">C</span></dd></div>
+      <div><dt>계산식</dt><dd>구축 매출 연환산 11.05억 × 인상률 × (1 − 이탈률). 5% 인상·이탈 10%면 4,970만원, 8% 인상·이탈 10%면 7,960만원. <strong>손익이 지금과 같아지는 이탈률 상한은 5% 인상 시 8.6%, 8% 인상 시 13.1%</strong>입니다. 즉 매출의 8.6%가 떨어져 나가도 5% 인상은 본전입니다.</dd></div>
+      <div><dt>첫 동작</dt><dd>다음 주 나가는 견적서부터 70만원(7.7% 인상)을 적용. 진행 중인 계약은 건드리지 않습니다. 3개년 연속 거래한 16곳에는 <strong>인상 통보가 아니라 사전 안내</strong>를 2주 먼저 보내십시오. <strong>소요 2시간.</strong></dd></div>
+      <div><dt>누가 언제</dt><dd>대표님이 다음 주부터. 12주 뒤에 수주율(견적 대비 계약 성사 비율)을 인상 전후로 비교하십시오. 수주율이 13% 넘게 떨어지면 70만원을 68만원으로 되돌립니다.</dd></div>
+      <div><dt>부작용</dt><dd class="sfx">이탈 위험이 실재합니다. 특히 1개년만 거래한 곳은 가격 민감도가 높습니다. <strong>16곳의 장기 거래처에 일괄 통보하면 안 됩니다.</strong> 신규 견적부터 적용하고, 기존 거래처는 다음 프로젝트 착수 시점에 개별로 안내하십시오. 또한 인상 효과는 회수까지 82일 뒤에야 현금이 됩니다.</dd></div>
+    </div>
+  </div>
+
+  <div class="vec">
+    <div class="vec-head">
+      <span class="vec-rank">03</span>
+      <div><h4>프로젝트별 투입 공수를 기록하기 시작하고, 3개월 뒤 견적 대비 초과 프로젝트를 잘라낸다</h4>
+        <p class="why">이 진단에서 가장 큰 숫자 하나가 <strong>판정되지 않은 채 남았습니다.</strong> 인일당 외부 인력비 47% 상승이 외주 단가 탓인지 견적 초과 투입 탓인지 모릅니다. 연 8,080만원이 걸린 질문인데 답할 자료가 없습니다. 이 벡터는 개선이 아니라 <strong>측정</strong>부터 시작합니다.</p></div>
+    </div>
+    <div class="vec-grid">
+      <div><dt>연간 효과</dt><dd><span class="big">3,300만 ~ 5,900만원</span>공헌이익 기준, 연간 반복<span class="grade c">C</span><br>측정 3개월 뒤부터 발생</dd></div>
+      <div><dt>계산식</dt><dd>연환산 외부 인력비 6.69억 × 절감률 5%면 3,345만원. 인일당 외부 인력비를 30.7만원에서 28만원으로 되돌리면 2,180인일 × 2.7만원 = 5,886만원. <strong>근거 등급 C입니다.</strong> 절감 가능 여부 자체가 측정 결과에 달려 있습니다.</dd></div>
+      <div><dt>첫 동작</dt><dd>스프레드시트 한 장. 열은 프로젝트코드·주차·투입자(내부/외주/프리랜서)·투입 인일. 매주 금요일 각자 자기 줄만 채웁니다. <strong>설정 1시간, 유지 주 10분.</strong> 동시에 외주 7곳에 <strong>현행 인일 단가표를 서면으로 요청</strong>하십시오. 이건 30분입니다.</dd></div>
+      <div><dt>누가 언제</dt><dd>이번 달부터 기록 시작. <strong>2026년 12월</strong>에 견적 인일 대비 실제 투입 인일 비율을 프로젝트별로 뽑아 재진단합니다. 그때 저마진 프로젝트 유형이 특정되면 그 유형은 수주를 중단하거나 단가를 별도로 매깁니다.</dd></div>
+      <div><dt>부작용</dt><dd class="sfx">직원들이 시간 기록을 감시로 받아들일 수 있습니다. <strong>목적을 견적 정확도 개선으로 명시</strong>하고, 개인별이 아니라 프로젝트별로만 집계해서 공유하십시오. 그리고 3개월간은 효과가 0원입니다. 이 벡터를 1번이나 2번보다 앞에 두면 안 되는 이유입니다.</dd></div>
+    </div>
+  </div>
+
+  <div class="callout acc">
+    <div class="ct">세 개를 다 하면</div>
+    <strong>일회성 현금 확보 7,000만 ~ 9,500만원</strong>(벡터 01), <strong>연간 반복 효과 8,200만 ~ 1억 3,900만원</strong>(벡터 02+03, 이자 절감 포함). 일회성과 연간을 더하지 마십시오. 성격이 다릅니다.<br><br>
+    <strong>중복 상쇄:</strong> 벡터 02(단가 인상)와 03(외부 인력비 관리)은 각각 매출 쪽과 원가 쪽이라 겹치지 않습니다. 다만 벡터 03의 측정 결과가 "견적 초과 투입"으로 나오면, 그 처방은 단가 인상이 아니라 견적 재산정이 되어 벡터 02의 인상 폭과 일부 겹칩니다. 그 경우 합산 효과에서 약 1,500만원을 빼십시오.<br><br>
+    <strong>연간 반복 효과가 다 실현되면</strong> 세전이익이 1,360만원에서 9,600만 ~ 1억 5,300만원이 되고, 손익분기 여유가 1.6%에서 <strong>6~10% 구간</strong>으로 올라갑니다. 그때가 채용을 다시 검토할 시점입니다.
+  </div>
+
+  <p class="body" style="margin-top:30px"><strong>참고로, 무엇을 건드리면 가장 크게 움직이는지</strong>를 한 표로 정리했습니다. 2026년 연환산 기준이고 세전이익 1,360만원에서 출발합니다.</p>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>1%를 움직이면</th><th>세전이익 변화</th><th>변화 후</th><th>배수</th></tr></thead>
+    <tbody>
+      <tr><td>판매 단가 +1%</td><td class="pos hi">+1,561만원</td><td class="pos">+2,921만원</td><td class="hi">1.00×</td></tr>
+      <tr><td>수주 물량 +1%</td><td class="pos">+832만원</td><td class="pos">+2,192만원</td><td>0.53×</td></tr>
+      <tr><td>준고정비 −1%</td><td class="pos">+809만원</td><td class="pos">+2,169만원</td><td>0.52×</td></tr>
+      <tr><td>외부 인력비 −1%</td><td class="pos">+729만원</td><td class="pos">+2,089만원</td><td>0.47×</td></tr>
+      <tr><td>매출 −5%</td><td class="neg">−4,160만원</td><td class="neg">−2,800만원</td><td>–</td></tr>
+      <tr><td>매출 −10%</td><td class="neg">−8,320만원</td><td class="neg">−6,960만원</td><td>–</td></tr>
+    </tbody>
+  </table></div>
+  <p class="cap">단가 인상은 변동비가 함께 늘지 않는다고 가정합니다(인상분 전액이 공헌이익). 물량 증가는 변동비가 비례해 늘어난다고 가정합니다. 준고정비 절감은 인원 감축을 포함하지 않은 순수 경비 기준입니다. 배수는 판매 단가 1%의 효과를 1.00으로 놓은 상대값입니다 <span class="grade b">B</span>.</p>
+</section>
+<!-- ============ 09 ============ -->
+<section id="s9">
+  <div class="sec-head"><span class="no">09</span><h2>이 리포트의 한계</h2></div>
+  <p class="sec-sub">못 본 것과, 그것 때문에 결론이 어떻게 달라질 수 있는지.</p>
+  <div class="rule"></div>
+
+  <div class="callout crit">
+    <div class="ct">가장 중요한 확인 요청 · 부가가치세</div>
+    <strong>통장에서 확인되는 부가가치세 납부액이 매출·매입 규모로 계산되는 금액과 큰 차이가 있습니다.</strong> 2026년 상반기 기준으로 매출세액은 7,806만원이고, 원장에서 확인 가능한 매입세액(외주용역비·임차료·통신비·소모품비 등)은 약 3,131만원입니다. 차액 <strong>약 4,675만원</strong>이 납부돼야 할 규모입니다. 그런데 통장에서 나간 부가가치세는 1분기 205만원, 2분기 222만원, 합계 <strong>427만원</strong>입니다. 2024년과 2025년도 같은 방향입니다.<br><br>
+    <strong>이 차이가 무엇 때문인지는 이 자료로 판정할 수 없습니다.</strong> 신고 방식·매입세액 공제 범위·납부 경로 중 어디에 원인이 있는지는 세무 대리인이 확인해야 합니다. Juno는 세무 처리 판단을 하지 않습니다.<br><br>
+    <strong>다만 현금계획 관점에서는 반드시 짚어야 합니다.</strong> 만약 분기당 약 4,000만원의 납부가 앞으로 발생한다면 13주 계획의 최저 잔고가 1.57억에서 <strong>1.35억</strong>으로 내려갑니다. 그래서 13주 계획의 시나리오 3에 이 유출을 넣어두었습니다. <strong>다음 주 안에 세무 대리인에게 확인하시고, 결과를 알려주시면 13주 계획을 즉시 다시 굴립니다.</strong>
+  </div>
+
+  <div class="tbl-wrap"><table>
+    <thead><tr><th>못 본 것</th><th style="text-align:left">이유</th><th style="text-align:left">이걸 모르면 놓치는 것</th></tr></thead>
+    <tbody>
+      <tr><td>프로젝트별 수익성</td><td style="text-align:left;font-family:var(--kr)">원가 대응 자료가 존재하지 않음. 재무제표 주석 3에 명시</td><td style="text-align:left;font-family:var(--kr)"><strong>어떤 프로젝트 유형이 밑지는지.</strong> 정리하면 공헌이익이 얼마 늘어나는지 산출 불가</td></tr>
+      <tr><td>외부 인력비 상승의 원인</td><td style="text-align:left;font-family:var(--kr)">투입 공수 기록과 외주 단가표가 없음</td><td style="text-align:left;font-family:var(--kr)"><strong>연 8,080만원짜리 질문.</strong> 처방이 외주 재협상인지 견적 재산정인지 결정 불가</td></tr>
+      <tr><td>내부 인력 가동률</td><td style="text-align:left;font-family:var(--kr)">급여대장에 직군·프로젝트 배분이 없음</td><td style="text-align:left;font-family:var(--kr)">채용 판단의 정밀도. 지금은 외주 대체 480인일을 <strong>가정</strong>으로 놓았음</td></tr>
+      <tr><td>법인카드 개인 지출 혼입</td><td style="text-align:left;font-family:var(--kr)">카드 명세를 원장과 대조할 수 없음. 대표님 진술은 근거 등급 C</td><td style="text-align:left;font-family:var(--kr)">정상화 손익의 정확도. 다만 접대비+차량유지비가 매출의 <strong>0.96%</strong>로 낮아 규모는 크지 않을 것으로 봄</td></tr>
+      <tr><td>계절성</td><td style="text-align:left;font-family:var(--kr)">30개월은 전년 동월 비교가 2회밖에 안 됨</td><td style="text-align:left;font-family:var(--kr)"><strong>판정 불가</strong>로 둡니다. 없다고 말하지 않습니다. 13주 계획은 균등 배분 가정</td></tr>
+      <tr><td>수주 파이프라인</td><td style="text-align:left;font-family:var(--kr)">진행 중 계약·견적 제출 현황을 받지 못함</td><td style="text-align:left;font-family:var(--kr)">13주 계획의 신규 매출 가정이 <strong>근거 등급 C</strong>에 머무름</td></tr>
+    </tbody>
+  </table></div>
+
+  <div class="callout warn">
+    <div class="ct">결론이 뒤집힐 수 있는 지점</div>
+    <strong>하나.</strong> 클라우드·AI API를 직접 원가가 아니라 운영비로 본다면 공헌이익률이 53.3%에서 57.2%로 올라갑니다. 다만 2024년 대비 하락 폭(−11.1%p)은 −10.6%p로 거의 그대로여서 <strong>결론은 바뀌지 않습니다.</strong><br><br>
+    <strong>둘.</strong> 2026년 연환산이 상반기 × 2입니다. 만약 하반기 매출이 상반기보다 20% 적다면 실제 연 매출은 14.05억이 되고, 손익분기(15.36억)를 <strong>1.31억 밑도는 적자</strong>가 됩니다. 6월 매출이 6,890만원으로 상반기 월평균 1.30억의 절반이었다는 점이 마음에 걸립니다. <strong>7·8월 매출과 통장을 주시면 이 부분을 가장 먼저 다시 봅니다.</strong><br><br>
+    <strong>셋.</strong> 미회수 3.87억이 전액 회수된다고 전제했습니다. 30개월간 미회수로 끝난 건이 한 건도 없어서 이 전제는 근거 등급 B입니다. 만약 한 건이라도 대손이 나면 그 금액이 그대로 손실입니다. 현재 대손충당금은 설정돼 있지 않습니다(재무상태표 주석 4).
+  </div>
+</section>
+
+<!-- ============ 10 ============ -->
+<section id="s10">
+  <div class="sec-head"><span class="no">10</span><h2>부록</h2></div>
+  <p class="sec-sub">가정과 산출 방법. 결론을 검증하시려면 여기를 보십시오.</p>
+  <div class="rule"></div>
+
+  <details><summary>A. 가정 원장: 이 가정이 틀리면 결론이 어떻게 바뀌나</summary>
+    <div class="dbody">
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>가정</th><th style="text-align:left">근거</th><th>등급</th><th style="text-align:left">틀리면</th></tr></thead>
+        <tbody>
+          <tr><td>프리랜서 개발용역비는 직접 원가</td><td style="text-align:left;font-family:var(--kr)">원장 적요에 개인명 + "개발용역" 명시, 10명</td><td><span class="grade a">A</span></td><td style="text-align:left;font-family:var(--kr)">이견 없음</td></tr>
+          <tr><td>클라우드·AI API는 직접 원가</td><td style="text-align:left;font-family:var(--kr)">AWS·GCP·OpenAI·Anthropic·Vercel. AI 에이전트 구축업의 성격상 프로젝트에 직접 붙음</td><td><span class="grade b">B</span></td><td style="text-align:left;font-family:var(--kr)">공헌이익률 53.3% → 57.2%. 하락 폭은 −11.1%p → −10.6%p로 거의 동일. <strong>결론 불변</strong></td></tr>
+          <tr><td>2026년 = 상반기 × 2</td><td style="text-align:left;font-family:var(--kr)">계절성 판정 불가 상태에서의 단순 연환산</td><td><span class="grade b">B</span></td><td style="text-align:left;font-family:var(--kr)">하반기가 20% 적으면 연 매출 14.05억, <strong>손익분기를 1.31억 밑돔</strong></td></tr>
+          <tr><td>미회수 3.87억 전액 회수</td><td style="text-align:left;font-family:var(--kr)">30개월간 미회수 종결 건 0건</td><td><span class="grade b">B</span></td><td style="text-align:left;font-family:var(--kr)">대손 발생 시 그 금액이 그대로 손실. 13주 최저 잔고 직접 하락</td></tr>
+          <tr><td>개발자 1인 월 610만원</td><td style="text-align:left;font-family:var(--kr)">급여대장 2026-06 기준 1인당 급여 505만 + 4대보험·퇴직충당 105만</td><td><span class="grade a">A</span></td><td style="text-align:left;font-family:var(--kr)">개발자가 평균보다 높으면 채용 부담이 더 큼. <strong>결론 강화</strong></td></tr>
+          <tr><td>개발자 2명 = 연 480인일 소화</td><td style="text-align:left;font-family:var(--kr)">1인 월 20인일 가정. 실제 가동률 자료 없음</td><td><span class="grade c">C</span></td><td style="text-align:left;font-family:var(--kr)">가동률이 낮으면 외주 대체 효과가 줄어 <strong>채용이 더 불리해짐</strong></td></tr>
+          <tr><td>단가 인상 시 이탈률 10%</td><td style="text-align:left;font-family:var(--kr)">30개월간 인상 사례가 한 번도 없어 과거 반응으로 검증 불가</td><td><span class="grade c">C</span></td><td style="text-align:left;font-family:var(--kr)">이탈률 8.6%가 손익 유지 상한(5% 인상 기준). 그 이상이면 효과가 음수로 전환</td></tr>
+          <tr><td>13주 신규 매출 월 1.18억</td><td style="text-align:left;font-family:var(--kr)">리테이너 3,800만(계약 확정) + 구축 8,000만(상반기 월평균 9,210만보다 보수적)</td><td><span class="grade c">C</span></td><td style="text-align:left;font-family:var(--kr)">13주 안에 입금되는 신규분은 1.76억뿐이라 영향 제한적. 그러나 13주 이후가 달라짐</td></tr>
+          <tr><td>부가가치세 추가 유출 없음 (기준 시나리오)</td><td style="text-align:left;font-family:var(--kr)">통장 실적 패턴 그대로 적용</td><td><span class="grade d">D</span></td><td style="text-align:left;font-family:var(--kr)"><strong>13주 계획 시나리오 3에서 분기 4,000만원 유출로 별도 산출.</strong> 최저 잔고 1.57억 → 1.35억</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <details><summary>B. 근거 등급표</summary>
+    <div class="dbody">
+      <p><strong>A</strong> 장부에 직접 있는 수치. <strong>B</strong> 장부 수치에서 계산으로 유도한 것. <strong>C</strong> 대표님 진술 기반이거나 검증되지 않은 가정. <strong>D</strong> 외부 자료·일반 통념.</p>
+      <p><strong>C·D 등급만으로 개선안을 세우지 않습니다.</strong> 이 리포트의 개선 벡터 3개는 모두 A·B 등급 근거가 하나 이상 받치고 있습니다. 벡터 01은 미회수 채권 실측치(A), 벡터 02는 인일당 단가·외부 인력비 실측치(A), 벡터 03은 인일당 외부 인력비 추세(A)입니다. 효과 금액 추정에 붙은 C 등급은 이탈률과 절감률 같은 <strong>미래 가정</strong> 부분입니다.</p>
+      <p>대표님이 주신 진술 네 가지의 처리: <strong>계좌가 하나뿐</strong>이라는 진술은 통장 전 기간에서 타 계좌 이체 흔적이 발견되지 않아 <strong>B로 상향</strong>했습니다. <strong>재고 없음</strong>은 재무상태표에 재고자산 계정이 없어 <strong>A로 상향</strong>했습니다. <strong>대표 급여 계상</strong>은 급여대장에 월 500만원이 30개월 전 기간 확인되어 <strong>A로 상향</strong>했습니다. <strong>사적 지출 미혼입</strong>은 검증 수단이 없어 <strong>C로 유지</strong>했고, 대신 접대비·차량유지비 비중(매출의 0.96%)이라는 간접 지표를 붙였습니다.</p>
+    </div>
+  </details>
+
+  <details><summary>C. 다음에 받고 싶은 자료</summary>
+    <div class="dbody">
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>자료</th><th style="text-align:left">열리는 것</th><th>확보 난이도</th></tr></thead>
+        <tbody>
+          <tr><td>2026년 7·8월 통장 내역</td><td style="text-align:left;font-family:var(--kr)">13주 계획을 실적으로 덮어쓰고 재산출. 하반기 매출 감속 여부 확인</td><td><span class="grade">낮음</span></td></tr>
+          <tr><td>부가세 신고서 3개년</td><td style="text-align:left;font-family:var(--kr)">세금 유출 규모 확정. 13주 계획의 가장 큰 불확실성 제거</td><td><span class="grade">낮음</span></td></tr>
+          <tr><td>외주 7곳 인일 단가표</td><td style="text-align:left;font-family:var(--kr)">외부 인력비 상승의 원인 절반을 즉시 판정</td><td><span class="grade">낮음</span></td></tr>
+          <tr><td>수주 잔고·견적 제출 현황</td><td style="text-align:left;font-family:var(--kr)">13주 계획 신규 매출을 C에서 B로 상향</td><td><span class="grade">낮음</span></td></tr>
+          <tr><td>프로젝트별 투입 공수 기록</td><td style="text-align:left;font-family:var(--kr)">견적 대비 실제 갭, 밑지는 프로젝트 유형 특정, 프로젝트별 공헌이익</td><td><span class="grade">보통 (지금부터 3개월)</span></td></tr>
+          <tr><td>직원 직군·프로젝트 배분표</td><td style="text-align:left;font-family:var(--kr)">내부 가동률, 채용 판단 정밀화</td><td><span class="grade">보통</span></td></tr>
+          <tr><td>에이치케이리테일 계약서</td><td style="text-align:left;font-family:var(--kr)">지연이자 조항 유무. 벡터 01의 협상 카드</td><td><span class="grade">낮음</span></td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </details>
+
+  <details><summary>D. 적용한 기법과 선택 이유, 그리고 쓰지 않은 것</summary>
+    <div class="dbody">
+      <p><strong>쓴 것 세 가지.</strong></p>
+      <p><strong>손익분기와 고정비 레버리지</strong>. 채용 판단이 질문에 들어 있어서 필수였습니다. 고정비·변동비 분류만 있으면 되고 기간 요건이 없습니다. 본문에서는 "버틸 수 있는 하한"으로 다뤘습니다(2·7번).</p>
+      <p><strong>현금전환주기와 운전자본 소요</strong>. "매출은 느는데 통장은 빡빡하다"는 통증에 정확히 대응합니다. 재무상태표 2개년과 매출원가가 있어 성립했습니다. 본문 5번입니다.</p>
+      <p><strong>민감도 표</strong>. 무엇을 먼저 건드릴지 정하는 데 썼습니다. 손익과 변동비율만 있으면 되고 기간 요건이 없습니다. 본문 8번 마지막 표입니다.</p>
+      <p><strong>안 쓴 것과 이유.</strong> <strong>누적 이익 곡선</strong>(고객·제품을 이익순으로 세워 어디서 이익이 깎이는지 보는 방법)은 프로젝트별 변동비 대응이 불가능해 후보에서 뺐습니다. 매출 기준으로 축약할 수는 있었지만, 마진 차이를 못 보는 축약 곡선은 오독을 만들어 넣지 않았습니다. <strong>고객 응대 원가</strong>는 주문 건수·클레임 이력이 없어 성립하지 않습니다. <strong>실질 단가 계단 분해</strong>는 할인·리베이트·판촉 데이터가 없어 계단이 두 칸밖에 안 나옵니다. <strong>EVA와 밸류에이션</strong>은 자본비용 추정 근거가 없고 투자 자문 경계입니다. <strong>몬테카를로</strong>는 분포 가정의 근거가 없어 정교함이 착시를 만듭니다. <strong>3년 추정 재무제표</strong>는 소규모에서 창작에 가깝습니다.</p>
+      <p>한 진단에 기법 3개가 상한입니다. 데이터 품질이 천장인데 기법을 늘리면 착시만 커집니다.</p>
+    </div>
+  </details>
+
+  <details><summary>E. 산출 방법</summary>
+    <div class="dbody">
+      <p><strong>원가 재분류.</strong> 계정별원장 2,372행에서 지급수수료 340건을 적요 기준으로 다섯으로 나눴습니다. 프리랜서 개발용역(10명), 클라우드·AI API(AWS·GCP·OpenAI·Anthropic·Vercel), 채용공고, 세무·법률, SaaS 구독. 앞의 둘을 외주용역비와 합쳐 직접 원가로 정의했습니다.</p>
+      <p><strong>인일당 경제성.</strong> 거래처별 매출상세 246건의 견적 인일수를 연도별로 합산해 분모로 썼습니다. 이 인일은 견적 기준이며 실제 투입 인일이 아닙니다.</p>
+      <p><strong>회수일수.</strong> 두 가지를 따로 냈습니다. 재무상태표 잔액 기준(매출채권 ÷ 매출 × 365)은 82.3일이고, 세금계산서 건별 실측(입금일 − 발행일)은 2026년 상반기 49.1일, 30개월 전체 평균 47.3일입니다. <strong>차이는 기말에 미회수가 몰려 있기 때문</strong>이며, 잔액 기준이 현금 소요를 더 정확히 반영해 운전자본 계산에는 잔액 기준을 썼습니다. 회수 지연 추세 판정에는 건별 실측을 썼습니다.</p>
+      <p><strong>거래처명 정규화.</strong> "(주)", "주식회사", 공백을 제거하고 약칭을 통일해 39개를 28개로 병합했습니다. 병합 전후로 최대 거래처 비중이 10.5%에서 28.1%로 바뀝니다.</p>
+      <p><strong>통장 분류.</strong> 1,412행을 적요와 상대처 기준으로 유입 3종(매출·대출·가수금), 유출 8종(급여·외주·프리랜서·API·고정비·세금·이자·기타)으로 나눴습니다. 계좌가 하나라 계좌 간 이체 제거 절차는 불필요했습니다.</p>
+      <p><strong>단위와 반올림.</strong> 억원 단위 소수 둘째 자리, 비율은 소수 첫째 자리, 개선안 금액만 만원 단위입니다. 셋째 자리에서 반올림하므로 표의 세부 항목 합과 합계에 0.01억 차이가 있을 수 있습니다. 음수는 −(U+2212)로 표기했습니다.</p>
+    </div>
+  </details>
+
+  <details><summary>F. 출고 전 자체 점검 17항목</summary>
+    <div class="dbody">
+      <ul class="chk">
+        <li>진입 모드(전체 진단)를 판정하고 선언했나</li>
+        <li>판독 불가 영역을 명시했나 (01·09번)</li>
+        <li>데이터로 못 하는 것에 대체 산출물을 제시했나 (벡터 03이 측정 설계)</li>
+        <li>없는 데이터를 추정으로 메우고 흐리지 않았나</li>
+        <li>수익 구조를 비용보다 먼저 봤나 (03→04→05→06 순)</li>
+        <li>이익과 현금을 분리해서 봤나 (05번 괴리 분해표)</li>
+        <li>모든 추정치에 가정이 달렸나 (부록 A)</li>
+        <li>근거 등급이 표시됐나</li>
+        <li>개선안에 연간 금액이 붙었나</li>
+        <li>개선안이 3개 이하인가</li>
+        <li>각 개선안에 첫 동작과 소요 시간이 있나</li>
+        <li>부작용을 적었나</li>
+        <li>세무·감사·투자 자문 영역을 침범하지 않았나 (부가세는 사실 기재 + 전문가 확인 권고)</li>
+        <li class="no">업종 벤치마크 사용 안 함 (기준선은 이 회사의 과거)</li>
+        <li>기법 이름이 제목·섹션명에 노출되지 않았나</li>
+        <li>13주 계획을 별도 파일로 분리하고 모든 항목에 가정을 붙였나</li>
+        <li>표마다 산출 조건 주석이 붙었나, 섹션 제목이 주장문인가</li>
+      </ul>
+    </div>
+  </details>
+</section>
+
+</div>
+
+<footer class="doc">
+  <p><strong>이 문서는 재무 진단이며 세무 처리·감사 의견·투자 자문이 아닙니다.</strong> 부가가치세를 포함한 세무 신고 및 회계 처리에 관한 판단은 세무 전문가의 확인이 필요합니다. 이 리포트의 손익 수치는 (주)노드플로우가 제공한 재무제표(2024·2025 결산, 2026 상반기 내부 결산)를, 현금 수치는 국민은행 주계좌 거래내역 1,412행을 근거로 산출했습니다. 2026년 상반기 재무제표는 외부감사를 받지 않은 내부 결산 수치입니다.</p>
+  <p style="margin-top:14px">단위는 억원 소수 둘째 자리, 비율은 소수 첫째 자리, 개선안 금액은 만원 단위입니다. 셋째 자리 반올림으로 세부 항목 합과 합계가 일치하지 않을 수 있습니다. 음수는 −(U+2212)로 표기했습니다.</p>
+  <p style="margin-top:14px">Juno · 재무 판독 · 개선 파트너 · 진단 기준일 2026-08-24 · 대외비</p>
+</footer>
+</main>
+</div>
+<script>
+const NS='http://www.w3.org/2000/svg';
+function el(n,a){const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;}
+function svgRoot(host,w,h){host.innerHTML='';const s=el('svg',{viewBox:`0 0 ${w} ${h}`,width:'100%',role:'img'});
+  s.style.display='block';s.style.minWidth=(w<520?w:520)+'px';host.appendChild(s);return s;}
+function txt(p,x,y,t,o){const a=Object.assign({x,y,fill:'var(--ink-3)','font-size':11},o||{});
+  const e=el('text',a);e.textContent=t;p.appendChild(e);return e;}
+const fmt=(v,d=2)=>(v<0?'−':'')+Math.abs(v).toFixed(d);
+const TIP=document.getElementById('tip');
+function bindTip(node,html){
+  node.style.cursor='crosshair';
+  const show=ev=>{TIP.innerHTML=html;TIP.style.opacity=1;
+    const x=Math.min(ev.clientX+14,innerWidth-TIP.offsetWidth-10);
+    TIP.style.left=x+'px';TIP.style.top=(ev.clientY-TIP.offsetHeight-12)+'px';};
+  node.addEventListener('mouseenter',show);node.addEventListener('mousemove',show);
+  node.addEventListener('mouseleave',()=>TIP.style.opacity=0);
+}
+
+/* ---------- 02: 연도별 매출/공헌이익/준고정비 ---------- */
+(function(){
+  const host=document.getElementById('c-pl'); if(!host) return;
+  const W=760,H=300,L=52,R=18,T=34,B=52;
+  const s=svgRoot(host,W,H);
+  const D=[{k:'2024',rev:8.09,cm:5.21,fx:4.39,op:0.82},
+           {k:'2025',rev:13.74,cm:7.34,fx:7.05,op:0.29},
+           {k:'2026 연환산',rev:15.61,cm:8.32,fx:8.09,op:0.23}];
+  const max=17, iw=W-L-R, ih=H-T-B, gw=iw/D.length, bw=gw*0.20;
+  const y=v=>T+ih-(v/max)*ih;
+  for(let g=0;g<=max;g+=4){
+    s.appendChild(el('line',{x1:L,x2:W-R,y1:y(g),y2:y(g),stroke:'var(--rule)','stroke-width':1}));
+    txt(s,L-9,y(g)+4,g+'',{'text-anchor':'end'});
+  }
+  D.forEach((d,i)=>{
+    const cx=L+gw*i+gw/2;
+    [[d.rev,'--s1','매출'],[d.cm,'--s3','공헌이익'],[d.fx,'--s2','준고정비']].forEach((b,j)=>{
+      const x=cx-bw*1.55+j*bw*1.12;
+      const r=el('rect',{x,y:y(b[0]),width:bw,height:T+ih-y(b[0]),rx:2,fill:`var(${b[1]})`});
+      bindTip(r,`<b>${d.k}</b><br>${b[2]} ${fmt(b[0])}억`);
+      s.appendChild(r);
+      txt(s,x+bw/2,y(b[0])-6,fmt(b[0]),{'text-anchor':'middle','font-size':10.5,fill:'var(--ink-2)'});
+    });
+    txt(s,cx,H-30,d.k,{'text-anchor':'middle','font-size':12,fill:'var(--ink-2)'});
+    txt(s,cx,H-12,'영업이익 +'+fmt(d.op),{'text-anchor':'middle','font-size':11,
+      fill:i===0?'var(--good)':'var(--crit)','font-weight':600});
+  });
+  txt(s,L-9,T-14,'억원',{'text-anchor':'end','font-size':10.5});
+})();
+
+/* ---------- 04: 인일당 경제성 ---------- */
+(function(){
+  const host=document.getElementById('c-day'); if(!host) return;
+  const W=760,H=300,L=56,R=18,T=30,B=54;
+  const s=svgRoot(host,W,H);
+  const D=[{k:'2024',ext:209.4,api:22.0,cm:418.6,rev:650.0},
+           {k:'2025',ext:312.9,api:25.6,cm:387.7,rev:726.1},
+           {k:'2026 상반기',ext:306.8,api:27.7,cm:381.6,rev:716.0}];
+  const max=800, iw=W-L-R, ih=H-T-B, gw=iw/D.length, bw=Math.min(96,gw*0.42);
+  const y=v=>T+ih-(v/max)*ih;
+  for(let g=0;g<=max;g+=200){
+    s.appendChild(el('line',{x1:L,x2:W-R,y1:y(g),y2:y(g),stroke:'var(--rule)','stroke-width':1}));
+    txt(s,L-9,y(g)+4,g+'',{'text-anchor':'end'});
+  }
+  D.forEach((d,i)=>{
+    const cx=L+gw*i+gw/2, x=cx-bw/2; let acc=0;
+    [[d.ext,'--s2','외부 인력비'],[d.api,'--warn','클라우드·API'],[d.cm,'--s3','남는 돈']].forEach(b=>{
+      const h=(b[0]/max)*ih;
+      const r=el('rect',{x,y:y(acc+b[0]),width:bw,height:h,fill:`var(${b[1]})`});
+      bindTip(r,`<b>${d.k}</b><br>${b[2]} ${Math.round(b[0])}천원<br>받는 돈 대비 ${(b[0]/d.rev*100).toFixed(1)}%`);
+      s.appendChild(r); acc+=b[0];
+      if(h>18) txt(s,cx,y(acc)+h/2+4,Math.round(b[0]),{'text-anchor':'middle','font-size':11,fill:'#fff','font-weight':600});
+    });
+    txt(s,cx,y(acc)-8,Math.round(d.rev)+'천원',{'text-anchor':'middle','font-size':11.5,fill:'var(--ink)','font-weight':600});
+    txt(s,cx,H-32,d.k,{'text-anchor':'middle','font-size':12,fill:'var(--ink-2)'});
+  });
+  txt(s,L-9,T-12,'천원',{'text-anchor':'end','font-size':10.5});
+  txt(s,L,H-10,'막대 전체 높이가 인일 1일이 벌어오는 돈입니다. 초록 칸이 남는 돈입니다.',{'font-size':11});
+})();
+/* ---------- 05: 회수일수 추이 ---------- */
+(function(){
+  const host=document.getElementById('c-dso'); if(!host) return;
+  const W=760,H=280,L=48,R=110,T=28,B=46;
+  const s=svgRoot(host,W,H);
+  const X=['2024 상','2024 하','2025 상','2025 하','2026 상'];
+  const S=[{n:'전체 평균',c:'--s1',v:[37.8,44.6,47.7,54.2,49.1]},
+           {n:'HK 제외',c:'--s3',v:[37.8,44.6,44.6,50.0,45.2]},
+           {n:'에이치케이리테일',c:'--s2',v:[null,44.5,75.0,88.0,91.3]}];
+  const max=100, iw=W-L-R, ih=H-T-B;
+  const x=i=>L+(iw/(X.length-1))*i, y=v=>T+ih-(v/max)*ih;
+  for(let g=0;g<=max;g+=25){
+    s.appendChild(el('line',{x1:L,x2:W-R,y1:y(g),y2:y(g),stroke:'var(--rule)','stroke-width':1}));
+    txt(s,L-9,y(g)+4,g+'',{'text-anchor':'end'});
+  }
+  X.forEach((t,i)=>txt(s,x(i),H-24,t,{'text-anchor':'middle','font-size':11.5,fill:'var(--ink-2)'}));
+  S.forEach(ser=>{
+    const pts=ser.v.map((v,i)=>v==null?null:[x(i),y(v)]).filter(Boolean);
+    s.appendChild(el('path',{d:pts.map((p,i)=>(i?'L':'M')+p[0]+','+p[1]).join(' '),
+      stroke:`var(${ser.c})`,'stroke-width':2.2,fill:'none','stroke-linecap':'round','stroke-linejoin':'round'}));
+    ser.v.forEach((v,i)=>{
+      if(v==null) return;
+      const c=el('circle',{cx:x(i),cy:y(v),r:4,fill:`var(${ser.c})`,stroke:'var(--surface)','stroke-width':1.5});
+      bindTip(c,`<b>${X[i]}</b><br>${ser.n} ${v.toFixed(1)}일`);
+      s.appendChild(c);
+    });
+    const li=ser.v.length-1;
+    txt(s,x(li)+10,y(ser.v[li])+4,ser.n,{'font-size':11.5,fill:`var(${ser.c})`,'font-weight':600});
+  });
+  s.appendChild(el('line',{x1:L,x2:W-R,y1:y(30),y2:y(30),stroke:'var(--ink-3)','stroke-width':1,'stroke-dasharray':'4 4'}));
+  txt(s,L+6,y(30)-6,'가장 흔한 계약 조건 30일',{'font-size':10.5});
+  txt(s,L-9,T-12,'일',{'text-anchor':'end','font-size':10.5});
+})();
+
+/* ---------- 05: 채권 연령 ---------- */
+(function(){
+  const host=document.getElementById('c-age'); if(!host) return;
+  const W=760,H=200,L=96,R=120,T=22,B=40;
+  const s=svgRoot(host,W,H);
+  const D=[{k:'30일 이내',v:75.8,n:3},{k:'31~60일',v:108.4,n:8},{k:'61~90일',v:161.3,n:12}];
+  const max=180, iw=W-L-R, ih=H-T-B, rh=ih/D.length;
+  const x=v=>L+(v/max)*iw;
+  for(let g=0;g<=max;g+=45){
+    s.appendChild(el('line',{x1:x(g),x2:x(g),y1:T,y2:T+ih,stroke:'var(--rule)','stroke-width':1}));
+    txt(s,x(g),T+ih+16,g+'',{'text-anchor':'middle'});
+  }
+  D.forEach((d,i)=>{
+    const yy=T+rh*i+rh/2, h=Math.min(30,rh-14);
+    const r=el('rect',{x:L,y:yy-h/2,width:x(d.v)-L,height:h,rx:3,
+      fill:i===2?'var(--crit)':(i===1?'var(--warn)':'var(--s1)')});
+    bindTip(r,`<b>${d.k}</b><br>${d.v.toFixed(1)}백만원 · ${d.n}건<br>전체 387.4백만 중 ${(d.v/387.4*100).toFixed(1)}%`);
+    s.appendChild(r);
+    txt(s,L-10,yy+4,d.k,{'text-anchor':'end','font-size':12,fill:'var(--ink-2)'});
+    txt(s,x(d.v)+9,yy+4,d.v.toFixed(1)+'백만 ('+d.n+'건)',{'font-size':11.5,fill:'var(--ink)','font-weight':600});
+  });
+  txt(s,L,H-8,'단위 백만원. 부가세 포함. 발행일로부터 경과일 기준, 2026-06-30 시점.',{'font-size':11});
+})();
+
+/* ---------- 06: 거래처 집중도 ---------- */
+(function(){
+  const host=document.getElementById('c-cli'); if(!host) return;
+  const D=[['에이치케이리테일',834.0],['한빛에듀케이션',154.7],['그린바이오랩',143.0],['넥스트필드',119.6],
+           ['우리금융서비스',117.0],['제이엘테크',117.0],['비전디자인',115.7],['라이트하우스컴퍼니',114.4],
+           ['한강모빌리티',102.7],['소울커머스',94.9]];
+  const W=760,H=330,L=132,R=96,T=20,B=34;
+  const s=svgRoot(host,W,H);
+  const max=880, iw=W-L-R, ih=H-T-B, rh=ih/D.length;
+  const x=v=>L+(v/max)*iw;
+  for(let g=0;g<=max;g+=220){
+    s.appendChild(el('line',{x1:x(g),x2:x(g),y1:T,y2:T+ih,stroke:'var(--rule)','stroke-width':1}));
+    txt(s,x(g),T+ih+15,g+'',{'text-anchor':'middle'});
+  }
+  const TOT=2963.4;
+  D.forEach((d,i)=>{
+    const yy=T+rh*i+rh/2, h=Math.min(19,rh-6);
+    const r=el('rect',{x:L,y:yy-h/2,width:Math.max(2,x(d[1])-L),height:h,rx:2,
+      fill:i===0?'var(--crit)':'var(--s1)'});
+    bindTip(r,`<b>${d[0]}</b><br>30개월 누적 ${d[1].toFixed(1)}백만원<br>전체 매출의 ${(d[1]/TOT*100).toFixed(1)}%`);
+    s.appendChild(r);
+    txt(s,L-10,yy+4,d[0],{'text-anchor':'end','font-size':11.5,fill:'var(--ink-2)'});
+    txt(s,x(d[1])+8,yy+4,(d[1]/TOT*100).toFixed(1)+'%',{'font-size':11,fill:'var(--ink-3)'});
+  });
+  txt(s,L,H-8,'단위 백만원. 30개월 누적 공급가액. 거래처명 정규화 후 28곳 중 상위 10곳.',{'font-size':11});
+})();
+
+/* ---------- 07: 채용 시나리오 토글 ---------- */
+(function(){
+  const A={rev:'15.61',dc:'7.29',cmr:'53.3%',fx:'9.65',be:'18.10',mg:'−2.49 (−16.0%)',d10:'−2.16',d20:'−2.99',
+    head:'개발자 2명 추가 후 (외주 유지)',
+    cap:'매출을 늘리려고 뽑는 경우: 외주 물량은 그대로 두고 인건비만 늘어납니다. 매출이 즉시 늘지 않는다는 전제이며, 손익분기를 다시 넘으려면 연 2.49억의 매출 증가가 필요합니다 <span class="grade b">B</span>.'};
+  const B={rev:'15.61',dc:'5.82',cmr:'62.7%',fx:'9.65',be:'15.38',mg:'+0.23 (1.5%)',d10:'−0.83',d20:'−1.81',
+    head:'개발자 2명 추가 후 (외주 480인일 대체)',
+    cap:'외주를 대체하는 경우: 2명이 연 480인일(1인 월 20인일)을 소화해 외부 인력비가 1.47억 줄어든다고 가정했습니다 <span class="grade c">C</span>. 손익분기 여유는 1.6%에서 1.5%로 거의 같지만, 매출이 20% 줄 때 손실은 1.53억에서 1.81억으로 커집니다. <strong>고정비 비중이 올라가 하방이 나빠집니다.</strong>'};
+  function put(d){
+    document.getElementById('h-rev').textContent=d.rev;
+    document.getElementById('h-dc').textContent=d.dc;
+    document.getElementById('h-cmr').textContent=d.cmr;
+    document.getElementById('h-fx').textContent=d.fx;
+    document.getElementById('h-be').textContent=d.be;
+    document.getElementById('h-mg').textContent=d.mg;
+    document.getElementById('h-d10').textContent=d.d10;
+    document.getElementById('h-d20').textContent=d.d20;
+    document.getElementById('hire-h').textContent=d.head;
+    document.getElementById('h-cap').innerHTML=d.cap;
+  }
+  const ba=document.getElementById('btn-add'), bs=document.getElementById('btn-sub');
+  if(!ba) return;
+  ba.addEventListener('click',()=>{ba.setAttribute('aria-pressed','true');bs.setAttribute('aria-pressed','false');put(A);});
+  bs.addEventListener('click',()=>{bs.setAttribute('aria-pressed','true');ba.setAttribute('aria-pressed','false');put(B);});
+  put(A);
+})();
+
+/* ---------- 내비 ---------- */
+(function(){
+  const links=[...document.querySelectorAll('#nav a')];
+  const secs=links.map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+  const io=new IntersectionObserver(es=>{
+    es.forEach(e=>{ if(e.isIntersecting){
+      links.forEach(l=>l.classList.toggle('on', l.getAttribute('href')==='#'+e.target.id)); }});
+  },{rootMargin:'-15% 0px -70% 0px', threshold:0});
+  secs.forEach(x=>io.observe(x));
+})();
+
+/* ---------- 테마 ---------- */
+(function(){
+  const b=document.getElementById('themeBtn'); if(!b) return;
+  const sysDark=matchMedia('(prefers-color-scheme: dark)');
+  const label=()=>{const cur=document.documentElement.getAttribute('data-theme');
+    b.textContent=(cur?cur==='dark':sysDark.matches)?'라이트 모드':'다크 모드';};
+  label();
+  b.addEventListener('click',()=>{const cur=document.documentElement.getAttribute('data-theme');
+    const dark=cur?cur==='dark':sysDark.matches;
+    document.documentElement.setAttribute('data-theme',dark?'light':'dark');label();});
+  sysDark.addEventListener('change',label);
+})();
+</script>
+</body>
+</html>
