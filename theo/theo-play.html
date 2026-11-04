@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>고객을 매년 다시 사고 있다 · Theo 30초 체험</title>
+<meta name="description" content="대표는 브랜드 탓, 팀장은 고객 탓. 이미 산 고객을 직접 세어 보면 질문이 바뀌어요.">
+<meta property="og:title" content="고객을 매년 다시 사고 있다 · Theo 30초 체험">
+<meta property="og:description" content="대표는 브랜드 탓, 팀장은 고객 탓. 이미 산 고객을 직접 세어 보면 질문이 바뀌어요.">
+<meta property="og:image" content="https://raw.githubusercontent.com/soloimpactai/teamofone-case-member/main/theo/theo-card.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>[hidden]{display:none !important;}
+:root{
+  --navy:#0B1220; --ink:#131A2A; --muted:#646C80; --faint:#7A8194;
+  --line:#E4E6EC; --line2:#C9CDD9; --tint:#F6F6FA;
+  --acc:#5B57A8; --acc2:#4A4691; --acc-soft:#EFEEF8;
+  --hot:#F4D35E; --hot-soft:#FFF6D6; --neg:#C2453D; --neg-soft:#FBEDEC; --pos:#2F8F6B; --pos-soft:#E8F5EF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:#fff; color:var(--ink); font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif; font-size:16px; line-height:1.7; letter-spacing:-.01em; word-break:keep-all; overflow-wrap:break-word; -webkit-font-smoothing:antialiased;}
+a{color:inherit; text-decoration:none;}
+button{font:inherit; color:inherit; cursor:pointer;}
+:focus-visible{outline:2px solid var(--acc); outline-offset:3px; border-radius:4px;}
+
+/* 상단 바 */
+.pb{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+.pb__in{max-width:780px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:12px;}
+.pb__who{font-weight:800; font-size:15px; letter-spacing:-.02em;}
+.pb__who small{font-weight:600; color:var(--faint); font-size:13px; margin-left:6px;}
+.pb__chip{font-size:11.5px; font-weight:700; color:var(--muted); border:1px solid var(--line2); border-radius:999px; padding:1px 9px;}
+.pb__sp{flex:1;}
+.pb__dots{display:flex; gap:5px;}
+.pb__dots i{width:22px; height:4px; border-radius:2px; background:var(--line);}
+.pb__dots i.on{background:var(--acc);}
+.pb__rep{font-size:13px; color:var(--muted); border-bottom:1px solid var(--line2);}
+.pb__rep:hover{color:var(--ink); border-color:var(--ink);}
+
+.wrap{max-width:780px; margin:0 auto; padding:0 20px 80px;}
+
+/* 인트로 */
+.intro{padding:44px 0 8px;}
+.intro__k{display:inline-block; font-size:13px; font-weight:700; color:var(--acc); background:var(--acc-soft); border-radius:4px; padding:3px 10px; margin-bottom:16px;}
+.intro h1{font-size:clamp(27px,5.6vw,40px); line-height:1.22; letter-spacing:-.045em; font-weight:800; margin:0;}
+.intro p{color:var(--muted); font-size:16.5px; margin:16px 0 0;}
+
+/* 스텝 */
+.step{padding-top:52px; scroll-margin-top:64px;}
+.step[hidden]{display:none;}
+.step.in{animation:rise .45s ease both;}
+@keyframes rise{from{opacity:0; transform:translateY(14px);}to{opacity:1; transform:none;}}
+.step__n{font-size:12.5px; font-weight:800; color:var(--acc); letter-spacing:.04em; margin-bottom:8px;}
+.step h2{font-size:clamp(21px,4vw,27px); line-height:1.36; letter-spacing:-.035em; font-weight:800; margin:0 0 10px;}
+.step__d{color:var(--muted); font-size:15.5px; margin:0 0 22px;}
+
+/* 받은 자료 */
+.doc{border:1px solid var(--line); border-radius:12px; background:#fff; overflow:hidden;}
+.doc + .doc{margin-top:12px;}
+.doc__h{display:flex; align-items:center; gap:8px; padding:11px 16px; background:var(--tint); border-bottom:1px solid var(--line); font-size:13px; color:var(--muted); font-weight:600;}
+.doc__h b{color:var(--ink);}
+.doc__b{padding:14px 16px; font-size:15px;}
+.doc__b p{margin:0;}
+.memo{list-style:none; margin:0; padding:6px 0;}
+.memo li{display:grid; grid-template-columns:22px 1fr; gap:8px; padding:7px 16px; font-size:15px; line-height:1.6;}
+.memo li .no{font-size:12px; color:var(--faint); padding-top:2px; font-variant-numeric:tabular-nums;}
+.facts{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px;}
+.fact{background:var(--tint); border-radius:10px; padding:12px 14px;}
+.fact b{display:block; font-size:19px; font-weight:800; letter-spacing:-.03em;}
+.fact span{font-size:12.5px; color:var(--muted);}
+
+/* 버튼 */
+.go{display:inline-flex; align-items:center; justify-content:center; gap:8px; height:50px; padding:0 24px; border:0; border-radius:8px; background:var(--acc); color:#fff; font-weight:700; font-size:15.5px; margin-top:22px;}
+.go:hover{background:var(--acc2);}
+.go--n{background:var(--navy);}
+.go--n:hover{background:#1A2338;}
+.go--w{background:#fff; color:var(--ink); border:1px solid var(--line2);}
+.go--w:hover{background:#fff; border-color:var(--navy);}
+.skip{display:inline-block; margin:16px 0 0 14px; font-size:13.5px; color:var(--faint); border:0; background:none; border-bottom:1px solid var(--line2); padding:0;}
+
+/* 선택지 */
+.opts{display:grid; gap:10px;}
+.opt{display:grid; grid-template-columns:34px 1fr; gap:12px; align-items:start; text-align:left; width:100%; padding:16px 18px; border:1.5px solid var(--line); border-radius:12px; background:#fff; transition:border-color .15s, background .15s, transform .15s;}
+.opt:hover{border-color:var(--acc); transform:translateY(-1px);}
+.opt__k{width:34px; height:34px; border-radius:50%; background:var(--tint); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; color:var(--muted);}
+.opt__t{font-weight:700; font-size:16px; line-height:1.45; display:block;}
+.opt__s{display:block; font-size:13.5px; color:var(--muted); margin-top:3px; line-height:1.55;}
+.opts.done .opt{cursor:default; transform:none;}
+.opts.done .opt:not(.pick):not(.ans){opacity:.45;}
+.opt.pick{border-color:var(--navy); background:var(--tint);}
+.opt.pick .opt__k{background:var(--navy); color:#fff;}
+.opt.ans{border-color:var(--acc); background:var(--acc-soft);}
+.opt.ans .opt__k{background:var(--acc); color:#fff;}
+.opt__tag{display:none; margin-top:8px; font-size:12px; font-weight:800; letter-spacing:.02em;}
+.opt.pick .opt__tag--me, .opt.ans .opt__tag--ai{display:inline-block; margin-right:8px;}
+.opt__tag--me{color:var(--navy);}
+.opt__tag--ai{color:var(--acc);}
+
+/* 공개 */
+.reveal{margin-top:18px; border-radius:12px; padding:18px 20px; background:var(--tint); font-size:15.5px;}
+.reveal[hidden]{display:none;}
+.reveal__h{font-weight:800; font-size:16.5px; margin:0 0 6px; letter-spacing:-.02em;}
+.reveal p{margin:0;}
+.reveal p + p{margin-top:8px;}
+.reveal--same{background:var(--acc-soft);}
+[data-if]{display:none;}
+[data-if].show{display:block;}
+
+/* 흐름 띠 */
+.flow{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:12px; font-size:13.5px;}
+.flow span{background:#fff; border:1px solid var(--line); border-radius:6px; padding:5px 10px;}
+.flow i{font-style:normal; color:var(--faint);}
+.flow .stop{border-color:var(--neg); color:var(--neg); background:var(--neg-soft); font-weight:700;}
+
+/* 큰 숫자 */
+.big{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.big b{font-size:clamp(40px,9vw,64px); font-weight:800; letter-spacing:-.05em; line-height:1; color:var(--acc); font-variant-numeric:tabular-nums;}
+.big span{font-size:15px; color:var(--muted);}
+
+/* 카드 */
+.card{border:1px solid var(--line); border-radius:14px; padding:20px; background:#fff;}
+.card + .card{margin-top:12px;}
+.card__k{font-size:12.5px; font-weight:800; color:var(--acc); margin-bottom:6px;}
+.card h3{font-size:18px; letter-spacing:-.03em; line-height:1.45; margin:0 0 8px;}
+.card p{margin:0; color:var(--muted); font-size:15px;}
+
+/* 판정 칩 */
+.vchip{display:inline-flex; align-items:center; gap:6px; font-weight:800; font-size:15px; padding:6px 14px; border-radius:999px; background:var(--acc-soft); color:var(--acc); transition:background .2s,color .2s;}
+.vchip.pos{background:var(--pos-soft); color:var(--pos);}
+.vchip.neg{background:var(--neg-soft); color:var(--neg);}
+
+/* 슬라이더 */
+.rng{margin:18px 0 6px;}
+.rng label{display:flex; justify-content:space-between; font-size:14px; color:var(--muted); margin-bottom:8px;}
+.rng label b{color:var(--ink); font-size:16px; font-variant-numeric:tabular-nums;}
+input[type=range]{width:100%; accent-color:var(--acc); height:28px;}
+
+/* 표 */
+.tbl{width:100%; border-collapse:collapse; font-size:14.5px;}
+.tbl th,.tbl td{padding:10px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+.tbl th{font-size:12.5px; color:var(--faint); font-weight:700;}
+.tbl td.c,.tbl th.c{text-align:center;}
+.tbl .y{color:var(--pos); font-weight:800;}
+.tbl .n{color:var(--line2); font-weight:800;}
+.tbl tr.win td{background:var(--acc-soft);}
+.tbl tr.win td:first-child{font-weight:800;}
+.tbl small{display:block; color:var(--muted); font-size:12.5px; margin-top:2px;}
+
+/* 초안 */
+.draft{position:relative; border:1px solid var(--line2); border-radius:12px; background:#fff; padding:18px 18px 16px; font-size:15px; line-height:1.75; white-space:pre-line;}
+.draft__h{display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px;}
+.copy{border:1px solid var(--line2); background:#fff; border-radius:6px; font-size:12.5px; padding:4px 10px; font-weight:600;}
+.copy.ok{border-color:var(--pos); color:var(--pos);}
+
+/* 토글 */
+.tog{display:inline-flex; border:1px solid var(--line2); border-radius:8px; overflow:hidden; margin:4px 0 12px;}
+.tog button{border:0; background:#fff; padding:9px 14px; font-size:14px; font-weight:600; color:var(--muted);}
+.tog button[aria-pressed=true]{background:var(--navy); color:#fff;}
+
+/* 마감 */
+.end{margin-top:64px; background:var(--navy); color:#fff; border-radius:16px; padding:34px 28px;}
+.end h2{font-size:clamp(22px,4.4vw,30px); line-height:1.32; letter-spacing:-.04em; margin:0 0 12px; font-weight:800;}
+.end p{color:#A9B0C2; margin:0; font-size:15.5px;}
+.end__acts{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px;}
+.end__acts .go{margin-top:0;}
+.end__acts .go--o{background:transparent; border:1px solid #39415A; color:#C8CDDA;}
+.end__acts .go--o:hover{border-color:#6C7490; color:#fff;}
+.end__note{font-size:13px !important; color:#7F879C !important; margin-top:14px !important;}
+.others{margin-top:28px;}
+.others__h{font-size:13.5px; color:var(--faint); font-weight:700; margin-bottom:10px;}
+.others__row{display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
+.others a{display:block; border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:14px; line-height:1.45;}
+.others a b{display:block; font-size:15px;}
+.others a span{color:var(--muted); font-size:12.5px;}
+.others a:hover{border-color:var(--acc);}
+.foot{margin-top:28px; font-size:12.5px; color:var(--faint); line-height:1.7;}
+
+@media(max-width:620px){
+  .pb__dots{display:none;}
+  .pb__rep{font-size:12.5px;}
+  .facts{grid-template-columns:1fr 1fr;}
+  .others__row{grid-template-columns:1fr;}
+  .end{padding:28px 20px;}
+  .end__acts .go{width:100%;}
+  .tbl{font-size:13.5px;}
+}
+
+/* 고르기 전에 알아둘 것 */
+.ctx{border:1px solid var(--line); border-left:3px solid var(--acc); border-radius:10px; background:var(--tint); padding:16px 18px; margin:0 0 18px;}
+.ctx__h{font-size:12.5px; font-weight:800; color:var(--acc); margin-bottom:8px;}
+.ctx ul{margin:0; padding:0; list-style:none; display:grid; gap:7px;}
+.ctx li{display:grid; grid-template-columns:76px 1fr; gap:10px; font-size:14.5px; line-height:1.6;}
+.ctx li > b{font-size:12.5px; color:var(--faint); padding-top:2px;}
+.ctx li > span b{color:var(--ink);}
+.ctx__q{margin-top:12px; padding-top:12px; border-top:1px dashed var(--line2); font-size:15px; font-weight:700;}
+@media(max-width:620px){.ctx li{grid-template-columns:1fr; gap:0;} .ctx li > b{padding-top:0;}}
+</style>
+</head><body>
+<header class="pb"><div class="pb__in">
+  <span class="pb__who">Theo<small>원인 진단</small></span><span class="pb__chip">가상 사례</span>
+  <span class="pb__sp"></span>
+  <span class="pb__dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <a class="pb__rep" href="https://soloimpactai.github.io/teamofone-case-member/theo/theo-strategy-report.html" target="_blank" rel="noopener">리포트 전문 ↗</a>
+</div></header>
+<main class="wrap">
+<section class="intro">
+  <span class="intro__k">30초 체험 · 가상 사례</span>
+  <h1>대표는 "브랜드가 약해서", 팀장은 "고객을 못 찾아서". 누구 말이 맞을까요?</h1>
+  <p>Theo가 받은 건 정리하지 않은 회의록이에요. 먼저 무엇부터 할지 골라 보시고, Theo가 질문 자체를 어떻게 바꿨는지 직접 확인해 보세요.</p>
+</section>
+
+<section class="step" id="s1">
+  <div class="step__n">1 · 받은 것</div>
+  <h2>대표 미팅과 실무 미팅 회의록에서 나온 말이에요</h2>
+  <p class="step__d">LUAD(가상)는 올리브영, 오픈마켓, 자사몰에서 스킨케어를 파는 6년 차, 23명 회사예요. 매출은 3년째 늘었는데 남는 돈이 줄어서, 대표가 "인지도를 올려야 하나?"를 물어왔어요. 회사와 숫자는 모두 설정값이에요.</p>
+  <div class="doc">
+    <div class="doc__h"><b>대표</b> · 의사결정자</div>
+    <ul class="memo">
+      <li><span class="no">"</span><span>재구매율이 안 나오는 건 결국 브랜드가 약해서야. 인지도만 올라가면 다 해결돼.</span></li>
+      <li><span class="no">"</span><span>앰버서더 하나 붙이고 올영 매대 더 확보하자. 경쟁사 다 그렇게 해.</span></li>
+    </ul>
+  </div>
+  <div class="doc">
+    <div class="doc__h"><b>마케팅팀장</b> · 실행 책임자</div>
+    <ul class="memo">
+      <li><span class="no">"</span><span>재구매가 안 나오는 게 아니라, 재구매할 고객을 우리가 못 찾는 겁니다. 올영에서 산 10만 명이 누군지 우리는 몰라요.</span></li>
+      <li><span class="no">"</span><span>이미 산 사람한테 다시 광고비를 쓰고 있는 거예요, 그게.</span></li>
+    </ul>
+  </div>
+  <div class="facts">
+    <div class="fact"><b>+9.7%</b><span>매출 84.2억 → 92.4억 (2023→2025)</span></div>
+    <div class="fact"><b style="color:var(--neg)">-73%</b><span>영업이익 6.8억 → 1.8억</span></div>
+  </div>
+  <button class="go" data-next="2">의뢰받은 질문은 "인지도를 올려야 하나?"예요. 뭐부터 하시겠어요? ↓</button>
+  <button class="skip" data-skip>고르지 않고 결과만 보기</button>
+</section>
+
+<section class="step" id="s2" hidden>
+  <div class="step__n">2 · 당신의 첫 수</div>
+  <h2>이익을 되돌리려면 무엇부터 해야 할까요?</h2>
+  <p class="step__d">아래 정보만 보고 골라 보세요. Theo가 처음 받은 정보도 이 정도였어요.</p>
+  <div class="ctx">
+    <div class="ctx__h">고르기 전에 알아둘 것</div>
+    <ul>
+      <li><b>돈의 흐름</b><span>매출은 84.2억에서 92.4억으로 늘었는데, 영업이익은 6.8억에서 <b>1.8억</b>으로 줄었어요. 같은 기간 광고비는 <b>40%</b> 늘었어요.</span></li>
+      <li><b>파는 곳</b><span>매출의 41%가 올리브영이에요. 올리브영에서 산 고객은 회사가 이름도 연락처도 몰라요. 자사몰은 이익이 많이 남지만 매출 비중이 작아요.</span></li>
+      <li><b>대표 생각</b><span>브랜드가 약해서 다시 사지 않는다. 앰버서더를 쓰고 매대를 늘리자.</span></li>
+      <li><b>팀장 생각</b><span>다시 살 고객이 누군지 몰라서, 이미 산 사람을 광고비 들여 다시 데려오고 있다.</span></li>
+    </ul>
+  </div>
+  <div class="opts" data-ans="count">
+    <button class="opt" data-id="brand"><span class="opt__k">A</span><span><span class="opt__t">인지도를 올린다</span><span class="opt__s">앰버서더 계약, 올리브영 매대 확대. 대표 생각을 따르는 길</span><span class="opt__tag opt__tag--me">내 선택</span><span class="opt__tag opt__tag--ai">Theo의 선택</span></span></button>
+    <button class="opt" data-id="ads"><span class="opt__k">B</span><span><span class="opt__t">광고비 효율을 높인다</span><span class="opt__s">고객 1명을 데려오는 데 드는 광고비(지금 3.2만 원)를 낮춘다</span><span class="opt__tag opt__tag--me">내 선택</span><span class="opt__tag opt__tag--ai">Theo의 선택</span></span></button>
+    <button class="opt" data-id="cut"><span class="opt__k">C</span><span><span class="opt__t">올리브영 비중을 줄인다</span><span class="opt__s">수수료 때문에 남는 게 적은 채널을 줄이고 자사몰을 키운다</span><span class="opt__tag opt__tag--me">내 선택</span><span class="opt__tag opt__tag--ai">Theo의 선택</span></span></button>
+    <button class="opt" data-id="count"><span class="opt__k">D</span><span><span class="opt__t">고객이 어디서 사라지는지 먼저 확인한다</span><span class="opt__s">올해 산 고객 중 회사가 다시 연락할 수 있는 사람이 몇 명인지부터 본다. 팀장 생각이 맞는지 검증하는 길</span><span class="opt__tag opt__tag--me">내 선택</span><span class="opt__tag opt__tag--ai">Theo의 선택</span></span></button>
+  </div>
+  <div class="reveal" hidden>
+    <div data-if="brand">
+      <p class="reveal__h">Theo도 이 안을 약하게 계산하지 않았어요. 그래도 남는 게 없었어요</p>
+      <p>인지도가 매출과 획득 비용을 같이 개선한다는 유리한 가정까지 열었는데, 정상 상태에서 연 순증이 -3.8억이에요. 되돌릴 수도 없는 투자예요.</p>
+    </div>
+    <div data-if="ads">
+      <p class="reveal__h">합리적이지만, 밑 빠진 독에 물을 더 싸게 붓는 일이에요</p>
+      <p>자사몰 고객이 12개월 뒤 남는 비율이 17%, 12%, 9%로 해마다 내려가요. 새는 속도가 채우는 속도보다 빨라서, 유입을 늘리는 처방은 모두 일시적이에요.</p>
+    </div>
+    <div data-if="cut">
+      <p class="reveal__h">숫자로는 그럴듯한데, Theo는 이 안을 계산 전에 뺐어요</p>
+      <p>올리브영은 매출의 41%를 만들고 이익은 22%만 만들어요. 그런데 이 채널은 이익을 내는 곳이 아니라 고객을 얻는 곳이에요. 줄이면 매출 41%가 바로 흔들려요.</p>
+    </div>
+    <div data-if="count">
+      <p class="reveal__h">Theo와 같은 첫 수예요. 대표님이 아니라 팀장님 쪽이었죠</p>
+      <p>Theo는 회의록을 말한 사람별로 나눠 대조했어요. 대표님은 수치 인용 0건, 팀장님은 3건이었어요. 판단의 근거는 이미 현장에 있었는데 결정하는 자리까지 올라가지 않았던 거예요.</p>
+    </div>
+    <p data-if="diff" style="margin-top:12px"><b>Theo의 첫 수는 D, 회사가 다시 연락할 수 있는 고객이 몇 명인지 확인하는 것이었어요.</b> 그 숫자를 보면 질문 자체가 바뀌어요.</p>
+  </div>
+  <button class="go" data-next="3" data-after hidden>회사가 아는 고객이 몇 명인지 보기 ↓</button>
+</section>
+
+<section class="step" id="s3" hidden>
+  <div class="step__n">3 · Theo가 본 것</div>
+  <h2>올해 올리브영과 오픈마켓에서 이 회사 제품을 산 고객 15.8만 명이에요</h2>
+  <p class="step__d">점 하나가 약 400명이에요. 아래 버튼을 누르면, 이 중 회사가 이름이나 연락처를 알아서 다시 연락할 수 있는 고객만 남아요.</p>
+  <div class="dots" id="dots" aria-label="고객 15.8만 명을 점 400개로 표시"></div>
+  <div class="dots__cap"><div class="big"><b id="dV">15.8만 명</b><span id="dT">올해 산 고객</span></div></div>
+  <button class="go go--n" id="dGo">회사가 다시 연락할 수 있는 고객만 표시하기</button>
+  <div class="reveal" id="dR" hidden>
+    <p class="reveal__h">다시 연락할 수 있는 고객은 3.1%, 약 4,900명뿐이에요</p>
+    <p>나머지는 누군지 모른 채 사라지고, 일부는 이듬해 광고비를 들여 다시 사 와요. 사라지는 15.3만 명을 광고로 다시 산다고 치면 49.0억, 연간 마케팅비의 2.3배예요. 전부 다시 살 필요는 없으니 상한으로 본 숫자예요.</p>
+  </div>
+  <div class="flip" id="flip" hidden>
+    <div class="flip__a"><span>의뢰받은 질문</span><s>인지도를 올려야 하나?</s></div>
+    <div class="flip__ar">↓</div>
+    <div class="flip__b"><span>Theo가 다시 세운 질문</span><b>우리는 이미 얻은 고객을 왜 매년 다시 사고 있는가?</b></div>
+    <p>광고를 얼마나 할지의 문제가 아니라, 고객을 남길 것인가의 구조 문제로 바뀌어요.</p>
+  </div>
+  <button class="go" data-next="4" id="dNext" hidden>Theo의 처방 보기 ↓</button>
+</section>
+
+<section class="step" id="s4" hidden>
+  <div class="step__n">4 · Theo가 돌려준 것</div>
+  <h2>판매는 플랫폼에 두고, 고객 관계만 회수해요</h2>
+  <p class="step__d">B안이에요. 동봉 카드, 정품등록, 피부 진단 페이지로 플랫폼에서 산 고객을 회사 데이터로 옮겨요. 판매를 뺏지 않으니 플랫폼과 부딪치지 않아요. 입점 계약서에 고객 소통 제한 조항도 없어요.</p>
+  <div class="card">
+    <div class="rng"><label for="rr">플랫폼 고객 중 회수하는 비율 <b id="rrV">10%</b></label><input type="range" id="rr" min="2" max="20" step="0.5" value="10"></div>
+    <div class="facts" style="margin-top:4px">
+      <div class="fact"><b id="bV">-</b><span>B안 연 순증</span></div>
+      <div class="fact"><b>-3.8억</b><span>A안 인지도 투자 (유리한 가정)</span></div>
+    </div>
+    <p style="margin-top:12px; font-size:14px">손익분기 회수율은 7.5%, 예상 밴드는 5~12%예요. 회수 고객 1명이 추가로 남기는 이익이 20,400원 아래로 확인되면 이 권고는 무너져요. 지금 추정은 26,000원이고, Theo는 그걸 확인하는 방법까지 적어 뒀어요.</p>
+  </div>
+  <div class="card">
+    <div class="card__k">순서가 곧 권고예요</div>
+    <table class="tbl">
+      <tbody>
+        <tr><td><b>먼저 · B안</b><small>고객 관계 회수. CRM 1명, 디자이너 0.5명, 생산관리 1명으로 6주 안에 다음 생산분에 동봉 카드</small></td></tr>
+        <tr><td><b>다음 · C안</b><small>회수한 데이터로 제품 구성 재편</small></td></tr>
+        <tr><td><b>24개월 뒤 · A안</b><small>브랜드 투자는 버리는 게 아니라 순서를 뒤로 미뤄요</small></td></tr>
+      </tbody>
+    </table>
+    <p style="margin-top:10px; font-size:14px">6주 안에 못 실으면 다음 생산 주기까지 3개월이 밀려요.</p>
+  </div>
+  <div class="card">
+    <div class="card__k">Theo가 하지 않는 것</div>
+    <p>의뢰받은 질문에 바로 답하지 않아요. 질문에 깔린 전제부터 검증해요. 채널 철수나 광고 중단처럼 그 구조로 먹고사는 쪽을 정면으로 건드리는 안은 계산이 좋아도 걸러요.</p>
+  </div>
+</section>
+
+<section class="end">
+  <h2>우리 회사 회의록으로도 이렇게 나올까요</h2>
+  <p>맡기고 싶은 업무를 적어 보내주시면, AI 팀원이 맡을 수 있는지와 어디부터 시작하면 좋을지 한 장으로 정리해 드려요. 진단은 무료이고, 맞지 않으면 맞지 않는다고 적어서 보냅니다.</p>
+  <div class="end__acts">
+    <a class="go go--w" href="https://soloimpact.kr/apply">비어 있는 자리 진단받기</a>
+    <a class="go go--o" href="https://raw.githubusercontent.com/soloimpactai/teamofone-case-member/main/theo/theo-strategy-analysis.zip">Theo 무료로 받기</a>
+  </div>
+  <p class="end__note">Theo는 파일로 무료로 받아요. Claude 프로젝트에 넣어 바로 쓸 수 있어요. 보통 2영업일 안에 진단서를 보내드리고, 진단 후에 먼저 연락드리지 않아요.</p>
+</section>
+<div class="others"><div class="others__h">다른 팀원도 30초면 돼요</div><div class="others__row"><a href="https://soloimpactai.github.io/teamofone-case-member/kai/kai-play.html"><b>Kai · 지시 정리</b><span>상사의 한마디와 흩어진 회의 메모가 남았을 때</span></a><a href="https://soloimpactai.github.io/teamofone-case-member/vera/vera-play.html"><b>Vera · 진입 판정</b><span>새 채널·새 시장에 들어갈지 정해야 할 때</span></a><a href="https://soloimpactai.github.io/teamofone-case-member/juno/juno-play.html"><b>Juno · 재무 진단</b><span>채용·투자 전에 우리 장부가 버티는지 볼 때</span></a></div></div>
+<p class="foot">시연용 사례예요. 회사와 인물, 회사 수치는 모두 가상 설정값이고, 팀원의 판단과 숫자는 리포트에서 그대로 옮겼어요. 전체 과정은 <a href="https://soloimpactai.github.io/teamofone-case-member/theo/theo-strategy-report.html" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line2)">리포트 전문</a>에서, 다른 팀원은 <a href="https://soloimpact.kr" style="border-bottom:1px solid var(--line2)">soloimpact.kr</a>에서 볼 수 있어요.</p>
+</main>
+<script>(function(){
+  var dots=document.querySelectorAll('.pb__dots i');
+  function mark(n){dots.forEach(function(d,i){d.classList.toggle('on',i<n);});}
+  function open(n,scroll){
+    var s=document.getElementById('s'+n); if(!s) return;
+    if(s.hidden){s.hidden=false; s.classList.add('in'); document.dispatchEvent(new CustomEvent('step',{detail:n}));}
+    mark(n);
+    if(scroll!==false) setTimeout(function(){s.scrollIntoView({behavior:'smooth',block:'start'});},40);
+  }
+  mark(1);
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-next]');
+    if(b){e.preventDefault(); open(+b.dataset.next); b.style.display='none'; return;}
+    var k=e.target.closest('[data-skip]');
+    if(k){e.preventDefault(); var i=2; while(document.getElementById('s'+i)){open(i,false); i++;}
+      document.querySelectorAll('.opts').forEach(function(o){if(!o.classList.contains('done')) pick(o,o.dataset.ans);});
+      document.querySelectorAll('[data-next]').forEach(function(x){x.style.display='none';});
+      var last=document.getElementById('s'+(i-1)); if(last) last.scrollIntoView({behavior:'smooth'}); k.style.display='none'; return;}
+    var o=e.target.closest('.opt');
+    if(o){var g=o.closest('.opts'); if(g && !g.classList.contains('done')) pick(g,o.dataset.id); return;}
+    var c=e.target.closest('[data-copy]');
+    if(c){var t=document.getElementById(c.dataset.copy); if(!t) return; var txt=t.innerText.trim();
+      var done=function(){c.textContent='복사됨'; c.classList.add('ok'); setTimeout(function(){c.textContent='복사'; c.classList.remove('ok');},1600);};
+      if(navigator.clipboard) navigator.clipboard.writeText(txt).then(done,done); else done(); return;}
+    var tg=e.target.closest('[data-tog] button');
+    if(tg){var grp=tg.closest('[data-tog]'); var key=grp.dataset.tog;
+      grp.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===tg));});
+      document.querySelectorAll('[data-tv^="'+key+':"]').forEach(function(el){el.hidden=(el.dataset.tv!==key+':'+tg.dataset.v);}); return;}
+  });
+  function pick(g,id){
+    g.classList.add('done');
+    var ans=g.dataset.ans, step=g.closest('.step');
+    g.querySelectorAll('.opt').forEach(function(x){
+      if(x.dataset.id===id) x.classList.add('pick');
+      if(x.dataset.id===ans) x.classList.add('ans');
+    });
+    step.querySelectorAll('[data-if]').forEach(function(el){
+      var keys=el.dataset.if.split(' ');
+      if(keys.indexOf(id)>=0 || keys.indexOf('any')>=0 || (keys.indexOf('diff')>=0 && id!==ans) || (keys.indexOf('same')>=0 && id===ans)) el.classList.add('show');
+    });
+    step.querySelectorAll('.reveal,[data-after]').forEach(function(el){el.hidden=false;});
+    document.dispatchEvent(new CustomEvent('picked',{detail:{id:id,same:id===ans}}));
+  }
+  window.SOI={open:open};
+})();
+</script>
+<style>
+.dots{display:grid; grid-template-columns:repeat(25,1fr); gap:5px; padding:18px; border:1px solid var(--line); border-radius:14px;}
+.dots i{display:block; aspect-ratio:1; border-radius:50%; background:var(--acc); transition:opacity .6s ease, transform .6s ease, background .6s;}
+.dots.cut i{opacity:.12; transform:scale(.7);}
+.dots.cut i.keep{opacity:1; transform:scale(1.25); background:var(--hot); box-shadow:0 0 0 2px #E2B72E;}
+.dots__cap{margin-top:16px;}
+.flip{margin-top:18px; border-radius:14px; background:var(--navy); color:#fff; padding:22px;}
+.flip[hidden]{display:none;}
+.flip span{display:block; font-size:12.5px; font-weight:700; color:#8C93A8; margin-bottom:4px;}
+.flip s{font-size:17px; color:#8C93A8;}
+.flip b{font-size:clamp(19px,3.8vw,23px); line-height:1.45; letter-spacing:-.03em;}
+.flip__ar{color:#8C93A8; margin:8px 0;}
+.flip p{margin:14px 0 0; color:#A9B0C2; font-size:14.5px;}
+@media(max-width:620px){.dots{grid-template-columns:repeat(20,1fr); gap:4px; padding:12px;}}
+</style>
+<script>
+(function(){
+  var box=document.getElementById('dots'), N=400, K=12, keep={};
+  // 고르게 흩어진 12개 (고정 시드)
+  var s=7; function rnd(){s=(s*9301+49297)%233280; return s/233280;}
+  while(Object.keys(keep).length<K){keep[Math.floor(rnd()*N)]=1;}
+  for(var i=0;i<N;i++){var dot=document.createElement('i'); if(keep[i]) dot.className='keep'; box.appendChild(dot);}
+  function cut(){
+    if(box.classList.contains('cut')) return;
+    box.classList.add('cut');
+    document.getElementById('dGo').style.display='none';
+    var v=document.getElementById('dV'), t=document.getElementById('dT');
+    var from=158000, to=4900, st=null;
+    function tick(ts){if(!st) st=ts; var p=Math.min(1,(ts-st)/900); var x=Math.round(from+(to-from)*(1-Math.pow(1-p,3)));
+      v.textContent=x.toLocaleString('ko-KR')+'명'; if(p<1) requestAnimationFrame(tick); else {v.textContent='약 4,900명'; t.textContent='다시 연락할 수 있는 고객 · 3.1%';}}
+    requestAnimationFrame(tick);
+    setTimeout(function(){['dR','flip','dNext'].forEach(function(id){var el=document.getElementById(id); el.hidden=false; el.style.animation='rise .45s ease both';});},700);
+  }
+  document.getElementById('dGo').addEventListener('click',cut);
+  document.addEventListener('click',function(e){if(e.target.closest('[data-skip]')) cut();});
+  var rr=document.getElementById('rr');
+  function d(){var r=+rr.value/100, b=158152*r*(26000/2-2000)/1e8-1.30;
+    document.getElementById('rrV').textContent=rr.value+'%';
+    var el=document.getElementById('bV'); el.textContent=(b>=0?'+':'')+b.toFixed(2)+'억'; el.style.color=b>=0?'var(--pos)':'var(--neg)';}
+  rr.addEventListener('input',d); d();
+})();
+</script>
+
+</body></html>

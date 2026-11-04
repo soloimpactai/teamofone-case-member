@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>개발자 2명 뽑아도 될까요 · Juno 30초 체험</title>
+<meta name="description" content="매출은 93% 늘었는데 남는 돈은 72% 줄었다. 장부 한 줄을 옮겨 보면 이유가 보여요.">
+<meta property="og:title" content="개발자 2명 뽑아도 될까요 · Juno 30초 체험">
+<meta property="og:description" content="매출은 93% 늘었는데 남는 돈은 72% 줄었다. 장부 한 줄을 옮겨 보면 이유가 보여요.">
+<meta property="og:image" content="https://raw.githubusercontent.com/soloimpactai/teamofone-case-member/main/juno/juno-card.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>[hidden]{display:none !important;}
+:root{
+  --navy:#0B1220; --ink:#131A2A; --muted:#646C80; --faint:#7A8194;
+  --line:#E4E6EC; --line2:#C9CDD9; --tint:#F6F6FA;
+  --acc:#5B57A8; --acc2:#4A4691; --acc-soft:#EFEEF8;
+  --hot:#F4D35E; --hot-soft:#FFF6D6; --neg:#C2453D; --neg-soft:#FBEDEC; --pos:#2F8F6B; --pos-soft:#E8F5EF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:#fff; color:var(--ink); font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif; font-size:16px; line-height:1.7; letter-spacing:-.01em; word-break:keep-all; overflow-wrap:break-word; -webkit-font-smoothing:antialiased;}
+a{color:inherit; text-decoration:none;}
+button{font:inherit; color:inherit; cursor:pointer;}
+:focus-visible{outline:2px solid var(--acc); outline-offset:3px; border-radius:4px;}
+
+/* 상단 바 */
+.pb{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+.pb__in{max-width:780px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:12px;}
+.pb__who{font-weight:800; font-size:15px; letter-spacing:-.02em;}
+.pb__who small{font-weight:600; color:var(--faint); font-size:13px; margin-left:6px;}
+.pb__chip{font-size:11.5px; font-weight:700; color:var(--muted); border:1px solid var(--line2); border-radius:999px; padding:1px 9px;}
+.pb__sp{flex:1;}
+.pb__dots{display:flex; gap:5px;}
+.pb__dots i{width:22px; height:4px; border-radius:2px; background:var(--line);}
+.pb__dots i.on{background:var(--acc);}
+.pb__rep{font-size:13px; color:var(--muted); border-bottom:1px solid var(--line2);}
+.pb__rep:hover{color:var(--ink); border-color:var(--ink);}
+
+.wrap{max-width:780px; margin:0 auto; padding:0 20px 80px;}
+
+/* 인트로 */
+.intro{padding:44px 0 8px;}
+.intro__k{display:inline-block; font-size:13px; font-weight:700; color:var(--acc); background:var(--acc-soft); border-radius:4px; padding:3px 10px; margin-bottom:16px;}
+.intro h1{font-size:clamp(27px,5.6vw,40px); line-height:1.22; letter-spacing:-.045em; font-weight:800; margin:0;}
+.intro p{color:var(--muted); font-size:16.5px; margin:16px 0 0;}
+
+/* 스텝 */
+.step{padding-top:52px; scroll-margin-top:64px;}
+.step[hidden]{display:none;}
+.step.in{animation:rise .45s ease both;}
+@keyframes rise{from{opacity:0; transform:translateY(14px);}to{opacity:1; transform:none;}}
+.step__n{font-size:12.5px; font-weight:800; color:var(--acc); letter-spacing:.04em; margin-bottom:8px;}
+.step h2{font-size:clamp(21px,4vw,27px); line-height:1.36; letter-spacing:-.035em; font-weight:800; margin:0 0 10px;}
+.step__d{color:var(--muted); font-size:15.5px; margin:0 0 22px;}
+
+/* 받은 자료 */
+.doc{border:1px solid var(--line); border-radius:12px; background:#fff; overflow:hidden;}
+.doc + .doc{margin-top:12px;}
+.doc__h{display:flex; align-items:center; gap:8px; padding:11px 16px; background:var(--tint); border-bottom:1px solid var(--line); font-size:13px; color:var(--muted); font-weight:600;}
+.doc__h b{color:var(--ink);}
+.doc__b{padding:14px 16px; font-size:15px;}
+.doc__b p{margin:0;}
+.memo{list-style:none; margin:0; padding:6px 0;}
+.memo li{display:grid; grid-template-columns:22px 1fr; gap:8px; padding:7px 16px; font-size:15px; line-height:1.6;}
+.memo li .no{font-size:12px; color:var(--faint); padding-top:2px; font-variant-numeric:tabular-nums;}
+.facts{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px;}
+.fact{background:var(--tint); border-radius:10px; padding:12px 14px;}
+.fact b{display:block; font-size:19px; font-weight:800; letter-spacing:-.03em;}
+.fact span{font-size:12.5px; color:var(--muted);}
+
+/* 버튼 */
+.go{display:inline-flex; align-items:center; justify-content:center; gap:8px; height:50px; padding:0 24px; border:0; border-radius:8px; background:var(--acc); color:#fff; font-weight:700; font-size:15.5px; margin-top:22px;}
+.go:hover{background:var(--acc2);}
+.go--n{background:var(--navy);}
+.go--n:hover{background:#1A2338;}
+.go--w{background:#fff; color:var(--ink); border:1px solid var(--line2);}
+.go--w:hover{background:#fff; border-color:var(--navy);}
+.skip{display:inline-block; margin:16px 0 0 14px; font-size:13.5px; color:var(--faint); border:0; background:none; border-bottom:1px solid var(--line2); padding:0;}
+
+/* 선택지 */
+.opts{display:grid; gap:10px;}
+.opt{display:grid; grid-template-columns:34px 1fr; gap:12px; align-items:start; text-align:left; width:100%; padding:16px 18px; border:1.5px solid var(--line); border-radius:12px; background:#fff; transition:border-color .15s, background .15s, transform .15s;}
+.opt:hover{border-color:var(--acc); transform:translateY(-1px);}
+.opt__k{width:34px; height:34px; border-radius:50%; background:var(--tint); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; color:var(--muted);}
+.opt__t{font-weight:700; font-size:16px; line-height:1.45; display:block;}
+.opt__s{display:block; font-size:13.5px; color:var(--muted); margin-top:3px; line-height:1.55;}
+.opts.done .opt{cursor:default; transform:none;}
+.opts.done .opt:not(.pick):not(.ans){opacity:.45;}
+.opt.pick{border-color:var(--navy); background:var(--tint);}
+.opt.pick .opt__k{background:var(--navy); color:#fff;}
+.opt.ans{border-color:var(--acc); background:var(--acc-soft);}
+.opt.ans .opt__k{background:var(--acc); color:#fff;}
+.opt__tag{display:none; margin-top:8px; font-size:12px; font-weight:800; letter-spacing:.02em;}
+.opt.pick .opt__tag--me, .opt.ans .opt__tag--ai{display:inline-block; margin-right:8px;}
+.opt__tag--me{color:var(--navy);}
+.opt__tag--ai{color:var(--acc);}
+
+/* 공개 */
+.reveal{margin-top:18px; border-radius:12px; padding:18px 20px; background:var(--tint); font-size:15.5px;}
+.reveal[hidden]{display:none;}
+.reveal__h{font-weight:800; font-size:16.5px; margin:0 0 6px; letter-spacing:-.02em;}
+.reveal p{margin:0;}
+.reveal p + p{margin-top:8px;}
+.reveal--same{background:var(--acc-soft);}
+[data-if]{display:none;}
+[data-if].show{display:block;}
+
+/* 흐름 띠 */
+.flow{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:12px; font-size:13.5px;}
+.flow span{background:#fff; border:1px solid var(--line); border-radius:6px; padding:5px 10px;}
+.flow i{font-style:normal; color:var(--faint);}
+.flow .stop{border-color:var(--neg); color:var(--neg); background:var(--neg-soft); font-weight:700;}
+
+/* 큰 숫자 */
+.big{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.big b{font-size:clamp(40px,9vw,64px); font-weight:800; letter-spacing:-.05em; line-height:1; color:var(--acc); font-variant-numeric:tabular-nums;}
+.big span{font-size:15px; color:var(--muted);}
+
+/* 카드 */
+.card{border:1px solid var(--line); border-radius:14px; padding:20px; background:#fff;}
+.card + .card{margin-top:12px;}
+.card__k{font-size:12.5px; font-weight:800; color:var(--acc); margin-bottom:6px;}
+.card h3{font-size:18px; letter-spacing:-.03em; line-height:1.45; margin:0 0 8px;}
+.card p{margin:0; color:var(--muted); font-size:15px;}
+
+/* 판정 칩 */
+.vchip{display:inline-flex; align-items:center; gap:6px; font-weight:800; font-size:15px; padding:6px 14px; border-radius:999px; background:var(--acc-soft); color:var(--acc); transition:background .2s,color .2s;}
+.vchip.pos{background:var(--pos-soft); color:var(--pos);}
+.vchip.neg{background:var(--neg-soft); color:var(--neg);}
+
+/* 슬라이더 */
+.rng{margin:18px 0 6px;}
+.rng label{display:flex; justify-content:space-between; font-size:14px; color:var(--muted); margin-bottom:8px;}
+.rng label b{color:var(--ink); font-size:16px; font-variant-numeric:tabular-nums;}
+input[type=range]{width:100%; accent-color:var(--acc); height:28px;}
+
+/* 표 */
+.tbl{width:100%; border-collapse:collapse; font-size:14.5px;}
+.tbl th,.tbl td{padding:10px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+.tbl th{font-size:12.5px; color:var(--faint); font-weight:700;}
+.tbl td.c,.tbl th.c{text-align:center;}
+.tbl .y{color:var(--pos); font-weight:800;}
+.tbl .n{color:var(--line2); font-weight:800;}
+.tbl tr.win td{background:var(--acc-soft);}
+.tbl tr.win td:first-child{font-weight:800;}
+.tbl small{display:block; color:var(--muted); font-size:12.5px; margin-top:2px;}
+
+/* 초안 */
+.draft{position:relative; border:1px solid var(--line2); border-radius:12px; background:#fff; padding:18px 18px 16px; font-size:15px; line-height:1.75; white-space:pre-line;}
+.draft__h{display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px;}
+.copy{border:1px solid var(--line2); background:#fff; border-radius:6px; font-size:12.5px; padding:4px 10px; font-weight:600;}
+.copy.ok{border-color:var(--pos); color:var(--pos);}
+
+/* 토글 */
+.tog{display:inline-flex; border:1px solid var(--line2); border-radius:8px; overflow:hidden; margin:4px 0 12px;}
+.tog button{border:0; background:#fff; padding:9px 14px; font-size:14px; font-weight:600; color:var(--muted);}
+.tog button[aria-pressed=true]{background:var(--navy); color:#fff;}
+
+/* 마감 */
+.end{margin-top:64px; background:var(--navy); color:#fff; border-radius:16px; padding:34px 28px;}
+.end h2{font-size:clamp(22px,4.4vw,30px); line-height:1.32; letter-spacing:-.04em; margin:0 0 12px; font-weight:800;}
+.end p{color:#A9B0C2; margin:0; font-size:15.5px;}
+.end__acts{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px;}
+.end__acts .go{margin-top:0;}
+.end__acts .go--o{background:transparent; border:1px solid #39415A; color:#C8CDDA;}
+.end__acts .go--o:hover{border-color:#6C7490; color:#fff;}
+.end__note{font-size:13px !important; color:#7F879C !important; margin-top:14px !important;}
+.others{margin-top:28px;}
+.others__h{font-size:13.5px; color:var(--faint); font-weight:700; margin-bottom:10px;}
+.others__row{display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
+.others a{display:block; border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:14px; line-height:1.45;}
+.others a b{display:block; font-size:15px;}
+.others a span{color:var(--muted); font-size:12.5px;}
+.others a:hover{border-color:var(--acc);}
+.foot{margin-top:28px; font-size:12.5px; color:var(--faint); line-height:1.7;}
+
+@media(max-width:620px){
+  .pb__dots{display:none;}
+  .pb__rep{font-size:12.5px;}
+  .facts{grid-template-columns:1fr 1fr;}
+  .others__row{grid-template-columns:1fr;}
+  .end{padding:28px 20px;}
+  .end__acts .go{width:100%;}
+  .tbl{font-size:13.5px;}
+}
+
+/* 고르기 전에 알아둘 것 */
+.ctx{border:1px solid var(--line); border-left:3px solid var(--acc); border-radius:10px; background:var(--tint); padding:16px 18px; margin:0 0 18px;}
+.ctx__h{font-size:12.5px; font-weight:800; color:var(--acc); margin-bottom:8px;}
+.ctx ul{margin:0; padding:0; list-style:none; display:grid; gap:7px;}
+.ctx li{display:grid; grid-template-columns:76px 1fr; gap:10px; font-size:14.5px; line-height:1.6;}
+.ctx li > b{font-size:12.5px; color:var(--faint); padding-top:2px;}
+.ctx li > span b{color:var(--ink);}
+.ctx__q{margin-top:12px; padding-top:12px; border-top:1px dashed var(--line2); font-size:15px; font-weight:700;}
+@media(max-width:620px){.ctx li{grid-template-columns:1fr; gap:0;} .ctx li > b{padding-top:0;}}
+</style>
+</head><body>
+<header class="pb"><div class="pb__in">
+  <span class="pb__who">Juno<small>재무 진단</small></span><span class="pb__chip">가상 사례</span>
+  <span class="pb__sp"></span>
+  <span class="pb__dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <a class="pb__rep" href="https://soloimpactai.github.io/teamofone-case-member/juno/juno-finance-report.html" target="_blank" rel="noopener">리포트 전문 ↗</a>
+</div></header>
+<main class="wrap">
+<section class="intro">
+  <span class="intro__k">30초 체험 · 가상 사례</span>
+  <h1>"개발자 2명 뽑아도 되는 상태인지 봐주세요"</h1>
+  <p>Juno가 받은 건 회계사무소 파일 네 종류와 이 두 줄이에요. 먼저 답을 골라 보시고, 장부 한 줄을 옮겼을 때 무엇이 바뀌는지 직접 확인해 보세요.</p>
+</section>
+
+<section class="step" id="s1">
+  <div class="step__n">1 · 받은 것</div>
+  <h2>회계사무소에서 받은 파일 그대로예요</h2>
+  <p class="step__d">㈜노드플로우(가상) · AI 에이전트 구축·운영. 30개월치 장부예요. 회사와 숫자는 모두 설정값이에요.</p>
+  <div class="doc">
+    <div class="doc__h"><b>대표의 메시지</b></div>
+    <div class="doc__b"><p>요즘 일이 많아서요. 개발자 2명 뽑아도 되는 상태인지 봐주세요.</p></div>
+  </div>
+  <div class="doc">
+    <div class="doc__h"><b>첨부 4종</b> · 2024.01 ~ 2026.06</div>
+    <ul class="memo">
+      <li><span class="no">1</span><span>재무제표 3기</span></li>
+      <li><span class="no">2</span><span>원장 2,372행</span></li>
+      <li><span class="no">3</span><span>통장 거래내역 1,412행</span></li>
+      <li><span class="no">4</span><span>세금계산서 246건</span></li>
+    </ul>
+  </div>
+  <div class="facts">
+    <div class="fact"><b>+93%</b><span>매출 8.09억 → 15.61억 (2026 연환산)</span></div>
+    <div class="fact"><b>4명 → 9명</b><span>직원 수</span></div>
+  </div>
+  <button class="go" data-next="2">대표님께 뭐라고 답하시겠어요? ↓</button>
+  <button class="skip" data-skip>고르지 않고 결과만 보기</button>
+</section>
+
+<section class="step" id="s2" hidden>
+  <div class="step__n">2 · 당신의 답</div>
+  <h2>매출이 두 배 가까이 늘었어요. 개발자 2명, 뽑아도 될까요?</h2>
+  <p class="step__d">아래 정보만 보고 첫 느낌으로 골라 보세요.</p>
+  <div class="ctx">
+    <div class="ctx__h">고르기 전에 알아둘 것</div>
+    <ul>
+      <li><b>매출</b><span>2년 반 사이 <b>93%</b> 늘었어요(연 8.09억 → 15.61억). 일감이 넘쳐서 개발을 외주와 프리랜서에 맡기고 있어요.</span></li>
+      <li><b>장부</b><span>장부상 매출총이익률은 <b>64.8%</b>예요. 겉으로는 넉넉해 보여요.</span></li>
+      <li><b>통장</b><span>그런데 작년에 대출 1.5억을 받았고, 대표가 4천만원을 따로 넣었어요.</span></li>
+      <li><b>채용 비용</b><span>개발자 1명에 월 610만원(4대보험·퇴직금 포함)이에요. 2명이면 연 1.46억이에요.</span></li>
+    </ul>
+  </div>
+  <div class="opts" data-ans="no">
+    <button class="opt" data-id="yes"><span class="opt__k">A</span><span><span class="opt__t">뽑는다</span><span class="opt__s">매출이 93% 늘었고 일이 넘친다</span><span class="opt__tag opt__tag--me">내 답</span><span class="opt__tag opt__tag--ai">Juno의 답</span></span></button>
+    <button class="opt" data-id="one"><span class="opt__k">B</span><span><span class="opt__t">1명만 먼저 뽑는다</span><span class="opt__s">위험을 반으로 나눠서</span><span class="opt__tag opt__tag--me">내 답</span><span class="opt__tag opt__tag--ai">Juno의 답</span></span></button>
+    <button class="opt" data-id="cut"><span class="opt__k">C</span><span><span class="opt__t">비용을 줄여 여유를 만든 뒤 뽑는다</span><span class="opt__s">새는 비용부터 잡고</span><span class="opt__tag opt__tag--me">내 답</span><span class="opt__tag opt__tag--ai">Juno의 답</span></span></button>
+    <button class="opt" data-id="no"><span class="opt__k">D</span><span><span class="opt__t">지금은 안 된다</span><span class="opt__s">뽑아도 되는 조건이 따로 있다</span><span class="opt__tag opt__tag--me">내 답</span><span class="opt__tag opt__tag--ai">Juno의 답</span></span></button>
+  </div>
+  <div class="reveal" hidden>
+    <div data-if="yes">
+      <p class="reveal__h">매출 성장은 진짜예요. 그런데 남는 돈은 72% 줄었어요</p>
+      <p>매출이 93% 느는 동안 손익분기 여유는 매출의 15.8%에서 1.6%로 줄었어요. 매출이 1.6%만 빠져도 적자예요.</p>
+    </div>
+    <div data-if="one">
+      <p class="reveal__h">Juno도 "1명씩"을 권했어요. 다만 지금은 아니에요</p>
+      <p>Juno가 붙인 조건은 세 개예요. 회수일 60일 이하, 손익분기 여유 10% 이상, 13주 최저 잔고가 급여 3개월치 이상. 지금은 셋 다 미달이에요.</p>
+    </div>
+    <div data-if="cut">
+      <p class="reveal__h">가장 흔한 처방이에요. 그런데 이 회사는 비용 문제가 아니었어요</p>
+      <p>고정비는 매출 대비 54.2%에서 51.8%로 오히려 좋아졌어요. 줄여야 할 곳을 찾는 방향 자체가 달랐어요.</p>
+    </div>
+    <div data-if="no">
+      <p class="reveal__h">맞히셨어요. 그런데 이유를 맞히기는 더 어려워요</p>
+      <p>장부를 그대로 읽으면 마진이 64.8%로 넉넉해 보이고, 문제는 "비용"으로 보이거든요. 다음 단계에서 장부 한 줄을 직접 옮겨 보세요.</p>
+    </div>
+    <p data-if="diff" style="margin-top:12px"><b>Juno의 답은 "지금은 안 된다"였어요.</b> 그 이유는 장부 분류 안에 숨어 있었어요.</p>
+  </div>
+  <button class="go" data-next="3" data-after hidden>Juno가 장부에서 찾은 것 보기 ↓</button>
+</section>
+
+<section class="step" id="s3" hidden>
+  <div class="step__n">3 · Juno가 먼저 한 것</div>
+  <h2>판관비에 숨어 있는 두 줄을 원가로 옮겨 보세요</h2>
+  <p class="step__d">이 회사는 프로젝트마다 프리랜서 개발자와 클라우드·AI API를 써서 납품해요. 그런데 장부에서는 이 두 비용이 판관비에 들어가 있어요. 매출 대비 비율이에요. (2026 연환산)</p>
+  <div class="book">
+    <div class="book__meter">
+      <span class="book__lab">장부상 남는 비율</span>
+      <div class="big"><b id="mgV">64.8%</b><span id="mgT">장부 그대로 읽은 마진</span></div>
+      <div class="book__bar"><div id="mgF" style="width:64.8%"></div><i style="left:64.4%"><span>2024년 64.4%</span></i></div>
+    </div>
+    <div class="book__grp">
+      <div class="book__gh">원가 <span id="cogsV">35.2%</span></div>
+      <div class="book__row fix"><span>외주용역비</span><b>35.2%</b></div>
+      <div id="cogsBox"></div>
+    </div>
+    <div class="book__grp">
+      <div class="book__gh">판관비</div>
+      <button class="book__row mv" data-v="7.7" id="mvA"><span>프리랜서 개발용역비</span><b>7.7%</b><em>원가로 옮기기 →</em></button>
+      <button class="book__row mv" data-v="3.9" id="mvB"><span>클라우드·AI API</span><b>3.9%</b><em>원가로 옮기기 →</em></button>
+      <div class="book__row fix"><span>급여·퇴직·복리후생</span><b>42.3%</b></div>
+      <div class="book__row fix"><span>임차·관리·통신·보험</span><b>4.5%</b></div>
+      <div class="book__row fix"><span>기타 판관비</span><b>5.1%</b></div>
+    </div>
+  </div>
+  <div class="reveal" id="bookR" hidden>
+    <p class="reveal__h">마진이 2024년 64.4%에서 53.3%로, 11.1%p 내려와 있었어요</p>
+    <p>올해 매출에 2024년 마진율을 그대로 적용하면 남아야 할 돈이 10.06억인데, 실제로는 8.32억이에요. <b>연 1.74억이 마진에서 사라졌어요.</b> 같은 기간 고정비 비중은 54.2%에서 51.8%로 오히려 좋아졌어요. 그래서 처방은 비용 절감이 아니라 단가와 회수예요.</p>
+    <p style="font-size:13px; color:var(--faint)">세부 항목은 반올림 값이라 합계와 0.1%p 차이가 날 수 있어요.</p>
+  </div>
+  <div class="card" style="margin-top:14px" id="cashC" hidden>
+    <div class="card__k">마진 다음으로 Juno가 찾은 것 · 통장 밖의 돈</div>
+    <div class="big"><b>3.87억</b><span>아직 못 받은 돈 (부가세 포함)</span></div>
+    <p style="margin-top:10px">세금계산서를 끊고 돈이 들어오기까지 53일 걸리던 게 82일로 늘었어요. 작년에 받은 대출 1.5억과 대표님이 넣은 4천만원은 사업이 나빠서가 아니라 이 자리로 들어간 돈이에요.</p>
+  </div>
+  <button class="go" data-next="4" id="bookNext" hidden>그래서 채용은요? ↓</button>
+</section>
+
+<section class="step" id="s4" hidden>
+  <div class="step__n">4 · Juno가 돌려준 것</div>
+  <h2>"지금 개발자 2명을 뽑으면 안 됩니다." 뽑는 목적을 바꿔 봐도 답은 같아요</h2>
+  <div class="card">
+    <div class="tog" data-tog="hire"><button aria-pressed="true" data-v="a">매출을 늘리려고 뽑으면</button><button aria-pressed="false" data-v="b">외주를 대체하려고 뽑으면</button></div>
+    <div data-tv="hire:a">
+      <div class="facts" style="margin-top:0"><div class="fact"><b>+1.6%</b><span>지금 손익분기 여유</span></div><div class="fact"><b style="color:var(--neg)">-16.0%</b><span>2명 추가 후</span></div></div>
+      <p style="margin-top:12px">인건비만 연 1.46억 늘어요. 지금 매출을 유지해도 연 2.49억이 모자라요.</p>
+    </div>
+    <div data-tv="hire:b" hidden>
+      <div class="facts" style="margin-top:0"><div class="fact"><b>-1.53억</b><span>매출 20% 감소 시 손실 · 지금</span></div><div class="fact"><b style="color:var(--neg)">-1.81억</b><span>같은 경우 · 채용 후</span></div></div>
+      <p style="margin-top:12px">겉보기 손익은 거의 같아요. 그런데 외주비는 매출이 줄면 같이 줄지만 급여는 안 줄어요. 회수까지 82일이라 먼저 넣어야 할 현금도 3,790만원이에요.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card__k">그럼 언제 뽑아도 되나 · 셋이 동시에 충족되면 1명씩</div>
+    <table class="tbl">
+      <thead><tr><th>조건</th><th>지금</th></tr></thead>
+      <tbody>
+        <tr><td>못 받은 돈 회수일 60일 이하</td><td>82.3일</td></tr>
+        <tr><td>손익분기 여유 매출의 10% 이상</td><td>1.6%</td></tr>
+        <tr><td>13주 최저 잔고가 급여 3개월치(1.43억) 이상</td><td>회수가 밀리면 미달</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card">
+    <div class="card__k">열 개가 아니라 세 가지만</div>
+    <p><b style="color:var(--ink)">하나.</b> 못 받은 3.87억에 회수 담당과 주간 점검을 붙인다. <b style="color:var(--ink)">둘.</b> 30개월째 그대로인 인일 단가 65만원을 신규 견적부터 70만원으로 올린다. <b style="color:var(--ink)">셋.</b> 프로젝트별 실제 투입 공수를 기록한다. 외주비가 오른 원인을 장부로는 가를 수 없었거든요.</p>
+  </div>
+  <div class="card">
+    <div class="card__k">Juno가 하지 않는 것</div>
+    <p>장부로 답할 수 없는 건 답하지 않아요. 원인을 못 가른 부분은 못 갈랐다고 적고, 그걸 재는 일을 처방에 넣어요. 숫자마다 얼마나 믿을 수 있는지 등급을 붙여요.</p>
+  </div>
+</section>
+
+<section class="end">
+  <h2>우리 회사 장부로도 이렇게 나올까요</h2>
+  <p>맡기고 싶은 업무를 적어 보내주시면, AI 팀원이 맡을 수 있는지와 어디부터 시작하면 좋을지 한 장으로 정리해 드려요. 진단은 무료이고, 맞지 않으면 맞지 않는다고 적어서 보냅니다.</p>
+  <div class="end__acts">
+    <a class="go go--w" href="https://soloimpact.kr/apply">비어 있는 자리 진단받기</a>
+    <a class="go go--o" href="https://raw.githubusercontent.com/soloimpactai/teamofone-case-member/main/juno/juno-finance-diagnosis.zip">Juno 무료로 받기</a>
+  </div>
+  <p class="end__note">Juno는 파일로 무료로 받아요. Claude 프로젝트에 넣어 바로 쓸 수 있어요. 보통 2영업일 안에 진단서를 보내드리고, 진단 후에 먼저 연락드리지 않아요.</p>
+</section>
+<div class="others"><div class="others__h">다른 팀원도 30초면 돼요</div><div class="others__row"><a href="https://soloimpactai.github.io/teamofone-case-member/kai/kai-play.html"><b>Kai · 지시 정리</b><span>상사의 한마디와 흩어진 회의 메모가 남았을 때</span></a><a href="https://soloimpactai.github.io/teamofone-case-member/vera/vera-play.html"><b>Vera · 진입 판정</b><span>새 채널·새 시장에 들어갈지 정해야 할 때</span></a><a href="https://soloimpactai.github.io/teamofone-case-member/theo/theo-play.html"><b>Theo · 원인 진단</b><span>원인을 두고 내부 의견이 갈릴 때</span></a></div></div>
+<p class="foot">시연용 사례예요. 회사와 인물, 회사 수치는 모두 가상 설정값이고, 팀원의 판단과 숫자는 리포트에서 그대로 옮겼어요. 전체 과정은 <a href="https://soloimpactai.github.io/teamofone-case-member/juno/juno-finance-report.html" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line2)">리포트 전문</a>에서, 다른 팀원은 <a href="https://soloimpact.kr" style="border-bottom:1px solid var(--line2)">soloimpact.kr</a>에서 볼 수 있어요.</p>
+</main>
+<script>(function(){
+  var dots=document.querySelectorAll('.pb__dots i');
+  function mark(n){dots.forEach(function(d,i){d.classList.toggle('on',i<n);});}
+  function open(n,scroll){
+    var s=document.getElementById('s'+n); if(!s) return;
+    if(s.hidden){s.hidden=false; s.classList.add('in'); document.dispatchEvent(new CustomEvent('step',{detail:n}));}
+    mark(n);
+    if(scroll!==false) setTimeout(function(){s.scrollIntoView({behavior:'smooth',block:'start'});},40);
+  }
+  mark(1);
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-next]');
+    if(b){e.preventDefault(); open(+b.dataset.next); b.style.display='none'; return;}
+    var k=e.target.closest('[data-skip]');
+    if(k){e.preventDefault(); var i=2; while(document.getElementById('s'+i)){open(i,false); i++;}
+      document.querySelectorAll('.opts').forEach(function(o){if(!o.classList.contains('done')) pick(o,o.dataset.ans);});
+      document.querySelectorAll('[data-next]').forEach(function(x){x.style.display='none';});
+      var last=document.getElementById('s'+(i-1)); if(last) last.scrollIntoView({behavior:'smooth'}); k.style.display='none'; return;}
+    var o=e.target.closest('.opt');
+    if(o){var g=o.closest('.opts'); if(g && !g.classList.contains('done')) pick(g,o.dataset.id); return;}
+    var c=e.target.closest('[data-copy]');
+    if(c){var t=document.getElementById(c.dataset.copy); if(!t) return; var txt=t.innerText.trim();
+      var done=function(){c.textContent='복사됨'; c.classList.add('ok'); setTimeout(function(){c.textContent='복사'; c.classList.remove('ok');},1600);};
+      if(navigator.clipboard) navigator.clipboard.writeText(txt).then(done,done); else done(); return;}
+    var tg=e.target.closest('[data-tog] button');
+    if(tg){var grp=tg.closest('[data-tog]'); var key=grp.dataset.tog;
+      grp.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===tg));});
+      document.querySelectorAll('[data-tv^="'+key+':"]').forEach(function(el){el.hidden=(el.dataset.tv!==key+':'+tg.dataset.v);}); return;}
+  });
+  function pick(g,id){
+    g.classList.add('done');
+    var ans=g.dataset.ans, step=g.closest('.step');
+    g.querySelectorAll('.opt').forEach(function(x){
+      if(x.dataset.id===id) x.classList.add('pick');
+      if(x.dataset.id===ans) x.classList.add('ans');
+    });
+    step.querySelectorAll('[data-if]').forEach(function(el){
+      var keys=el.dataset.if.split(' ');
+      if(keys.indexOf(id)>=0 || keys.indexOf('any')>=0 || (keys.indexOf('diff')>=0 && id!==ans) || (keys.indexOf('same')>=0 && id===ans)) el.classList.add('show');
+    });
+    step.querySelectorAll('.reveal,[data-after]').forEach(function(el){el.hidden=false;});
+    document.dispatchEvent(new CustomEvent('picked',{detail:{id:id,same:id===ans}}));
+  }
+  window.SOI={open:open};
+})();
+</script>
+<style>
+.book{border:1px solid var(--line); border-radius:14px; overflow:hidden;}
+.book__meter{padding:18px 18px 20px; background:var(--tint); border-bottom:1px solid var(--line);}
+.book__lab{display:block; font-size:12.5px; font-weight:700; color:var(--faint); margin-bottom:6px;}
+.book__bar{position:relative; height:12px; border-radius:6px; background:#fff; border:1px solid var(--line); margin-top:30px;}
+.book__bar div{height:100%; border-radius:6px; background:var(--acc); transition:width .5s ease, background .3s;}
+.book__bar i{position:absolute; top:-26px; bottom:-4px; border-left:2px dashed var(--navy);}
+.book__bar i span{position:absolute; top:0; right:6px; font-style:normal; white-space:nowrap; font-size:12px; font-weight:700; color:var(--navy);}
+.book__grp{padding:10px 18px 14px;}
+.book__grp + .book__grp{border-top:1px solid var(--line);}
+.book__gh{font-size:13px; font-weight:800; color:var(--acc); padding:4px 0 6px; display:flex; justify-content:space-between;}
+.book__row{display:grid; grid-template-columns:1fr auto; gap:6px 12px; align-items:center; width:100%; text-align:left; padding:10px 12px; border-radius:8px; border:1px solid transparent; background:none; font-size:15px;}
+.book__row b{font-variant-numeric:tabular-nums;}
+.book__row.fix{color:var(--muted);}
+.book__row.mv{border:1.5px dashed var(--acc); background:var(--acc-soft); margin:6px 0;}
+.book__row.mv em{grid-column:1/-1; font-style:normal; font-size:12.5px; font-weight:700; color:var(--acc);}
+.book__row.mv:hover{background:#E4E2F4;}
+.book__row.moved{border:1.5px solid var(--hot); background:var(--hot-soft); animation:rise .4s ease both; margin:6px 0;}
+</style>
+<script>
+(function(){
+  var mg=64.8, cogs=35.2, n=0;
+  var V=document.getElementById('mgV'), F=document.getElementById('mgF'), T=document.getElementById('mgT');
+  function move(btn){
+    var v=+btn.dataset.v; n++;
+    var row=document.createElement('div'); row.className='book__row moved';
+    row.innerHTML='<span>'+btn.querySelector('span').textContent+'</span><b>'+v.toFixed(1)+'%</b>';
+    document.getElementById('cogsBox').appendChild(row); btn.remove();
+    if(n===1){mg=64.8-v; cogs=35.2+v;} else {mg=53.3; cogs=46.7;}
+    V.textContent=mg.toFixed(1)+'%'; F.style.width=mg+'%';
+    document.getElementById('cogsV').textContent=cogs.toFixed(1)+'%';
+    if(n===1){T.textContent='하나 더 남았어요';}
+    if(n===2){document.querySelector('.book__lab').textContent='다시 분류한 뒤 남는 비율'; T.textContent='실제로 남는 비율 (공헌이익률)'; F.style.background='var(--neg)'; V.style.color='var(--neg)';
+      ['bookR','cashC','bookNext'].forEach(function(id){document.getElementById(id).hidden=false;});}
+  }
+  document.querySelectorAll('.book__row.mv').forEach(function(b){b.addEventListener('click',function(){move(b);});});
+  document.addEventListener('click',function(e){if(e.target.closest('[data-skip]')){document.querySelectorAll('.book__row.mv').forEach(function(b){move(b);});}});
+})();
+</script>
+
+</body></html>

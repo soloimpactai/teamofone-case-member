@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>쿠팡을 떠나야 하나 · Vera 30초 체험</title>
+<meta name="description" content="자사몰을 준비해야 하나요? Vera의 판정을 먼저 맞혀 보고, 판정을 가른 숫자를 직접 움직여 보세요.">
+<meta property="og:title" content="쿠팡을 떠나야 하나 · Vera 30초 체험">
+<meta property="og:description" content="자사몰을 준비해야 하나요? Vera의 판정을 먼저 맞혀 보고, 판정을 가른 숫자를 직접 움직여 보세요.">
+<meta property="og:image" content="https://raw.githubusercontent.com/soloimpactai/teamofone-case-member/main/vera/vera-card.jpg">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css">
+<style>[hidden]{display:none !important;}
+:root{
+  --navy:#0B1220; --ink:#131A2A; --muted:#646C80; --faint:#7A8194;
+  --line:#E4E6EC; --line2:#C9CDD9; --tint:#F6F6FA;
+  --acc:#5B57A8; --acc2:#4A4691; --acc-soft:#EFEEF8;
+  --hot:#F4D35E; --hot-soft:#FFF6D6; --neg:#C2453D; --neg-soft:#FBEDEC; --pos:#2F8F6B; --pos-soft:#E8F5EF;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0; background:#fff; color:var(--ink); font-family:'Pretendard Variable',Pretendard,-apple-system,BlinkMacSystemFont,'Malgun Gothic',sans-serif; font-size:16px; line-height:1.7; letter-spacing:-.01em; word-break:keep-all; overflow-wrap:break-word; -webkit-font-smoothing:antialiased;}
+a{color:inherit; text-decoration:none;}
+button{font:inherit; color:inherit; cursor:pointer;}
+:focus-visible{outline:2px solid var(--acc); outline-offset:3px; border-radius:4px;}
+
+/* 상단 바 */
+.pb{position:sticky; top:0; z-index:20; background:rgba(255,255,255,.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+.pb__in{max-width:780px; margin:0 auto; padding:12px 20px; display:flex; align-items:center; gap:12px;}
+.pb__who{font-weight:800; font-size:15px; letter-spacing:-.02em;}
+.pb__who small{font-weight:600; color:var(--faint); font-size:13px; margin-left:6px;}
+.pb__chip{font-size:11.5px; font-weight:700; color:var(--muted); border:1px solid var(--line2); border-radius:999px; padding:1px 9px;}
+.pb__sp{flex:1;}
+.pb__dots{display:flex; gap:5px;}
+.pb__dots i{width:22px; height:4px; border-radius:2px; background:var(--line);}
+.pb__dots i.on{background:var(--acc);}
+.pb__rep{font-size:13px; color:var(--muted); border-bottom:1px solid var(--line2);}
+.pb__rep:hover{color:var(--ink); border-color:var(--ink);}
+
+.wrap{max-width:780px; margin:0 auto; padding:0 20px 80px;}
+
+/* 인트로 */
+.intro{padding:44px 0 8px;}
+.intro__k{display:inline-block; font-size:13px; font-weight:700; color:var(--acc); background:var(--acc-soft); border-radius:4px; padding:3px 10px; margin-bottom:16px;}
+.intro h1{font-size:clamp(27px,5.6vw,40px); line-height:1.22; letter-spacing:-.045em; font-weight:800; margin:0;}
+.intro p{color:var(--muted); font-size:16.5px; margin:16px 0 0;}
+
+/* 스텝 */
+.step{padding-top:52px; scroll-margin-top:64px;}
+.step[hidden]{display:none;}
+.step.in{animation:rise .45s ease both;}
+@keyframes rise{from{opacity:0; transform:translateY(14px);}to{opacity:1; transform:none;}}
+.step__n{font-size:12.5px; font-weight:800; color:var(--acc); letter-spacing:.04em; margin-bottom:8px;}
+.step h2{font-size:clamp(21px,4vw,27px); line-height:1.36; letter-spacing:-.035em; font-weight:800; margin:0 0 10px;}
+.step__d{color:var(--muted); font-size:15.5px; margin:0 0 22px;}
+
+/* 받은 자료 */
+.doc{border:1px solid var(--line); border-radius:12px; background:#fff; overflow:hidden;}
+.doc + .doc{margin-top:12px;}
+.doc__h{display:flex; align-items:center; gap:8px; padding:11px 16px; background:var(--tint); border-bottom:1px solid var(--line); font-size:13px; color:var(--muted); font-weight:600;}
+.doc__h b{color:var(--ink);}
+.doc__b{padding:14px 16px; font-size:15px;}
+.doc__b p{margin:0;}
+.memo{list-style:none; margin:0; padding:6px 0;}
+.memo li{display:grid; grid-template-columns:22px 1fr; gap:8px; padding:7px 16px; font-size:15px; line-height:1.6;}
+.memo li .no{font-size:12px; color:var(--faint); padding-top:2px; font-variant-numeric:tabular-nums;}
+.facts{display:grid; grid-template-columns:repeat(2,1fr); gap:10px; margin-top:12px;}
+.fact{background:var(--tint); border-radius:10px; padding:12px 14px;}
+.fact b{display:block; font-size:19px; font-weight:800; letter-spacing:-.03em;}
+.fact span{font-size:12.5px; color:var(--muted);}
+
+/* 버튼 */
+.go{display:inline-flex; align-items:center; justify-content:center; gap:8px; height:50px; padding:0 24px; border:0; border-radius:8px; background:var(--acc); color:#fff; font-weight:700; font-size:15.5px; margin-top:22px;}
+.go:hover{background:var(--acc2);}
+.go--n{background:var(--navy);}
+.go--n:hover{background:#1A2338;}
+.go--w{background:#fff; color:var(--ink); border:1px solid var(--line2);}
+.go--w:hover{background:#fff; border-color:var(--navy);}
+.skip{display:inline-block; margin:16px 0 0 14px; font-size:13.5px; color:var(--faint); border:0; background:none; border-bottom:1px solid var(--line2); padding:0;}
+
+/* 선택지 */
+.opts{display:grid; gap:10px;}
+.opt{display:grid; grid-template-columns:34px 1fr; gap:12px; align-items:start; text-align:left; width:100%; padding:16px 18px; border:1.5px solid var(--line); border-radius:12px; background:#fff; transition:border-color .15s, background .15s, transform .15s;}
+.opt:hover{border-color:var(--acc); transform:translateY(-1px);}
+.opt__k{width:34px; height:34px; border-radius:50%; background:var(--tint); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:14px; color:var(--muted);}
+.opt__t{font-weight:700; font-size:16px; line-height:1.45; display:block;}
+.opt__s{display:block; font-size:13.5px; color:var(--muted); margin-top:3px; line-height:1.55;}
+.opts.done .opt{cursor:default; transform:none;}
+.opts.done .opt:not(.pick):not(.ans){opacity:.45;}
+.opt.pick{border-color:var(--navy); background:var(--tint);}
+.opt.pick .opt__k{background:var(--navy); color:#fff;}
+.opt.ans{border-color:var(--acc); background:var(--acc-soft);}
+.opt.ans .opt__k{background:var(--acc); color:#fff;}
+.opt__tag{display:none; margin-top:8px; font-size:12px; font-weight:800; letter-spacing:.02em;}
+.opt.pick .opt__tag--me, .opt.ans .opt__tag--ai{display:inline-block; margin-right:8px;}
+.opt__tag--me{color:var(--navy);}
+.opt__tag--ai{color:var(--acc);}
+
+/* 공개 */
+.reveal{margin-top:18px; border-radius:12px; padding:18px 20px; background:var(--tint); font-size:15.5px;}
+.reveal[hidden]{display:none;}
+.reveal__h{font-weight:800; font-size:16.5px; margin:0 0 6px; letter-spacing:-.02em;}
+.reveal p{margin:0;}
+.reveal p + p{margin-top:8px;}
+.reveal--same{background:var(--acc-soft);}
+[data-if]{display:none;}
+[data-if].show{display:block;}
+
+/* 흐름 띠 */
+.flow{display:flex; flex-wrap:wrap; align-items:center; gap:6px; margin-top:12px; font-size:13.5px;}
+.flow span{background:#fff; border:1px solid var(--line); border-radius:6px; padding:5px 10px;}
+.flow i{font-style:normal; color:var(--faint);}
+.flow .stop{border-color:var(--neg); color:var(--neg); background:var(--neg-soft); font-weight:700;}
+
+/* 큰 숫자 */
+.big{display:flex; align-items:baseline; gap:10px; flex-wrap:wrap;}
+.big b{font-size:clamp(40px,9vw,64px); font-weight:800; letter-spacing:-.05em; line-height:1; color:var(--acc); font-variant-numeric:tabular-nums;}
+.big span{font-size:15px; color:var(--muted);}
+
+/* 카드 */
+.card{border:1px solid var(--line); border-radius:14px; padding:20px; background:#fff;}
+.card + .card{margin-top:12px;}
+.card__k{font-size:12.5px; font-weight:800; color:var(--acc); margin-bottom:6px;}
+.card h3{font-size:18px; letter-spacing:-.03em; line-height:1.45; margin:0 0 8px;}
+.card p{margin:0; color:var(--muted); font-size:15px;}
+
+/* 판정 칩 */
+.vchip{display:inline-flex; align-items:center; gap:6px; font-weight:800; font-size:15px; padding:6px 14px; border-radius:999px; background:var(--acc-soft); color:var(--acc); transition:background .2s,color .2s;}
+.vchip.pos{background:var(--pos-soft); color:var(--pos);}
+.vchip.neg{background:var(--neg-soft); color:var(--neg);}
+
+/* 슬라이더 */
+.rng{margin:18px 0 6px;}
+.rng label{display:flex; justify-content:space-between; font-size:14px; color:var(--muted); margin-bottom:8px;}
+.rng label b{color:var(--ink); font-size:16px; font-variant-numeric:tabular-nums;}
+input[type=range]{width:100%; accent-color:var(--acc); height:28px;}
+
+/* 표 */
+.tbl{width:100%; border-collapse:collapse; font-size:14.5px;}
+.tbl th,.tbl td{padding:10px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:top;}
+.tbl th{font-size:12.5px; color:var(--faint); font-weight:700;}
+.tbl td.c,.tbl th.c{text-align:center;}
+.tbl .y{color:var(--pos); font-weight:800;}
+.tbl .n{color:var(--line2); font-weight:800;}
+.tbl tr.win td{background:var(--acc-soft);}
+.tbl tr.win td:first-child{font-weight:800;}
+.tbl small{display:block; color:var(--muted); font-size:12.5px; margin-top:2px;}
+
+/* 초안 */
+.draft{position:relative; border:1px solid var(--line2); border-radius:12px; background:#fff; padding:18px 18px 16px; font-size:15px; line-height:1.75; white-space:pre-line;}
+.draft__h{display:flex; align-items:center; justify-content:space-between; gap:8px; font-size:13px; font-weight:700; color:var(--muted); margin-bottom:8px;}
+.copy{border:1px solid var(--line2); background:#fff; border-radius:6px; font-size:12.5px; padding:4px 10px; font-weight:600;}
+.copy.ok{border-color:var(--pos); color:var(--pos);}
+
+/* 토글 */
+.tog{display:inline-flex; border:1px solid var(--line2); border-radius:8px; overflow:hidden; margin:4px 0 12px;}
+.tog button{border:0; background:#fff; padding:9px 14px; font-size:14px; font-weight:600; color:var(--muted);}
+.tog button[aria-pressed=true]{background:var(--navy); color:#fff;}
+
+/* 마감 */
+.end{margin-top:64px; background:var(--navy); color:#fff; border-radius:16px; padding:34px 28px;}
+.end h2{font-size:clamp(22px,4.4vw,30px); line-height:1.32; letter-spacing:-.04em; margin:0 0 12px; font-weight:800;}
+.end p{color:#A9B0C2; margin:0; font-size:15.5px;}
+.end__acts{display:flex; flex-wrap:wrap; gap:10px; margin-top:22px;}
+.end__acts .go{margin-top:0;}
+.end__acts .go--o{background:transparent; border:1px solid #39415A; color:#C8CDDA;}
+.end__acts .go--o:hover{border-color:#6C7490; color:#fff;}
+.end__note{font-size:13px !important; color:#7F879C !important; margin-top:14px !important;}
+.others{margin-top:28px;}
+.others__h{font-size:13.5px; color:var(--faint); font-weight:700; margin-bottom:10px;}
+.others__row{display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
+.others a{display:block; border:1px solid var(--line); border-radius:10px; padding:12px 14px; font-size:14px; line-height:1.45;}
+.others a b{display:block; font-size:15px;}
+.others a span{color:var(--muted); font-size:12.5px;}
+.others a:hover{border-color:var(--acc);}
+.foot{margin-top:28px; font-size:12.5px; color:var(--faint); line-height:1.7;}
+
+@media(max-width:620px){
+  .pb__dots{display:none;}
+  .pb__rep{font-size:12.5px;}
+  .facts{grid-template-columns:1fr 1fr;}
+  .others__row{grid-template-columns:1fr;}
+  .end{padding:28px 20px;}
+  .end__acts .go{width:100%;}
+  .tbl{font-size:13.5px;}
+}
+
+/* 고르기 전에 알아둘 것 */
+.ctx{border:1px solid var(--line); border-left:3px solid var(--acc); border-radius:10px; background:var(--tint); padding:16px 18px; margin:0 0 18px;}
+.ctx__h{font-size:12.5px; font-weight:800; color:var(--acc); margin-bottom:8px;}
+.ctx ul{margin:0; padding:0; list-style:none; display:grid; gap:7px;}
+.ctx li{display:grid; grid-template-columns:76px 1fr; gap:10px; font-size:14.5px; line-height:1.6;}
+.ctx li > b{font-size:12.5px; color:var(--faint); padding-top:2px;}
+.ctx li > span b{color:var(--ink);}
+.ctx__q{margin-top:12px; padding-top:12px; border-top:1px dashed var(--line2); font-size:15px; font-weight:700;}
+@media(max-width:620px){.ctx li{grid-template-columns:1fr; gap:0;} .ctx li > b{padding-top:0;}}
+</style>
+</head><body>
+<header class="pb"><div class="pb__in">
+  <span class="pb__who">Vera<small>진입 판정</small></span><span class="pb__chip">가상 사례</span>
+  <span class="pb__sp"></span>
+  <span class="pb__dots" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
+  <a class="pb__rep" href="https://soloimpactai.github.io/teamofone-case-member/vera/vera-d2c-report.html" target="_blank" rel="noopener">리포트 전문 ↗</a>
+</div></header>
+<main class="wrap">
+<section class="intro">
+  <span class="intro__k">30초 체험 · 가상 사례</span>
+  <h1>"쿠팡은 팔수록 손해라던데, 우리도 자사몰 준비해야 하나요?"</h1>
+  <p>Vera가 받은 건 이 한 줄이에요. Vera의 판정을 먼저 맞혀 보시고, 판정을 가른 숫자를 직접 움직여 보세요.</p>
+</section>
+
+<section class="step" id="s1">
+  <div class="step__n">1 · 받은 것</div>
+  <h2>질문 한 줄과 회사 기본 정보</h2>
+  <p class="step__d">㈜라온컴퍼니(가상) · 더마 스킨케어 D2C. 회사 수치는 설정값이고, 시장·플랫폼 자료는 실제 출처를 추적한 거예요.</p>
+  <div class="doc">
+    <div class="doc__h"><b>대표의 질문</b></div>
+    <div class="doc__b"><p>쿠팡은 팔수록 손해라던데, 우리도 자사몰 준비해야 하나요?</p></div>
+  </div>
+  <div class="facts">
+    <div class="fact"><b>47억</b><span>연매출 · 16명</span></div>
+    <div class="fact"><b>54%</b><span>쿠팡 매출 비중</span></div>
+    <div class="fact"><b>34,000원</b><span>객단가</span></div>
+    <div class="fact"><b>최대 10.9%</b><span>쿠팡 판매수수료</span></div>
+  </div>
+  <button class="go" data-next="2">Vera의 판정은 무엇이었을까요? ↓</button>
+  <button class="skip" data-skip>고르지 않고 결과만 보기</button>
+</section>
+
+<section class="step" id="s2" hidden>
+  <div class="step__n">2 · 판정 맞히기</div>
+  <h2>Vera는 네 가지 중 하나로 단정해요. 어느 쪽이었을까요?</h2>
+  <p class="step__d">"지금 자사몰에 돈과 사람을 넣어야 하나"에 대한 판정이에요. 아래 정보만 보고 예상해 보세요.</p>
+  <div class="ctx">
+    <div class="ctx__h">고르기 전에 알아둘 것</div>
+    <ul>
+      <li><b>쿠팡</b><span>매출의 <b>54%</b>가 쿠팡에서 나와요. 팔릴 때마다 판매수수료를 최대 10.9% 떼요.</span></li>
+      <li><b>자사몰</b><span>수수료는 없지만, 손님을 광고로 직접 데려와야 해요. 광고비는 사기 전에 먼저 나가요.</span></li>
+      <li><b>고객</b><span>이 회사 고객은 평균 <b>1.41번</b> 사고 끝나요. 1년 안에 다시 사는 비율은 29%예요.</span></li>
+      <li><b>쿠팡 사정</b><span>2026년 1분기에 상장 후 처음으로 한 자릿수 성장과 영업손실을 냈고, 입점업체 분쟁은 1년 새 121% 늘었어요.</span></li>
+    </ul>
+  </div>
+  <div class="opts" data-ans="cond">
+    <button class="opt" data-id="go"><span class="opt__k">A</span><span><span class="opt__t">추천</span><span class="opt__s">수수료를 아끼는 만큼 이익. 자사몰로 옮긴다</span><span class="opt__tag opt__tag--me">내 예상</span><span class="opt__tag opt__tag--ai">Vera의 판정</span></span></button>
+    <button class="opt" data-id="cond"><span class="opt__k">B</span><span><span class="opt__t">조건부</span><span class="opt__s">특정 조건이 확인될 때만 한다</span><span class="opt__tag opt__tag--me">내 예상</span><span class="opt__tag opt__tag--ai">Vera의 판정</span></span></button>
+    <button class="opt" data-id="hold"><span class="opt__k">C</span><span><span class="opt__t">보류</span><span class="opt__s">지금은 판단할 근거가 모자란다</span><span class="opt__tag opt__tag--me">내 예상</span><span class="opt__tag opt__tag--ai">Vera의 판정</span></span></button>
+    <button class="opt" data-id="no"><span class="opt__k">D</span><span><span class="opt__t">회피</span><span class="opt__s">쿠팡에 집중하고 자사몰은 하지 않는다</span><span class="opt__tag opt__tag--me">내 예상</span><span class="opt__tag opt__tag--ai">Vera의 판정</span></span></button>
+  </div>
+  <div class="reveal" hidden>
+    <div data-if="go">
+      <p class="reveal__h">가장 많이 나오는 답이에요. 그런데 질문의 전제부터 틀려 있었어요</p>
+      <p>"수수료가 마진을 갉아먹는다"는 전제로 시작한 질문이에요. Vera는 판정 전에 그 전제부터 계산했어요. 수수료는 팔릴 때만 떼이지만, 자사몰 광고비는 사기 전에 먼저 나가요.</p>
+    </div>
+    <div data-if="no">
+      <p class="reveal__h">숫자만 보면 가까워요. 그런데 Vera는 자사몰을 버리지 않았어요</p>
+      <p>마진으로는 자사몰이 지는 게 맞아요. 그래도 매출의 54%가 한 플랫폼에 있다는 집중 리스크가 남아요. 그래서 자사몰의 역할을 바꿔서 살렸어요.</p>
+    </div>
+    <div data-if="hold">
+      <p class="reveal__h">근거가 약하다는 건 정확하게 보셨어요</p>
+      <p>판정을 가르는 수치의 근거 밀도가 낮아요. 국내 공개 실측치가 없거든요. 그래도 Vera는 보류로 끝내지 않고, 약 4개월이면 확인되는 조건을 붙여서 판정을 냈어요.</p>
+    </div>
+    <div data-if="cond">
+      <p class="reveal__h">맞히셨어요. 그럼 "조건"이 뭔지도 찾아보실래요?</p>
+      <p>조건부라는 말 자체보다 어떤 숫자가 조건인지가 중요해요. 아래에서 직접 움직여 보세요.</p>
+    </div>
+    <p data-if="diff" style="margin-top:12px"><b>Vera의 판정은 조건부였어요.</b> 자사몰은 신규 고객을 사 오는 채널로는 성립하지 않고, 이미 산 고객의 재구매를 옮겨 오는 장치로만 성립해요.</p>
+  </div>
+  <button class="go" data-next="3" data-after hidden>판정을 가른 숫자 확인하기 ↓</button>
+</section>
+
+<section class="step" id="s3" hidden>
+  <div class="step__n">3 · 판정을 가른 숫자</div>
+  <h2>수수료는 후불이고, 광고비는 선불이에요</h2>
+  <p class="step__d">쿠팡에서 한 건 팔면 12,814원, 자사몰에서 팔면 18,208원이 남아요. 자사몰이 건당 5,394원 더 남기죠. 문제는 자사몰은 손님을 먼저 돈 주고 데려와야 한다는 거예요.</p>
+  <div class="card">
+    <div class="rng"><label for="cac">자사몰에서 신규 고객 1명 얻는 비용 <b id="cacV">56,000원</b></label>
+      <input type="range" id="cac" min="2000" max="80000" step="200" value="56000"></div>
+    <p style="font-size:13.5px">처음 값 56,000원은 객단가의 165%예요. 국내 공개 실측치가 없어서 설정값으로 넣었어요.</p>
+    <div class="cross">
+      <div class="cross__lab"><span>자사몰이 쿠팡을 이기려면 같은 고객이</span><b id="crossV">10.4회</b><span>사야 해요</span></div>
+      <div class="cross__bar"><div class="cross__avg" style="left:calc(1.41/12*100%)"><span>이 회사 고객 평균 1.41회</span></div><div class="cross__fill" id="crossF"></div></div>
+      <div class="cross__ax"><span>0회</span><span>6회</span><span>12회+</span></div>
+    </div>
+    <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:16px">
+      <span class="vchip" id="vV">판정 · 조건부</span><span id="vT" style="font-size:14px; color:var(--muted)">평균보다 7배 넘게 더 사야 해요. 신규 고객 채널로는 성립하지 않아요.</span>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card__k">그래도 자사몰을 버리지 않은 이유</div>
+    <p>매출의 54%가 한 플랫폼에 있어요. 그 플랫폼은 2026년 1분기에 상장 후 처음으로 한 자릿수 매출 성장(8%)과 영업손실을 냈고, 오픈마켓 입점업체 분쟁 접수는 1년 새 121% 늘었어요. Vera가 자사몰을 보는 이유는 마진이 아니라 이 집중 리스크예요.</p>
+  </div>
+  <button class="go" data-next="4">그럼 "조건"은 무엇인가요 ↓</button>
+</section>
+
+<section class="step" id="s4" hidden>
+  <div class="step__n">4 · 조건부의 조건</div>
+  <h2>쿠팡에서 산 고객을 자사몰로 옮길 때, 남는 게 있을까요?</h2>
+  <p class="step__d">옮긴 고객은 앞으로 사는 몫에서 건당 5,394원을 더 남겨요. 그런데 재구매율 29%에서는 그 몫이 평균 0.41회뿐이에요. 두 값을 움직여 보세요.</p>
+  <div class="card">
+    <div class="rng"><label for="mc">옮기는 비용 (1명, 동봉 쿠폰과 인쇄비) <b id="mcV">3,000원</b></label><input type="range" id="mc" min="500" max="12000" step="100" value="3000"></div>
+    <div class="rng"><label for="mq">옮긴 뒤 12개월 재구매율 (지금 29%) <b id="mqV">35%</b></label><input type="range" id="mq" min="20" max="60" step="1" value="35"></div>
+    <div class="facts" style="grid-template-columns:repeat(3,1fr)">
+      <div class="fact"><b id="mvV">-</b><span>옮긴 고객 1명의 가치</span></div>
+      <div class="fact"><b id="mnV">-</b><span>1명당 순이익</span></div>
+      <div class="fact"><b id="mbV">-</b><span>본전 재구매율</span></div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card__k">Vera가 내놓은 다음 액션 1순위</div>
+    <h3>쿠팡 구매 고객 500명에게 동봉 쿠폰을 넣는 실험</h3>
+    <p>옮기는 비용과 옮긴 뒤 재구매율을 한 번에 재요. 재구매 주기가 74일이라 약 4개월이면 첫 판독이 나와요. 본전선을 넘으면 "회수 장치로 추천", 못 넘으면 "보류"로 판정이 확정돼요.</p>
+  </div>
+  <div class="card">
+    <div class="card__k">Vera가 하지 않는 것</div>
+    <p>어떤 채널을 키울지는 정하지 않아요. 시장이 어떤지까지 판정하고, 결정은 회사가 해요. 근거가 약한 숫자는 약하다고 표시하고, 홍보성 자료는 원출처를 확인하지 못하면 판정 근거에서 빼요.</p>
+  </div>
+</section>
+
+<section class="end">
+  <h2>우리 회사 채널 고민에도 이렇게 나올까요</h2>
+  <p>맡기고 싶은 업무를 적어 보내주시면, AI 팀원이 맡을 수 있는지와 어디부터 시작하면 좋을지 한 장으로 정리해 드려요. 진단은 무료이고, 맞지 않으면 맞지 않는다고 적어서 보냅니다.</p>
+  <div class="end__acts">
+    <a class="go go--w" href="https://soloimpact.kr/apply">비어 있는 자리 진단받기</a>
+    <a class="go go--o" href="https://raw.githubusercontent.com/soloimpactai/teamofone-case-member/main/vera/vera-market-research.zip">Vera 무료로 받기</a>
+  </div>
+  <p class="end__note">Vera는 파일로 무료로 받아요. Claude 프로젝트에 넣어 바로 쓸 수 있어요. 보통 2영업일 안에 진단서를 보내드리고, 진단 후에 먼저 연락드리지 않아요.</p>
+</section>
+<div class="others"><div class="others__h">다른 팀원도 30초면 돼요</div><div class="others__row"><a href="https://soloimpactai.github.io/teamofone-case-member/kai/kai-play.html"><b>Kai · 지시 정리</b><span>상사의 한마디와 흩어진 회의 메모가 남았을 때</span></a><a href="https://soloimpactai.github.io/teamofone-case-member/juno/juno-play.html"><b>Juno · 재무 진단</b><span>채용·투자 전에 우리 장부가 버티는지 볼 때</span></a><a href="https://soloimpactai.github.io/teamofone-case-member/theo/theo-play.html"><b>Theo · 원인 진단</b><span>원인을 두고 내부 의견이 갈릴 때</span></a></div></div>
+<p class="foot">시연용 사례예요. 회사와 인물, 회사 수치는 모두 가상 설정값이고, 팀원의 판단과 숫자는 리포트에서 그대로 옮겼어요. 전체 과정은 <a href="https://soloimpactai.github.io/teamofone-case-member/vera/vera-d2c-report.html" target="_blank" rel="noopener" style="border-bottom:1px solid var(--line2)">리포트 전문</a>에서, 다른 팀원은 <a href="https://soloimpact.kr" style="border-bottom:1px solid var(--line2)">soloimpact.kr</a>에서 볼 수 있어요.</p>
+</main>
+<script>(function(){
+  var dots=document.querySelectorAll('.pb__dots i');
+  function mark(n){dots.forEach(function(d,i){d.classList.toggle('on',i<n);});}
+  function open(n,scroll){
+    var s=document.getElementById('s'+n); if(!s) return;
+    if(s.hidden){s.hidden=false; s.classList.add('in'); document.dispatchEvent(new CustomEvent('step',{detail:n}));}
+    mark(n);
+    if(scroll!==false) setTimeout(function(){s.scrollIntoView({behavior:'smooth',block:'start'});},40);
+  }
+  mark(1);
+  document.addEventListener('click',function(e){
+    var b=e.target.closest('[data-next]');
+    if(b){e.preventDefault(); open(+b.dataset.next); b.style.display='none'; return;}
+    var k=e.target.closest('[data-skip]');
+    if(k){e.preventDefault(); var i=2; while(document.getElementById('s'+i)){open(i,false); i++;}
+      document.querySelectorAll('.opts').forEach(function(o){if(!o.classList.contains('done')) pick(o,o.dataset.ans);});
+      document.querySelectorAll('[data-next]').forEach(function(x){x.style.display='none';});
+      var last=document.getElementById('s'+(i-1)); if(last) last.scrollIntoView({behavior:'smooth'}); k.style.display='none'; return;}
+    var o=e.target.closest('.opt');
+    if(o){var g=o.closest('.opts'); if(g && !g.classList.contains('done')) pick(g,o.dataset.id); return;}
+    var c=e.target.closest('[data-copy]');
+    if(c){var t=document.getElementById(c.dataset.copy); if(!t) return; var txt=t.innerText.trim();
+      var done=function(){c.textContent='복사됨'; c.classList.add('ok'); setTimeout(function(){c.textContent='복사'; c.classList.remove('ok');},1600);};
+      if(navigator.clipboard) navigator.clipboard.writeText(txt).then(done,done); else done(); return;}
+    var tg=e.target.closest('[data-tog] button');
+    if(tg){var grp=tg.closest('[data-tog]'); var key=grp.dataset.tog;
+      grp.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed',String(x===tg));});
+      document.querySelectorAll('[data-tv^="'+key+':"]').forEach(function(el){el.hidden=(el.dataset.tv!==key+':'+tg.dataset.v);}); return;}
+  });
+  function pick(g,id){
+    g.classList.add('done');
+    var ans=g.dataset.ans, step=g.closest('.step');
+    g.querySelectorAll('.opt').forEach(function(x){
+      if(x.dataset.id===id) x.classList.add('pick');
+      if(x.dataset.id===ans) x.classList.add('ans');
+    });
+    step.querySelectorAll('[data-if]').forEach(function(el){
+      var keys=el.dataset.if.split(' ');
+      if(keys.indexOf(id)>=0 || keys.indexOf('any')>=0 || (keys.indexOf('diff')>=0 && id!==ans) || (keys.indexOf('same')>=0 && id===ans)) el.classList.add('show');
+    });
+    step.querySelectorAll('.reveal,[data-after]').forEach(function(el){el.hidden=false;});
+    document.dispatchEvent(new CustomEvent('picked',{detail:{id:id,same:id===ans}}));
+  }
+  window.SOI={open:open};
+})();
+</script>
+<style>
+.cross{margin-top:18px;}
+.cross__lab{display:flex; align-items:baseline; flex-wrap:wrap; gap:6px 8px; font-size:15px; color:var(--muted);}
+.cross__lab b{font-size:clamp(32px,7vw,46px); font-weight:800; color:var(--acc); letter-spacing:-.04em; line-height:1.1; font-variant-numeric:tabular-nums;}
+.cross__bar{position:relative; height:16px; border-radius:8px; background:var(--tint); margin:38px 0 6px;}
+.cross__fill{position:absolute; left:0; top:0; bottom:0; border-radius:8px; background:var(--acc); transition:width .25s ease, background .25s;}
+.cross__avg{position:absolute; top:-30px; bottom:-4px; width:0; border-left:2px dashed var(--navy); z-index:2;}
+.cross__avg span{position:absolute; top:0; left:6px; white-space:nowrap; font-size:12px; font-weight:700; color:var(--navy);}
+.cross__ax{display:flex; justify-content:space-between; font-size:12px; color:var(--faint);}
+</style>
+<script>
+(function(){
+  var won=function(v){return Math.round(v).toLocaleString('ko-KR');};
+  var OM=12814, OWN=18208, G=OWN-OM, AVG=1.41;
+  var cac=document.getElementById('cac');
+  function d1(){
+    var c=+cac.value, x=c/G;
+    document.getElementById('cacV').textContent=won(c)+'원';
+    document.getElementById('crossV').textContent=x.toFixed(1)+'회';
+    var f=document.getElementById('crossF'); f.style.width=Math.min(100,x/12*100)+'%';
+    var v=document.getElementById('vV'), t=document.getElementById('vT');
+    if(x<=AVG){f.style.background='var(--pos)'; v.className='vchip pos'; v.textContent='판정 · 추천'; t.textContent='평균 구매 횟수 안으로 들어왔어요. 이 비용이 실측으로 확인되면 신규 고객 채널로도 성립해요.';}
+    else{f.style.background='var(--acc)'; v.className='vchip'; v.textContent='판정 · 조건부'; var m=x/AVG; t.textContent='평균보다 '+(m>=2?Math.floor(m)+'배 넘게':'더')+' 사야 해요. 신규 고객 채널로는 성립하지 않아요. 추천으로 바뀌는 선은 7,600원이에요.';}
+  }
+  cac.addEventListener('input',d1); d1();
+  var mc=document.getElementById('mc'), mq=document.getElementById('mq');
+  function d2(){
+    var cost=+mc.value, r=+mq.value/100, p=r/(1-r);
+    var val=0.41*G+(p-0.41)*OWN, net=val-cost;
+    var be=(cost-0.41*G)/OWN+0.41, ber=be/(1+be);
+    document.getElementById('mcV').textContent=won(cost)+'원';
+    document.getElementById('mqV').textContent=mq.value+'%';
+    document.getElementById('mvV').textContent=won(val)+'원';
+    var n=document.getElementById('mnV'); n.textContent=(net>=0?'+':'')+won(net)+'원'; n.style.color=net>=0?'var(--pos)':'var(--neg)';
+    document.getElementById('mbV').textContent=Math.round(ber*100)+'%';
+  }
+  mc.addEventListener('input',d2); mq.addEventListener('input',d2); d2();
+})();
+</script>
+
+</body></html>
