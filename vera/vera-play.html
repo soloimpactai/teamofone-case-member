@@ -192,6 +192,28 @@ input[type=range]{width:100%; accent-color:var(--acc); height:28px;}
 .ctx li > span b{color:var(--ink);}
 .ctx__q{margin-top:12px; padding-top:12px; border-top:1px dashed var(--line2); font-size:15px; font-weight:700;}
 @media(max-width:620px){.ctx li{grid-template-columns:1fr; gap:0;} .ctx li > b{padding-top:0;}}
+
+/* 팀원 한 줄 */
+.intro__who{font-size:15px; color:var(--muted); margin:0 0 12px !important;}
+.intro__who b{color:var(--ink); font-weight:800;}
+/* 정리 */
+.sum{margin-top:30px; border:2px solid var(--acc); border-radius:16px; padding:24px 22px; background:#fff;}
+.sum__k{font-size:12.5px; font-weight:800; color:var(--acc); margin-bottom:6px;}
+.sum__h{font-size:clamp(19px,3.6vw,23px); line-height:1.4; letter-spacing:-.035em; margin:0 0 16px;}
+.sum__cols{display:grid; grid-template-columns:1fr 1fr; gap:14px; font-size:12px; font-weight:700; color:var(--faint); padding:0 0 6px; border-bottom:1px solid var(--line);}
+.sum__list{list-style:none; margin:0; padding:0;}
+.sum__list li{display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:12px 0; border-bottom:1px solid var(--line); font-size:14.5px; line-height:1.55;}
+.sum__a{color:var(--muted);}
+.sum__b{font-weight:700; color:var(--ink);}
+.sum__b::before{content:'→ '; color:var(--acc);}
+.sum__grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
+.sum__t{font-size:13px; font-weight:800; margin-bottom:8px;}
+.sum__when{margin:0; padding-left:18px; font-size:14.5px; line-height:1.6;}
+.sum__when li + li{margin-top:5px;}
+.sum__start{margin:0; background:var(--tint); border-radius:10px; padding:12px 14px; font-size:14px; line-height:1.65;}
+.sum__not{margin:10px 0 0; font-size:13px; color:var(--muted);}
+.sum__not b{color:var(--ink); margin-right:6px;}
+@media(max-width:620px){.sum__grid,.sum__list li,.sum__cols{grid-template-columns:1fr;} .sum__cols span:last-child{display:none;} .sum__list li{gap:2px;} .sum{padding:20px 16px;}}
 </style>
 </head><body>
 <header class="pb"><div class="pb__in">
@@ -203,6 +225,7 @@ input[type=range]{width:100%; accent-color:var(--acc); height:28px;}
 <main class="wrap">
 <section class="intro">
   <span class="intro__k">30초 체험 · 가상 사례</span>
+  <p class="intro__who"><b>Vera</b> · 시장 하나를 던지면 들어갈지 말지를 한 줄로 판정하는 AI 팀원</p>
   <h1>"쿠팡은 팔수록 손해라던데, 우리도 자사몰 준비해야 하나요?"</h1>
   <p>Vera가 받은 건 이 한 줄이에요. Vera의 판정을 먼저 맞혀 보시고, 판정을 가른 숫자를 직접 움직여 보세요.</p>
 </section>
@@ -293,7 +316,7 @@ input[type=range]{width:100%; accent-color:var(--acc); height:28px;}
 <section class="step" id="s4" hidden>
   <div class="step__n">4 · 조건부의 조건</div>
   <h2>쿠팡에서 산 고객을 자사몰로 옮길 때, 남는 게 있을까요?</h2>
-  <p class="step__d">옮긴 고객은 앞으로 사는 몫에서 건당 5,394원을 더 남겨요. 그런데 재구매율 29%에서는 그 몫이 평균 0.41회뿐이에요. 두 값을 움직여 보세요.</p>
+  <p class="step__d"><b style="color:var(--ink)">결론부터: 옮기는 데 1명당 3,000원이 든다면, 옮긴 뒤 재구매율이 31%를 넘어야 남아요.</b> 지금은 29%예요. 이 두 숫자는 해 보기 전엔 아무도 모르기 때문에, Vera의 다음 액션이 "실험"이에요. 두 값을 움직여 보세요.</p>
   <div class="card">
     <div class="rng"><label for="mc">옮기는 비용 (1명, 동봉 쿠폰과 인쇄비) <b id="mcV">3,000원</b></label><input type="range" id="mc" min="500" max="12000" step="100" value="3000"></div>
     <div class="rng"><label for="mq">옮긴 뒤 12개월 재구매율 (지금 29%) <b id="mqV">35%</b></label><input type="range" id="mq" min="20" max="60" step="1" value="35"></div>
@@ -308,9 +331,15 @@ input[type=range]{width:100%; accent-color:var(--acc); height:28px;}
     <h3>쿠팡 구매 고객 500명에게 동봉 쿠폰을 넣는 실험</h3>
     <p>옮기는 비용과 옮긴 뒤 재구매율을 한 번에 재요. 재구매 주기가 74일이라 약 4개월이면 첫 판독이 나와요. 본전선을 넘으면 "회수 장치로 추천", 못 넘으면 "보류"로 판정이 확정돼요.</p>
   </div>
-  <div class="card">
-    <div class="card__k">Vera가 하지 않는 것</div>
-    <p>어떤 채널을 키울지는 정하지 않아요. 시장이 어떤지까지 판정하고, 결정은 회사가 해요. 근거가 약한 숫자는 약하다고 표시하고, 홍보성 자료는 원출처를 확인하지 못하면 판정 근거에서 빼요.</p>
+  <div class="sum">
+    <div class="sum__k">정리 · 방금 본 게 Vera예요</div>
+    <h3 class="sum__h">Vera는 시장 하나를 던지면 들어갈지 말지를 한 줄로 판정하는 AI 팀원이에요</h3>
+    <div class="sum__cols"><span>방금 본 장면</span><span>Vera가 늘 하는 일</span></div>
+    <ul class="sum__list"><li><span class="sum__a">"수수료가 손해"라는 질문의 전제부터 계산했어요</span><span class="sum__b">질문을 그대로 받지 않고 전제부터 검증해요</span></li><li><span class="sum__a">조건부, 한 단어로 단정했어요</span><span class="sum__b">추천, 조건부, 보류, 회피 넷 중 하나로 판정해요</span></li><li><span class="sum__a">7,600원이라는 선과 확인할 실험을 붙였어요</span><span class="sum__b">판정이 뒤집히는 숫자와 그걸 확인할 방법까지 줘요</span></li></ul>
+    <div class="sum__grid">
+      <div><div class="sum__t">이럴 때 꺼내 쓰세요</div><ul class="sum__when"><li>시장에 들어갈지 말지 아무도 판정을 못 내릴 때</li><li>새 채널, 새 상품, 해외 진출을 두고 "해볼까?"만 반복될 때</li><li>조사 자료는 쌓였는데 결론이 안 날 때</li></ul></div>
+      <div><div class="sum__t">받으면 이렇게 시작해요</div><p class="sum__start">우리 회사가 ○○ 시장(또는 채널)에 들어가야 할까요? 회사 상황은 이래요. (매출 규모, 지금 파는 곳, 고민하게 된 계기를 평소 말투로)</p><p class="sum__not"><b>하지 않는 것</b> 조사 결과 요약, 출처 없는 숫자</p></div>
+    </div>
   </div>
 </section>
 

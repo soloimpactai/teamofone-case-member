@@ -192,6 +192,28 @@ input[type=range]{width:100%; accent-color:var(--acc); height:28px;}
 .ctx li > span b{color:var(--ink);}
 .ctx__q{margin-top:12px; padding-top:12px; border-top:1px dashed var(--line2); font-size:15px; font-weight:700;}
 @media(max-width:620px){.ctx li{grid-template-columns:1fr; gap:0;} .ctx li > b{padding-top:0;}}
+
+/* 팀원 한 줄 */
+.intro__who{font-size:15px; color:var(--muted); margin:0 0 12px !important;}
+.intro__who b{color:var(--ink); font-weight:800;}
+/* 정리 */
+.sum{margin-top:30px; border:2px solid var(--acc); border-radius:16px; padding:24px 22px; background:#fff;}
+.sum__k{font-size:12.5px; font-weight:800; color:var(--acc); margin-bottom:6px;}
+.sum__h{font-size:clamp(19px,3.6vw,23px); line-height:1.4; letter-spacing:-.035em; margin:0 0 16px;}
+.sum__cols{display:grid; grid-template-columns:1fr 1fr; gap:14px; font-size:12px; font-weight:700; color:var(--faint); padding:0 0 6px; border-bottom:1px solid var(--line);}
+.sum__list{list-style:none; margin:0; padding:0;}
+.sum__list li{display:grid; grid-template-columns:1fr 1fr; gap:14px; padding:12px 0; border-bottom:1px solid var(--line); font-size:14.5px; line-height:1.55;}
+.sum__a{color:var(--muted);}
+.sum__b{font-weight:700; color:var(--ink);}
+.sum__b::before{content:'→ '; color:var(--acc);}
+.sum__grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
+.sum__t{font-size:13px; font-weight:800; margin-bottom:8px;}
+.sum__when{margin:0; padding-left:18px; font-size:14.5px; line-height:1.6;}
+.sum__when li + li{margin-top:5px;}
+.sum__start{margin:0; background:var(--tint); border-radius:10px; padding:12px 14px; font-size:14px; line-height:1.65;}
+.sum__not{margin:10px 0 0; font-size:13px; color:var(--muted);}
+.sum__not b{color:var(--ink); margin-right:6px;}
+@media(max-width:620px){.sum__grid,.sum__list li,.sum__cols{grid-template-columns:1fr;} .sum__cols span:last-child{display:none;} .sum__list li{gap:2px;} .sum{padding:20px 16px;}}
 </style>
 </head><body>
 <header class="pb"><div class="pb__in">
@@ -203,6 +225,7 @@ input[type=range]{width:100%; accent-color:var(--acc); height:28px;}
 <main class="wrap">
 <section class="intro">
   <span class="intro__k">30초 체험 · 가상 사례</span>
+  <p class="intro__who"><b>Juno</b> · 장부를 던지면 어디서 얼마가 새는지 짚어 내는 AI 팀원</p>
   <h1>"개발자 2명 뽑아도 되는 상태인지 봐주세요"</h1>
   <p>Juno가 받은 건 회계사무소 파일 네 종류와 이 두 줄이에요. 먼저 답을 골라 보시고, 장부 한 줄을 옮겼을 때 무엇이 바뀌는지 직접 확인해 보세요.</p>
 </section>
@@ -339,9 +362,15 @@ input[type=range]{width:100%; accent-color:var(--acc); height:28px;}
     <div class="card__k">열 개가 아니라 세 가지만</div>
     <p><b style="color:var(--ink)">하나.</b> 못 받은 3.87억에 회수 담당과 주간 점검을 붙인다. <b style="color:var(--ink)">둘.</b> 30개월째 그대로인 인일 단가 65만원을 신규 견적부터 70만원으로 올린다. <b style="color:var(--ink)">셋.</b> 프로젝트별 실제 투입 공수를 기록한다. 외주비가 오른 원인을 장부로는 가를 수 없었거든요.</p>
   </div>
-  <div class="card">
-    <div class="card__k">Juno가 하지 않는 것</div>
-    <p>장부로 답할 수 없는 건 답하지 않아요. 원인을 못 가른 부분은 못 갈랐다고 적고, 그걸 재는 일을 처방에 넣어요. 숫자마다 얼마나 믿을 수 있는지 등급을 붙여요.</p>
+  <div class="sum">
+    <div class="sum__k">정리 · 방금 본 게 Juno예요</div>
+    <h3 class="sum__h">Juno는 장부를 던지면 어디서 얼마가 새는지 짚어 내는 AI 팀원이에요</h3>
+    <div class="sum__cols"><span>방금 본 장면</span><span>Juno가 늘 하는 일</span></div>
+    <ul class="sum__list"><li><span class="sum__a">판관비에 숨은 비용 두 줄을 원가로 옮겼어요</span><span class="sum__b">장부를 그대로 읽지 않고 실제 쓰임대로 다시 분류해요</span></li><li><span class="sum__a">사라진 마진 1.74억과 못 받은 돈 3.87억을 찾았어요</span><span class="sum__b">이익과 현금이 어디서 새는지 금액으로 짚어요</span></li><li><span class="sum__a">"지금은 안 된다"에 조건 세 개를 붙였어요</span><span class="sum__b">할지 말지를 단정하고, 언제 되는지 숫자로 알려줘요</span></li></ul>
+    <div class="sum__grid">
+      <div><div class="sum__t">이럴 때 꺼내 쓰세요</div><ul class="sum__when"><li>숫자는 좋아 보이는데 현금이 안 남을 때</li><li>채용, 투자, 대출 전에 우리 장부가 버티는지 보고 싶을 때</li><li>세무사 자료는 받았는데 뭘 봐야 할지 모를 때</li></ul></div>
+      <div><div class="sum__t">받으면 이렇게 시작해요</div><p class="sum__start">개발자 2명 뽑아도 되는 상태인지 봐주세요. (재무제표, 통장 거래내역 엑셀을 그대로 첨부)</p><p class="sum__not"><b>하지 않는 것</b> 장부에 없는 숫자를 추정으로 채우기</p></div>
+    </div>
   </div>
 </section>
 
